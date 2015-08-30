@@ -91,6 +91,303 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/04/顺时针操作矩阵/" title="顺时针操作矩阵" itemprop="url">顺时针操作矩阵</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-03T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-04</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="题目">题目</h1><blockquote>
+<p>给你一个大于0的整数n，请输出一个n行n列的数据表，并且要满足以下规律（以n=10为例）</p>
+</blockquote>
+<center><img src="/images/n行n列的数据表.jpg" alt="n行n列的数据表"></center>
+
+<h1 id="解答">解答</h1><ol>
+<li><p>按圈遍历数组<br>函数：<code>int[][]  genCycleMatrix(int rows, int columns)</code> </p>
+<ul>
+<li>数字是按顺时针一圈一圈递增的，从1 开始 ；</li>
+<li>每一圈数字的开头都是方阵[n×n]对角线上的数字（[0,0],[1,1]…）,n = min（rows, columns），其中rows, columns分别为行数和列数</li>
+<li>一般情况下，一圈有两行两列，当行数或列数为奇数时，最后一圈会出现少行少列现象。故按圈打印数字的终止条件是<code>start * 2 &lt;n</code><br>代码如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> startNumber = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> start = <span class="number">0</span>; start * <span class="number">2</span> &lt; rows &amp;&amp; start *<span class="number">2</span> &lt; columns ;start++) &#123;</span><br><span class="line">    startNumber = genCycleMatrix(a, rows, columns, start, startNumber);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>遍历一圈数组，为依次遍历的元素赋值，并返回下一圈应该开始的数字<br>函数：<code>int genCycleMatrix(int[][] a, int rows, int columns , int start ,int startNumber)</code><br>依次分四个方向<code>从左到右</code>，<code>从上到下</code> ，<code>从右到左</code> ，<code>从下到上</code>。<br>相对于剑指Offer中花大篇幅讲的判断条件，其实可以先写出循环代码，再写满足循环的判断条件，这样就简单许多。<br>需要注意的是后两个方向还需要添加条件<code>start &lt; endX</code> .</p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/08/04/顺时针操作矩阵/#more">更多</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/算法/">算法</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/算法/">算法</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/04/顺时针操作矩阵/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/04/顺时针操作矩阵/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/03/5个不同整数之和小于100/" title="5个不同整数之和小于100" itemprop="url">5个不同整数之和小于100</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-02T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-03</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="题目">题目</h1><blockquote>
+<p>求1到100内，任取5个不同整数之和小于100的取法有多少中。列出主要思路即可。（新浪研发笔试）</p>
+</blockquote>
+<h1 id="解答">解答</h1><p>需要取5个不同整数，设为x1,x2,x3,x4,x5 (<code>x1&lt;x2&lt;x3&lt;x4&lt;x5</code> 且 <code>x1+x2+x3+x4+x5&lt;100</code>) 。<br>由<code>100  &gt; x1+x2+x3+x4+x5 &gt; x1+x1+x1+x1+x1 &gt;5*x1</code> 得 <code>x1 &lt;20</code><br>直接使用5重循环即可解决。</p>
+<h1 id="代码">代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">long</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> x1 = <span class="number">1</span>; x1 &lt; <span class="number">20</span>; x1++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> x2 = x1+<span class="number">1</span>; x2 &lt;<span class="number">100</span>; x2++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x3 = x2+<span class="number">1</span>; x3 &lt;<span class="number">100</span>; x3++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> x4 = x3+<span class="number">1</span>; x4 &lt;<span class="number">100</span>; x4++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> x5 = x4+<span class="number">1</span>; x5 &lt;<span class="number">100</span>; x5++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (x1+x2+x3+x4+x5 &lt; <span class="number">100</span>) &#123;</span><br><span class="line">                        System.out.printf(<span class="string">"%d %d %d %d %d \n"</span>,x1,x2,x3,x4,x5);</span><br><span class="line">                        count++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(count);</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/算法/">算法</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/算法/">算法</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/03/5个不同整数之和小于100/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/03/5个不同整数之和小于100/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/07/29/数组中只出现一次的数字/" title="数组中只出现一次的数字" itemprop="url">数组中只出现一次的数字</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  <p class="article-time">
+    <time datetime="2015-07-28T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-29</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ol>
+<li><p><font color="red">一个整型数组中只有一个数字出现过一次，其他的出现两次，如何找出只出现一次的那个数字？</font><br>解答： 异或运算有一个性质： <strong>任何一个数字异或自己都等于0。</strong><br>如果我们将数组中的数字依次异或，最后得到的就是那个只出现一次的数字。</p>
+</li>
+<li><p><font color="red">如果一个整型数组只有两个数字只出现一次，其余都出现两次呢？</font><br>解答： 仿照刚刚的思路，<strong>将数组拆分成两个子数组：出现两次的数字需要出现在同一个子数组中，而两个只出现一次的数字分别出现在两个子数组中。</strong><br>可按如下步骤进行： </p>
+<ul>
+<li>将数组中的数字依次异或，最后得到的就是l两个只出现一次的数字的异或结果 a。</li>
+<li>记下a 中第一个为 1 的位的位置 n ，因为异或这一位的结果为1，所以两个只出现一次的数字在这一位分别为0和1，故可分到两组中。<br> 而出现两次的数字两个都将被分到同一组，因为他们的每一位都相同。</li>
+<li>分别将两个子数组中的所有数字都异或，即可得到两个只出现一次的数字</li>
+</ul>
+</li>
+</ol>
+<h1 id="参考">参考</h1><p>[1]： 剑指Offer</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Logic/">Logic</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Logic/">Logic</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/07/29/数组中只出现一次的数字/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/29/数组中只出现一次的数字/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/07/28/topNPro/" title="Top N 问题" itemprop="url">Top N 问题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  <p class="article-time">
+    <time datetime="2015-07-27T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-28</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>转载自 <a href="http://www.cnblogs.com/zhjp11/archive/2010/02/26/1674227.html">http://www.cnblogs.com/zhjp11/archive/2010/02/26/1674227.html</a><br>原文格式不太好，调整下格式</p>
+<p>今天看算法分析是，看到一个这样的问题，就是在一堆数据中查找到第k个大的值。</p>
+<h2 id="题目">题目</h2><pre><code>设计一组<span class="keyword">N</span>个数，确定其中第k个最大值
+</code></pre><p>这是一个选择问题，当然，解决这个问题的方法很多，本人在网上搜索了一番，查找到以下的方式，决定很好，推荐给大家。<br>所谓“第（前）k大数问题”指的是在长度为n(n&gt;=k)的乱序数组中S找出从大到小顺序的第（前）k个数的问题。</p>
+<h2 id="解法">解法</h2><ul>
+<li><strong>解法1</strong>： 我们可以对这个乱序数组按照从大到小先行排序，然后取出前k大，总的时间复杂度为O(n*logn + k)。</li>
+<li><strong>解法2</strong>： 利用选择排序或交互排序，K次选择后即可得到第k大的数。总的时间复杂度为O(n*k)</li>
+<li><strong>解法3</strong>： 利用快速排序的思想，从数组S中随机找出一个元素X，把数组分为两部分Sa和Sb。Sa中的元素大于等于X，Sb中元素小于X。这时有两种情况：<ul>
+<li>Sa中元素的个数小于k，则Sb中的第k-|Sa|个元素即为第k大数；</li>
+<li>Sa中元素的个数大于等于k，则返回Sa中的第k大数。<strong>时间复杂度近似为O(n)</strong></li>
+</ul>
+</li>
+<li><strong>解法4</strong>： 二分[Smin,Smax]查找结果X，统计X在数组中出现，且整个数组中比X大的数目为k-1的数即为第k大数。时间复杂度平均情况为O(n*logn)</li>
+<li><strong>解法5</strong>：用O(4*n)的方法对原数组建最大堆，然后pop出k次即可。时间复杂度为O(4*n + k*logn)</li>
+<li><strong>解法6</strong>：维护一个k大小的最小堆，对于数组中的每一个元素判断与堆顶的大小，若堆顶较大，则不管，否则，弹出堆顶，将当前值插入到堆中。时间复杂度O(n * logk)</li>
+<li><strong>解法7</strong>：利用hash保存数组中元素Si出现的次数，利用计数排序的思想，线性从大到小扫描过程中，前面有k-1个数则为第k大数，<strong>平均情况下时间复杂度O(n)</strong>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/07/28/topNPro/#more">更多</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/算法/">算法</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/算法/">算法</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/07/28/topNPro/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/28/topNPro/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/07/27/useStacksImplementsQueue/" title="用两个栈实现队列" itemprop="url">用两个栈实现队列</a>
   </h1>
   <p class="article-author">By
@@ -501,302 +798,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/21/javaNote/" title="Java笔记" itemprop="url">Java笔记</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
-		
-  <p class="article-time">
-    <time datetime="2015-07-20T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-21</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <ol>
-<li><p><font color="red">静态导入（Static Import）</font><br>一般情况下，我们调用余弦的方式如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> r = Math.cos(Math.PI * theta);</span><br></pre></td></tr></table></figure>
-<p>即在前面加入引用类 <code>Math</code> , 当我们经常使用这个函数时就会显得不厌其烦。一种解决方案是静态导入。<br>使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.Math.PI;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.Math.cos;</span><br></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.Math.*;</span><br></pre></td></tr></table></figure>
-<p>则可以这样调用：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> r = cos(PI * theta);</span><br></pre></td></tr></table></figure>
-<p>需要注意的是：<font color=red>并不推荐这样做</font>。只有当一个方法或是变量经常使用时才使用静态导入，不然很容易造成误解，以为 <code>cos</code> 方法是当前类的方法，可读性差。个人比较喜欢在测试用例或是非产品类的项目中使用静态导入。<br>参考: <a href="http://docs.oracle.com/javase/1.5.0/docs/guide/language/static-import.html">http://docs.oracle.com/javase/1.5.0/docs/guide/language/static-import.html</a></p>
-</li>
-<li><p><font color="red">接口都继承自Object吗？如果不是，那为什么接口有equals方法？</font></p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">        Employee e = <span class="keyword">null</span>;</span><br><span class="line">        e.equals(<span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title">Employee</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>首先接口与Object没有继承关系。其次接口对于Object中的每个public方法都有一个隐式声明，如果对 <code>final</code> 方法覆盖，则会编译错误。<br>参考：<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-9.html#jls-9.2">http://docs.oracle.com/javase/specs/jls/se7/html/jls-9.html#jls-9.2</a></p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/07/21/javaNote/#more">更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Java/">Java</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Java/">Java</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/07/21/javaNote/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/21/javaNote/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/20/latex/" title="Latex 笔记" itemprop="url">Latex 笔记</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
-		
-  <p class="article-time">
-    <time datetime="2015-07-19T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-20</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="在博客上写LaTex数学公式">在博客上写LaTex数学公式</h1><p> 参见<a href="http://wuchong.me/blog/2014/03/14/use-latex-in-blog/">在博客上写LaTex数学公式</a></p>
-<h1 id="LaTeX数学公式输入">LaTeX数学公式输入</h1><h2 id="标识">标识</h2><p> <code>$math_expression$</code> 或 <code>\( math_expression \)</code> 表示内嵌公式<br> <code>$$math_expression$$</code> 或 <code>\[math_expression \]</code> 表示公式独占一行<br> <code>\begin{equation} math_expression \end{equation}</code>，则公式除了独占一行还会自动被添加序号， 如何公式不想编号则使用 <code>\begin{equation*} math_expression \end{equation*}</code>。</p>
-<h2 id="字符转义">字符转义</h2><p>　对于特殊字符<code># $ % &amp; ~ _ ^ \ { }</code>，在前面加转义符<code>\</code>，表示原字符</p>
-<h2 id="上标和下标">上标和下标</h2><p> 用 ^ 来表示上标，用 _ 来表示下标，看一简单例子：<br> <figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$$</span>\sum_&#123;i=<span class="number">1</span>&#125;^n a_i=<span class="number">0</span><span class="variable">$$</span></span><br><span class="line"><span class="variable">$$</span>f(x)=x^&#123;x^x&#125;<span class="variable">$$</span> <span class="comment">//上下标可以嵌套</span></span><br></pre></td></tr></table></figure></p>
-<p> 效果:<br>$$\sum_{i=1}^n a_i=0$$<br>$$f(x)=x^{x^x}$$</p>
-<h2 id="数学符号及公式">数学符号及公式</h2><p>参见<a href="http://mohu.org/info/symbols/symbols.htm">常用数学符号的 LaTeX 表示方法</a>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/07/20/latex/#more">更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/LaTeX/">LaTeX</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/LaTeX/">LaTeX</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/07/20/latex/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/20/latex/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/19/swingNote/" title="Swing 笔记" itemprop="url">Swing 笔记</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
-		
-  <p class="article-time">
-    <time datetime="2015-07-18T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-19</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="界面设计工具包">界面设计工具包</h1><p>AWT、Swing、SWT  3种工具包，<strong>Swing最好</strong></p>
-<h1 id="类层次">类层次</h1><p>3种窗体 ： JFrame、JDialog、JWindow<br>×××Model 组件模型基类<br>JComponent 组件基类<br>×××UI 设置样式</p>
-<h1 id="界面消息提示JOptionPane">界面消息提示JOptionPane</h1><p>showConfirmedDialog显示确认对话框</p>
-<h1 id="Swing_菜单_JMenu">Swing 菜单 JMenu</h1><p>JMenuBar、JMenu、JMenuItem<br>后两者之间的关系类似于文件夹和文件</p>
-<p>Menu的事件应该用Actionlistener而非MouseListener</p>
-<h1 id="自定义绘图组件">自定义绘图组件</h1><p><strong>Graphic 、Graphic2D 优先使用后者</strong>，，能消除锯齿，且方法更多<br>drawXXX方法绘图，fillXXX方法填充<br>LookAndFeel改变界面的样式，Nis<em>*</em>最好，一般是System默认</p>
-<p>每次组件更新都会调用paint函数<br>paint函数也会依次调用paintComponent（绘制自身）、paintBorder（绘制边界）和paintChildren（绘制子对象）</p>
-<h1 id="布局管理器_Layout">布局管理器 Layout</h1><p>absolute、flow、border、grid、group 主要有这五中，<strong>最后一种最好用</strong></p>
-<h1 id="文件选择器JFileChooser">文件选择器JFileChooser</h1><p>setFileSelectionMode 可设置是否能够选择目录<br>setMultiSelectionEnabled 可设置是否能够多选</p>
-<p>showOpenDialog 和 showSaveDialog  打开文件选择器，根据返回值做不同处理<br>getSelectedFile 和 getSelectedFiles获取选择的文件，后者用于多选情况</p>
-<p>FileNameExtensionFilter文件扩展名过滤器<br><strong>setFilter需要再show×××Dialog之前</strong></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Java/">Java</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Java/">Java</a><a href="/tags/Swing/">Swing</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/07/19/swingNote/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/19/swingNote/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/18/rNote/" title="R笔记" itemprop="url">R笔记</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
-		
-  <p class="article-time">
-    <time datetime="2015-07-17T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-18</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <ol>
-<li><p><font color=red>如何对数组去重？</font><br>使用 <code>duplicated</code> 函数是一个可以用来解决向量或者数据框重复值的函数，它会返回一个TRUE和FALSE的向量，以标注该索引所对应的值是否是前面数据所重复的值。<br>需要注意的是不重复对应返回的值是FALSE，所以在后面我们用!来取反以得到不重复的值。</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr &lt;- c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">5</span>)</span><br><span class="line">arr[!duplicated(arr)]</span><br></pre></td></tr></table></figure>
-<p>输出为：<br>[1] 1 2 3 5 4</p>
-</li>
-<li><p><font color=red>如何取得数组的极大值（或极小值）</font><br>使用 <code>diff</code> 和 <code>sign</code> 两个函数。其中<code>diff</code> 得到相邻数的差， <code>sign</code> 则取符号位（-1,0,1），因每次 <code>diff</code> 返回的数组比原数组的长度小于1，我们主动在首位添加1，表示最小值，即不论原来首位是什么数，都比新添加的数大，在尾部添加-1表示最大值。<br>所谓极大值，即该值比相邻两边的值都大 ，第一次<code>diff</code>要比左边的值大，比右边的值小，所以<code>diff</code>后的值应该是1，-1（没有考虑相等的情况）；那第二次<code>diff</code>的值应该是<code>-1-1=-2</code>.<br>代码如下：</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> findMaxima &lt;- <span class="keyword">function</span>(array)&#123;</span><br><span class="line">  which(diff(c(<span class="number">1</span>,sign(diff(array)),-<span class="number">1</span>)) == -<span class="number">2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>返回的是index</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr &lt;- c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">5</span>)</span><br><span class="line">findMaxima(arr)</span><br></pre></td></tr></table></figure>
-<p>运行结果为：<br>[1] 4 7 9</p>
-</li>
-<li><p><font color="red">如何获得当前文件所在的目录</font></p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curFileDir &lt;- dirname(sys.frame(<span class="number">1</span>)$ofile)</span><br></pre></td></tr></table></figure>
-<p>需要注意的是这行代码在命令行运行会出错，只能在文件里面执行。
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/07/18/rNote/#more">更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/R/">R</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/R/">R</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/07/18/rNote/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/18/rNote/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
@@ -847,11 +848,19 @@
 		  
 		
 		  
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/数据挖掘/" title="数据挖掘">数据挖掘<sup>2</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>6</sup></a></li>
+			<li><a href="/categories/测试/" title="测试">测试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>7</sup></a></li>
 		  
 		
 		</ul>
@@ -864,15 +873,19 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/算法/" title="算法">算法<sup>6</sup></a></li>
+				<li><a href="/tags/Java/" title="Java">Java<sup>9</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Java/" title="Java">Java<sup>6</sup></a></li>
+				<li><a href="/tags/算法/" title="算法">算法<sup>7</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Logic/" title="Logic">Logic<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
 			
 		
 			
@@ -888,7 +901,7 @@
 			
 		
 			
-				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
 			
 		
 			
@@ -905,6 +918,14 @@
 		
 			
 				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -963,6 +984,60 @@
             
           </li>
         
+          <li>
+            
+            	<a href="http://blog.csdn.net/jackfrued" target="_blank" title="骆昊的技术专栏">骆昊的技术专栏</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.iteye.com/blogs/tag/Java" target="_blank" title="iteye">iteye</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://droidyue.com/" target="_blank" title="技术小黑屋">技术小黑屋</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="ifeve.com" target="_blank" title="并发编程网">并发编程网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.importnew.com/" target="_blank" title="importnew">importnew</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blogwall.us/" target="_blank" title="程序员博客墙">程序员博客墙</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.caimi.la/category/Java/" target="_blank" title="采蜜博客">采蜜博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.raychase.net/category/java" target="_blank" title="四火的唠叨">四火的唠叨</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://it.deepinmind.com/" target="_blank" title="deepinmind">deepinmind</a>
+            
+          </li>
+        
     </ul>
 </div>
 
@@ -972,6 +1047,25 @@
   <div class="rsspart">
 	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
+
+  
+<div class="commentslist">
+  <p class="asidetitle">最新评论</p>
+  <ul class="ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-admin="1" data-excerpt-length="32" data-show-title="1"></ul>
+</div>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starqiugithubio"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+
 
 </aside>
 </div>
@@ -1073,7 +1167,7 @@ $(document).ready(function(){
 
 
 <script type="text/javascript">
-  var duoshuoQuery = {short_name:"starqiugithubio## e.g. wuchong   your duoshuo short name."};
+  var duoshuoQuery = {short_name:"starqiugithubio"};
   (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;

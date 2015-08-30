@@ -91,6 +91,302 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/07/21/javaNote/" title="Java笔记" itemprop="url">Java笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  <p class="article-time">
+    <time datetime="2015-07-20T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ol>
+<li><p><font color="red">静态导入（Static Import）</font><br>一般情况下，我们调用余弦的方式如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> r = Math.cos(Math.PI * theta);</span><br></pre></td></tr></table></figure>
+<p>即在前面加入引用类 <code>Math</code> , 当我们经常使用这个函数时就会显得不厌其烦。一种解决方案是静态导入。<br>使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.Math.PI;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.Math.cos;</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.Math.*;</span><br></pre></td></tr></table></figure>
+<p>则可以这样调用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> r = cos(PI * theta);</span><br></pre></td></tr></table></figure>
+<p>需要注意的是：<font color=red>并不推荐这样做</font>。只有当一个方法或是变量经常使用时才使用静态导入，不然很容易造成误解，以为 <code>cos</code> 方法是当前类的方法，可读性差。个人比较喜欢在测试用例或是非产品类的项目中使用静态导入。<br>参考: <a href="http://docs.oracle.com/javase/1.5.0/docs/guide/language/static-import.html">http://docs.oracle.com/javase/1.5.0/docs/guide/language/static-import.html</a></p>
+</li>
+<li><p><font color="red">接口都继承自Object吗？如果不是，那为什么接口有equals方法？</font></p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">        Employee e = <span class="keyword">null</span>;</span><br><span class="line">        e.equals(<span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title">Employee</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先接口与Object没有继承关系。其次接口对于Object中的每个public方法都有一个隐式声明，如果对 <code>final</code> 方法覆盖，则会编译错误。<br>参考：<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-9.html#jls-9.2">http://docs.oracle.com/javase/specs/jls/se7/html/jls-9.html#jls-9.2</a></p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/07/21/javaNote/#more">更多</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Java/">Java</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Java/">Java</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/07/21/javaNote/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/21/javaNote/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/07/20/latex/" title="Latex 笔记" itemprop="url">Latex 笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  <p class="article-time">
+    <time datetime="2015-07-19T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-20</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="在博客上写LaTex数学公式">在博客上写LaTex数学公式</h1><p> 参见<a href="http://wuchong.me/blog/2014/03/14/use-latex-in-blog/">在博客上写LaTex数学公式</a></p>
+<h1 id="LaTeX数学公式输入">LaTeX数学公式输入</h1><h2 id="标识">标识</h2><p> <code>$math_expression$</code> 或 <code>\( math_expression \)</code> 表示内嵌公式<br> <code>$$math_expression$$</code> 或 <code>\[math_expression \]</code> 表示公式独占一行<br> <code>\begin{equation} math_expression \end{equation}</code>，则公式除了独占一行还会自动被添加序号， 如何公式不想编号则使用 <code>\begin{equation*} math_expression \end{equation*}</code>。</p>
+<h2 id="字符转义">字符转义</h2><p>　对于特殊字符<code># $ % &amp; ~ _ ^ \ { }</code>，在前面加转义符<code>\</code>，表示原字符</p>
+<h2 id="上标和下标">上标和下标</h2><p> 用 ^ 来表示上标，用 _ 来表示下标，看一简单例子：<br> <figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$$</span>\sum_&#123;i=<span class="number">1</span>&#125;^n a_i=<span class="number">0</span><span class="variable">$$</span></span><br><span class="line"><span class="variable">$$</span>f(x)=x^&#123;x^x&#125;<span class="variable">$$</span> <span class="comment">//上下标可以嵌套</span></span><br></pre></td></tr></table></figure></p>
+<p> 效果:<br>$$\sum_{i=1}^n a_i=0$$<br>$$f(x)=x^{x^x}$$</p>
+<h2 id="数学符号及公式">数学符号及公式</h2><p>参见<a href="http://mohu.org/info/symbols/symbols.htm">常用数学符号的 LaTeX 表示方法</a>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/07/20/latex/#more">更多</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/LaTeX/">LaTeX</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/LaTeX/">LaTeX</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/07/20/latex/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/20/latex/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/07/19/swingNote/" title="Swing 笔记" itemprop="url">Swing 笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  <p class="article-time">
+    <time datetime="2015-07-18T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-19</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="界面设计工具包">界面设计工具包</h1><p>AWT、Swing、SWT  3种工具包，<strong>Swing最好</strong></p>
+<h1 id="类层次">类层次</h1><p>3种窗体 ： JFrame、JDialog、JWindow<br>×××Model 组件模型基类<br>JComponent 组件基类<br>×××UI 设置样式</p>
+<h1 id="界面消息提示JOptionPane">界面消息提示JOptionPane</h1><p>showConfirmedDialog显示确认对话框</p>
+<h1 id="Swing_菜单_JMenu">Swing 菜单 JMenu</h1><p>JMenuBar、JMenu、JMenuItem<br>后两者之间的关系类似于文件夹和文件</p>
+<p>Menu的事件应该用Actionlistener而非MouseListener</p>
+<h1 id="自定义绘图组件">自定义绘图组件</h1><p><strong>Graphic 、Graphic2D 优先使用后者</strong>，，能消除锯齿，且方法更多<br>drawXXX方法绘图，fillXXX方法填充<br>LookAndFeel改变界面的样式，Nis<em>*</em>最好，一般是System默认</p>
+<p>每次组件更新都会调用paint函数<br>paint函数也会依次调用paintComponent（绘制自身）、paintBorder（绘制边界）和paintChildren（绘制子对象）</p>
+<h1 id="布局管理器_Layout">布局管理器 Layout</h1><p>absolute、flow、border、grid、group 主要有这五中，<strong>最后一种最好用</strong></p>
+<h1 id="文件选择器JFileChooser">文件选择器JFileChooser</h1><p>setFileSelectionMode 可设置是否能够选择目录<br>setMultiSelectionEnabled 可设置是否能够多选</p>
+<p>showOpenDialog 和 showSaveDialog  打开文件选择器，根据返回值做不同处理<br>getSelectedFile 和 getSelectedFiles获取选择的文件，后者用于多选情况</p>
+<p>FileNameExtensionFilter文件扩展名过滤器<br><strong>setFilter需要再show×××Dialog之前</strong></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Java/">Java</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Java/">Java</a><a href="/tags/Swing/">Swing</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/07/19/swingNote/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/19/swingNote/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/07/18/rNote/" title="R笔记" itemprop="url">R笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  <p class="article-time">
+    <time datetime="2015-07-17T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ol>
+<li><p><font color=red>如何对数组去重？</font><br>使用 <code>duplicated</code> 函数是一个可以用来解决向量或者数据框重复值的函数，它会返回一个TRUE和FALSE的向量，以标注该索引所对应的值是否是前面数据所重复的值。<br>需要注意的是不重复对应返回的值是FALSE，所以在后面我们用!来取反以得到不重复的值。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr &lt;- c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">5</span>)</span><br><span class="line">arr[!duplicated(arr)]</span><br></pre></td></tr></table></figure>
+<p>输出为：<br>[1] 1 2 3 5 4</p>
+</li>
+<li><p><font color=red>如何取得数组的极大值（或极小值）</font><br>使用 <code>diff</code> 和 <code>sign</code> 两个函数。其中<code>diff</code> 得到相邻数的差， <code>sign</code> 则取符号位（-1,0,1），因每次 <code>diff</code> 返回的数组比原数组的长度小于1，我们主动在首位添加1，表示最小值，即不论原来首位是什么数，都比新添加的数大，在尾部添加-1表示最大值。<br>所谓极大值，即该值比相邻两边的值都大 ，第一次<code>diff</code>要比左边的值大，比右边的值小，所以<code>diff</code>后的值应该是1，-1（没有考虑相等的情况）；那第二次<code>diff</code>的值应该是<code>-1-1=-2</code>.<br>代码如下：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> findMaxima &lt;- <span class="keyword">function</span>(array)&#123;</span><br><span class="line">  which(diff(c(<span class="number">1</span>,sign(diff(array)),-<span class="number">1</span>)) == -<span class="number">2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回的是index</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr &lt;- c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">5</span>)</span><br><span class="line">findMaxima(arr)</span><br></pre></td></tr></table></figure>
+<p>运行结果为：<br>[1] 4 7 9</p>
+</li>
+<li><p><font color="red">如何获得当前文件所在的目录</font></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curFileDir &lt;- dirname(sys.frame(<span class="number">1</span>)$ofile)</span><br></pre></td></tr></table></figure>
+<p>需要注意的是这行代码在命令行运行会出错，只能在文件里面执行。
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/07/18/rNote/#more">更多</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/R/">R</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/R/">R</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/07/18/rNote/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/18/rNote/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/07/17/rCluster/" title="R中的聚类方法" itemprop="url">R中的聚类方法</a>
   </h1>
   <p class="article-author">By
@@ -283,11 +579,19 @@
 		  
 		
 		  
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/数据挖掘/" title="数据挖掘">数据挖掘<sup>2</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>6</sup></a></li>
+			<li><a href="/categories/测试/" title="测试">测试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>7</sup></a></li>
 		  
 		
 		</ul>
@@ -300,15 +604,19 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/算法/" title="算法">算法<sup>6</sup></a></li>
+				<li><a href="/tags/Java/" title="Java">Java<sup>9</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Java/" title="Java">Java<sup>6</sup></a></li>
+				<li><a href="/tags/算法/" title="算法">算法<sup>7</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Logic/" title="Logic">Logic<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
 			
 		
 			
@@ -324,7 +632,7 @@
 			
 		
 			
-				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
 			
 		
 			
@@ -341,6 +649,14 @@
 		
 			
 				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -399,6 +715,60 @@
             
           </li>
         
+          <li>
+            
+            	<a href="http://blog.csdn.net/jackfrued" target="_blank" title="骆昊的技术专栏">骆昊的技术专栏</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.iteye.com/blogs/tag/Java" target="_blank" title="iteye">iteye</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://droidyue.com/" target="_blank" title="技术小黑屋">技术小黑屋</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="ifeve.com" target="_blank" title="并发编程网">并发编程网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.importnew.com/" target="_blank" title="importnew">importnew</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blogwall.us/" target="_blank" title="程序员博客墙">程序员博客墙</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.caimi.la/category/Java/" target="_blank" title="采蜜博客">采蜜博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.raychase.net/category/java" target="_blank" title="四火的唠叨">四火的唠叨</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://it.deepinmind.com/" target="_blank" title="deepinmind">deepinmind</a>
+            
+          </li>
+        
     </ul>
 </div>
 
@@ -408,6 +778,25 @@
   <div class="rsspart">
 	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
+
+  
+<div class="commentslist">
+  <p class="asidetitle">最新评论</p>
+  <ul class="ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-admin="1" data-excerpt-length="32" data-show-title="1"></ul>
+</div>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starqiugithubio"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+
 
 </aside>
 </div>
@@ -509,7 +898,7 @@ $(document).ready(function(){
 
 
 <script type="text/javascript">
-  var duoshuoQuery = {short_name:"starqiugithubio## e.g. wuchong   your duoshuo short name."};
+  var duoshuoQuery = {short_name:"starqiugithubio"};
   (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;

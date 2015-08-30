@@ -3,6 +3,94 @@
 
     
   <url>
+    <loc>https://github.com/2015/08/30/%E7%BB%99hexo%20jacman%E5%A2%9E%E5%8A%A0%E2%80%9C%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA%E2%80%9D%E7%9A%84widget/</loc>
+    <lastmod>2015-08-30T06:46:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>给hexo/jacman增加“最新评论”的widget</title>
+        <pubTime>2015-08-29T16:00:00.000Z</pubTime>
+        
+        <tag>hexo </tag>
+         
+        <tag>theme </tag>
+         
+         
+           
+             
+              <breadCrumb title="hexo" url="https://github.com/categories/hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://github.com/2015/08/26/%E6%89%BE%E5%87%BA%E9%87%8D%E5%A4%8D3%E9%81%8D%E7%9A%84%E6%95%B0%E5%AD%97/</loc>
+    <lastmod>2015-08-27T07:24:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>找出重复3遍的数字</title>
+        <pubTime>2015-08-25T16:00:00.000Z</pubTime>
+        
+        <tag>Java </tag>
+         
+        <tag>算法 </tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://github.com/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://github.com/2015/08/27/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2015-08-27T06:48:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>单元测试笔记</title>
+        <pubTime>2015-08-26T16:00:00.000Z</pubTime>
+        
+        <tag>Java </tag>
+         
+        <tag>测试 </tag>
+         
+         
+           
+             
+              <breadCrumb title="测试" url="https://github.com/categories/%E6%B5%8B%E8%AF%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://github.com/2015/08/28/%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E5%A4%9A%E6%AC%A1/</loc>
+    <lastmod>2015-08-27T03:18:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>如何运行一个测试用例多次</title>
+        <pubTime>2015-08-27T16:00:00.000Z</pubTime>
+        
+        <tag>Java </tag>
+         
+        <tag>测试 </tag>
+         
+         
+           
+             
+              <breadCrumb title="测试" url="https://github.com/categories/%E6%B5%8B%E8%AF%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://github.com/2015/08/25/%E5%A6%82%E4%BD%95%E7%A6%81%E6%AD%A2%E4%B8%80%E4%B8%AA%E5%AE%B9%E5%99%A8%E7%9A%84%E6%89%80%E6%9C%89%E8%A1%8C%E4%B8%BA/</loc>
     <lastmod>2015-08-25T01:47:40.000Z</lastmod>
     <data>
