@@ -1,0 +1,778 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta name="baidu-site-verification" content="WxxBxzU1zW" />
+  <meta charset="UTF-8">
+  
+    <title>记一次公司服务器上搭建svn server的经历 | starqiu&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="starqiu">
+    
+
+    
+    <meta name="description" content="记一次公司服务器上搭建svn server的经历">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次公司服务器上搭建svn server的经历">
+<meta property="og:url" content="https://github.com/2017/12/13/记一次公司服务器上搭建svn server的经历/index.html">
+<meta property="og:site_name" content="starqiu's blog">
+<meta property="og:description" content="记一次公司服务器上搭建svn server的经历">
+<meta property="og:updated_time" content="2017-12-27T06:56:47.975Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次公司服务器上搭建svn server的经历">
+<meta name="twitter:description" content="记一次公司服务器上搭建svn server的经历">
+
+    
+    <link rel="alternative" href="/atom.xml" title="starqiu&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="starqiu&#39;s blog">starqiu&#39;s blog</a></h1>
+				<h2 class="blog-motto">知行合一</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">全部文章</a></li>
+					
+						<li><a href="/categories/Java">Java</a></li>
+					
+						<li><a href="/categories/Java8">Java8</a></li>
+					
+						<li><a href="/categories/R">R语言</a></li>
+					
+						<li><a href="/categories/数据挖掘">数据挖掘</a></li>
+					
+						<li><a href="/categories/算法">算法</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://search.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= 7129304121443985000 ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/12/13/记一次公司服务器上搭建svn server的经历/" title="记一次公司服务器上搭建svn server的经历" itemprop="url">记一次公司服务器上搭建svn server的经历</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  <p class="article-time">
+    <time datetime="2017-12-12T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-12-13</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始环境"><span class="toc-number">1.</span> <span class="toc-text">初始环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装必须的软件"><span class="toc-number">2.</span> <span class="toc-text">安装必须的软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本的SVN服务器配置"><span class="toc-number">3.</span> <span class="toc-text">基本的SVN服务器配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置SVN服务器的HTTP支持"><span class="toc-number">4.</span> <span class="toc-text">配置SVN服务器的HTTP支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用操作"><span class="toc-number">5.</span> <span class="toc-text">常用操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="初始环境">初始环境</h2><p>系统：CentOS 6.7</p>
+<h2 id="安装必须的软件">安装必须的软件</h2><ol>
+<li><p>安装SVN服务器<br>如果已安装，使用<code>svnserve --version</code>查看版本<br>如果未安装，运行<code>yum -y install subversion</code>命令</p>
+</li>
+<li><p>支持WEB方式管理SVN服务器<br>如果要支持web方式访问，还需要安装<code>httpd mod_dav_svn mod_perl</code>, 运行<code>yum -y install httpd mod_dav_svn mod_perl</code>命令。</p>
+</li>
+</ol>
+<h2 id="基本的SVN服务器配置">基本的SVN服务器配置</h2><ol>
+<li>新建一个目录用于存储SVN所有文件<br><code>mkdir /mnt/disk1/svnserver</code><br>注：此目录最好不要在系统盘下，防止系统盘爆满。这和Windows下尽量不要将程序安装到C盘道理类似。</li>
+<li>新建一个版本仓库test<br><code>svnadmin create /mnt/disk1/svnserver/test</code></li>
+</ol>
+<p>可以看到test版本库中的文件目录结构如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@node67 svnserver]# ll /mnt/disk1/svnserver/test&#10;total 24&#10;drwxr-xr-x 2 root root 4096 Dec 13 15:06 conf&#10;drwxr-sr-x 6 root root 4096 Dec 13 15:06 db&#10;-r--r--r-- 1 root root    2 Dec 13 15:06 format&#10;drwxr-xr-x 2 root root 4096 Dec 13 15:06 hooks&#10;drwxr-xr-x 2 root root 4096 Dec 13 15:06 locks&#10;-rw-r--r-- 1 root root  229 Dec 13 15:06 README.txt</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p>初始化版本仓库中的目录</p>
+<ul>
+<li>建立标准临时目录：<code>mkdir project project/trunks project/branches project/tags</code></li>
+<li>初始化标准SVN目录： <code>svn import project/ file:///mnt/disk1/svnserver/test -m “初始化标准SVN目录”</code></li>
+<li>删除临时建立的目录：<code>rm -rf project</code><br>结果如下：<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@node67 svnserver]# mkdir project project/trunks project/branches project/tags&#10;[root@node67 svnserver]# svn import project/ file:///mnt/disk1/svnserver/test -m &#8220;&#21021;&#22987;&#21270;&#26631;&#20934;SVN&#30446;&#24405;&#8221;&#10;Adding         project/branches&#10;Adding         project/trunks&#10;Adding         project/tags&#10;&#10;Committed revision 1.&#10;[root@node67 svnserver]# rm -rf project</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>添加用户</p>
+</li>
+</ol>
+<p>要添加SVN用户非常简单，只需在<code>/mnt/disk1/svnserver/test/conf/passwd</code>文件添加一个形如“username=password”的条目就可以了。(注：明文存储在checkout的时候会有警告)<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[users]&#10;# harry = harryssecret&#10;# sally = sallyssecret&#10;test1 = 123456&#10;test2 = 123456</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>修改用户访问策略</li>
+</ol>
+<p>此处配置用户的访问策略，由于是自己搭建的临时服务器，只做测试用，因此无需访问控制，暂时忽略。如果有需要的话参考参考文献2中的用户访问策略</p>
+<ol>
+<li>修改svnserve.conf文件,让用户和策略配置升效.</li>
+</ol>
+<p><code>/mnt/disk1/svnserver/test/conf/svnserve.conf</code>内容如下:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[general]&#10;anon-access = none&#10;auth-access = write&#10;password-db = /mnt/disk1/svnserver/test/conf/passwd&#10;# authz-db = /mnt/disk1/svnserver/test/conf/authz</span><br></pre></td></tr></table></figure>
+<ol>
+<li>启动服务器</li>
+</ol>
+<p><code>svnserve -d -r /mnt/disk1/svnserver</code><br>注意：如果修改了svn配置，需要重启svn服务，步骤如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ps -aux|grep svnserve&#10;# kill -9 ID&#21495;&#10;# svnserve -d -r /mnt/disk1/svnserver</span><br></pre></td></tr></table></figure>
+<ol>
+<li>测试服务器<br>在另一台服务器上测试是否能checkout前面建立的test库<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master66 qiuxing]# svn co svn://node67/test&#10;Authentication realm: &#60;svn://node67:3690&#62; 8255e3be-93e8-4b65-b49c-dfad7d2647bf&#10;Password for root: &#10;Authentication realm: &#60;svn://node67:3690&#62; 8255e3be-93e8-4b65-b49c-dfad7d2647bf&#10;Username: tes^Csvn: Caught signal&#10;You have mail in /var/spool/mail/root&#10;[root@master66 qiuxing]# svn co svn://node67/test&#10;Authentication realm: &#60;svn://node67:3690&#62; 8255e3be-93e8-4b65-b49c-dfad7d2647bf&#10;Password for root: &#10;Authentication realm: &#60;svn://node67:3690&#62; 8255e3be-93e8-4b65-b49c-dfad7d2647bf&#10;Username: test1&#10;Password for test1: &#10;&#10;ATTENTION!  Your password for authentication realm:&#10;&#10;   &#60;svn://node67:3690&#62; 8255e3be-93e8-4b65-b49c-dfad7d2647bf&#10;&#10;can only be stored to disk unencrypted!  You are advised to configure&#10;your system so that Subversion can store passwords encrypted, if&#10;possible.  See the documentation for details.&#10;&#10;You can avoid future appearances of this warning by setting the value&#10;of the store-plaintext-passwords option to either yes or no in&#10;/root/.subversion/servers.&#10;&#10;&#10;Store password unencrypted (yes/no)? yes&#10;A    test/branches&#10;A    test/trunks&#10;A    test/tags&#10;Checked out revision 1.&#10;[root@master66 qiuxing]# ll test/&#10;total 12&#10;drwxr-xr-x 3 root root 4096 Dec 13 15:50 branches&#10;drwxr-xr-x 3 root root 4096 Dec 13 15:50 tags&#10;drwxr-xr-x 3 root root 4096 Dec 13 15:50 trunks</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>可以看到我们的svn服务已经搭建起来了，接下来就是要让svn服务支持http协议。</p>
+<h2 id="配置SVN服务器的HTTP支持">配置SVN服务器的HTTP支持</h2><ol>
+<li>修改目录权限以便web容器能够访问</li>
+</ol>
+<p><code>chown -R apache:apache /mnt/disk1/svnserver</code></p>
+<ol>
+<li>新建密码加密的用户<br>由于SVN服务器的密码是明文的，HTTP服务器不与支持，所以之前建立的用户test1，test2应该删除掉，使用<code>htpasswd -c /mnt/disk1/svnserver/test/conf/passwd qiuxing</code>重新创建密码加密的用户。<br>使用<code>-c</code>会重新创建一个passwd文件，之前创建的用户就被覆盖掉了，新增的时候不要加此参数.<br>创建的过程中需要输入两次密码，保证一致即可。</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@node67 svnserver]# htpasswd -c /mnt/disk1/svnserver/test/conf/passwd qiuxing&#10;New password: &#10;Re-type new password: &#10;Adding password for user qiuxing&#10;[root@node67 svnserver]# htpasswd  /mnt/disk1/svnserver/test/conf/passwd test1&#10;New password: &#10;Re-type new password: &#10;Adding password for user test1&#10;[root@node67 svnserver]# cat /mnt/disk1/svnserver/test/conf/passwd &#10;qiuxing:UhuNOFkEs18KU&#10;test1:njv9TPfwUOMhs</span><br></pre></td></tr></table></figure>
+<p>可以看到，密码都是加密的了，而且用户名和密码使用<code>:</code>分割而不是<code>=</code></p>
+<ol>
+<li>修改httpd.conf，添加关于SVN服务器的内容</li>
+</ol>
+<p>确保/etc/httpd/conf/httpd.conf 包含这一行：<code>Include conf.d/*.conf</code><br>编辑/etc/httpd/conf.d/subversion.conf，在最后添加如下信息:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;Location /test&#62;&#10;    DAV svn&#10;    SVNPath /mnt/disk1/svnserver/test&#10;    AuthType Basic&#10;    AuthName &#34;svn for test&#34;&#10;    AuthUserFile /mnt/disk1/svnserver/passwd&#10;    Satisfy all&#10;    Require valid-user&#10;&#60;/Location&#62;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p>重启Web服务器：<br><code>service httpd restart</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@node67 test]# service httpd restart&#10;Stopping httpd:                                            [  OK  ]&#10;Starting httpd: httpd: Could not reliably determine the server s fully qualified domain name, using 10.17.139.67 for ServerName&#10;                                                           [  OK  ]&#10;You have mail in /var/spool/mail/root&#10;&#21487;&#20197;&#30475;&#21040;&#36825;&#37324;&#26377;&#20010;&#35686;&#21578;&#65292;&#32534;&#36753;/etc/httpd/conf/httpd.conf&#65292;&#28155;&#21152;&#19968;&#34892;ServerName node67:80&#12290;node67&#38656;&#35201;&#25913;&#25104;&#20320;&#33258;&#24049;&#30340;&#20027;&#26426;&#21517;&#10;[root@node67 test]# vim /etc/httpd/conf/httpd.conf&#10;You have mail in /var/spool/mail/root&#10;[root@node67 test]# service httpd restart&#10;Stopping httpd:                                            [  OK  ]&#10;Starting httpd:                                            [  OK  ]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用浏览器访问<a href="http://node67/test/测试" target="_blank" rel="external">http://node67/test/测试</a><br>输入用户名密码（此处是qiuxing/123）<br>即可看到trunk，branches和tags 3个目录</p>
+</li>
+</ol>
+<h2 id="常用操作">常用操作</h2><ol>
+<li><p>新建仓库（repo）<br>newRepo.sh</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;if [[ $# &#60; 1 ]];then&#10;    echo &#34;Usage $0 newRepoName&#34;&#10;fi&#10;&#10;repo=$1&#10;rootSvnDir=/mnt/disk1/svnserver&#10;&#10;echo &#34;1. &#21019;&#24314;&#26032;&#30340;&#20179;&#24211;&#65306;$repo&#34;&#10;svnadmin create /mnt/disk1/svnserver/$repo&#10;&#10;echo &#34;2. &#21021;&#22987;&#21270;&#26631;&#20934;SVN&#30446;&#24405;&#34;&#10;mkdir project project/trunks project/branches project/tags&#10;svn import project/ file://$rootSvnDir/$repo -m &#8220;&#21021;&#22987;&#21270;&#26631;&#20934;SVN&#30446;&#24405;&#8221;&#10;rm -rf project&#10;&#10;echo &#34;3. &#32473;&#24050;&#26377;&#29992;&#25143;&#28155;&#21152;$repo&#30340;&#35835;&#20889;&#26435;&#38480;&#34;&#10;echo &#34; &#34; &#62;&#62; $rootSvnDir/$repo/conf/svnserve.conf&#10;echo &#34;[general]&#34; &#62;&#62; $rootSvnDir/$repo/conf/svnserve.conf&#10;echo &#34;anon-access = none&#34; &#62;&#62; $rootSvnDir/$repo/conf/svnserve.conf&#10;echo &#34;auth-access = write&#34; &#62;&#62; $rootSvnDir/$repo/conf/svnserve.conf&#10;echo &#34;password-db = $rootSvnDir/$repo/conf/passwd&#34; &#62;&#62; $rootSvnDir/$repo/conf/svnserve.conf&#10;&#10;echo &#34;4. &#37197;&#32622;Apache&#20197;&#20415;web&#35775;&#38382;&#34;&#10;echo &#34; &#34; &#62;&#62; /etc/httpd/conf.d/subversion.conf&#10;echo &#34;&#60;Location /$repo&#62;&#34; &#62;&#62; /etc/httpd/conf.d/subversion.conf&#10;echo &#34;  DAV svn&#34; &#62;&#62; /etc/httpd/conf.d/subversion.conf&#10;echo &#34;  SVNPath $rootSvnDir/$repo&#34; &#62;&#62; /etc/httpd/conf.d/subversion.conf&#10;echo &#34;  AuthType Basic&#34; &#62;&#62; /etc/httpd/conf.d/subversion.conf&#10;echo &#34;  AuthName \&#34;svn for $repo\&#34;&#34; &#62;&#62; /etc/httpd/conf.d/subversion.conf&#10;echo &#34;  AuthUserFile /mnt/disk1/svnserver/passwd&#34; &#62;&#62; /etc/httpd/conf.d/subversion.conf&#10;echo &#34;  Satisfy all&#34; &#62;&#62; /etc/httpd/conf.d/subversion.conf&#10;echo &#34;  Require valid-user&#34; &#62;&#62; /etc/httpd/conf.d/subversion.conf&#10;echo &#34;&#60;/Location&#62;&#34; &#62;&#62; /etc/httpd/conf.d/subversion.conf&#10;&#10;echo &#34;5. &#20462;&#25913;&#26681;&#30446;&#24405;&#26435;&#38480;&#20197;&#20415;web&#35775;&#38382;&#34;&#10;chown -R apache:apache $rootSvnDir&#10;&#10;echo &#34;6. &#37325;&#21551;&#26381;&#21153;&#34;&#10;service httpd restart</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加用户<br>newUser.sh</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if [[ $# &#60; 1 ]];then&#10;    echo &#34;Usage $0 newUserName&#34;&#10;fi&#10;&#10;user=$1&#10;rootSvnDir=/mnt/disk1/svnserver&#10;htpasswd $rootSvnDir/passwd $user</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="参考文献">参考文献</h2><ol>
+<li><a href="https://www.howtoforge.com/tutorial/how-to-setup-a-svn-server-on-centos-6/" target="_blank" rel="external">how-to-setup-a-svn-server-on-centos-6</a></li>
+<li><a href="http://www.ha97.com/4467.html" target="_blank" rel="external">（总结）CentOS Linux搭建SVN Server配置详解</a></li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/版本管理/">版本管理</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/svn/">svn</a><a href="/tags/版本管理/">版本管理</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://github.com/2017/12/13/记一次公司服务器上搭建svn server的经历/" data-title="记一次公司服务器上搭建svn server的经历 | starqiu&#39;s blog" data-tsina="1665530845" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2018/01/05/centos7离线安装docker/" title="centos7离线安装docker">
+  <strong>上一篇：</strong><br/>
+  <span>
+  centos7离线安装docker</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/08/27/数据挖掘的标准流程：CRISP-DM模型/"  title="数据挖掘的标准流程：CRISP-DM模型">
+ <strong>下一篇：</strong><br/> 
+ <span>数据挖掘的标准流程：CRISP-DM模型
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/12/13/记一次公司服务器上搭建svn server的经历/" data-title="记一次公司服务器上搭建svn server的经历" data-url="https://github.com/2017/12/13/记一次公司服务器上搭建svn server的经历/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始环境"><span class="toc-number">1.</span> <span class="toc-text">初始环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装必须的软件"><span class="toc-number">2.</span> <span class="toc-text">安装必须的软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本的SVN服务器配置"><span class="toc-number">3.</span> <span class="toc-text">基本的SVN服务器配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置SVN服务器的HTTP支持"><span class="toc-number">4.</span> <span class="toc-text">配置SVN服务器的HTTP支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用操作"><span class="toc-number">5.</span> <span class="toc-text">常用操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Books/" title="Books">Books<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/GC/" title="GC">GC<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Logic/" title="Logic">Logic<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/R/" title="R">R<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据挖掘/" title="数据挖掘">数据挖掘<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/测试/" title="测试">测试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/运维/" title="运维">运维<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Java/" title="Java">Java<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Logic/" title="Logic">Logic<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据挖掘/" title="数据挖掘">数据挖掘<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Swing/" title="Swing">Swing<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/svn/" title="svn">svn<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://toutiao.io/" target="_blank" title="开发者头条">开发者头条</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.jobbole.com/" target="_blank" title="伯乐在线">伯乐在线</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://www.coursera.org/" target="_blank" title="Coursera">Coursera</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.yinwang.org/" target="_blank" title="王垠的博客">王垠的博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://coolshell.cn/" target="_blank" title="CoolShell">CoolShell</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://stackoverflow.com/" target="_blank" title="stackoverflow">stackoverflow</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/jackfrued" target="_blank" title="骆昊的技术专栏">骆昊的技术专栏</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.iteye.com/blogs/tag/Java" target="_blank" title="iteye">iteye</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://droidyue.com/" target="_blank" title="技术小黑屋">技术小黑屋</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="ifeve.com" target="_blank" title="并发编程网">并发编程网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.importnew.com/" target="_blank" title="importnew">importnew</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blogwall.us/" target="_blank" title="程序员博客墙">程序员博客墙</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.caimi.la/category/Java/" target="_blank" title="采蜜博客">采蜜博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.raychase.net/category/java" target="_blank" title="四火的唠叨">四火的唠叨</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://it.deepinmind.com/" target="_blank" title="deepinmind">deepinmind</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="commentslist">
+  <p class="asidetitle">最新评论</p>
+  <ul class="ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-admin="1" data-excerpt-length="32" data-show-title="1"></ul>
+</div>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starqiugithubio"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Star Qiu in SIAT. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1665530845## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/starqiu" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:674867812@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="starqiu">starqiu</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starqiugithubio"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Feb3894e29cbb8bc3a4d89d220c4d46ed' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

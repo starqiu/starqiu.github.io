@@ -91,6 +91,145 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/21/如何将一行太长的字符串分割成多行/" title="如何将一行太长的字符串分割成多行" itemprop="url">如何将一行太长的字符串分割成多行</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-20T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <blockquote>
+<p>如何将一行太长的字符串分割成多行？</p>
+</blockquote>
+<h1 id="分析">分析</h1><p> 首先我们需要考虑中文字符的情况，一个汉字 <code>getBytes().length == 2</code></p>
+<ol>
+<li><p>判断一个字符是否中文字符的方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isChineseChar</span><span class="params">(<span class="keyword">char</span> ch)</span> <span class="keyword">throws</span> UnsupportedEncodingException</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> String.valueOf(ch).getBytes(<span class="string">"GBK"</span>).length &gt;<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>遍历字符串，遇到英文字符计数加１，遇到中文字符计数加２。当计数大于或等于每行要求的字符数时，添加换行符并重置计数。</p>
+</li>
+</ol>
+<h1 id="代码">代码</h1> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 将一行字符串以固定字节（非字符）长度分成多行显示。每行显示的字符至多为&lt;code&gt;numbersPerLine+1&lt;/code&gt;</span><br><span class="line"> * <span class="doctag">@param</span> source　原字串</span><br><span class="line"> * <span class="doctag">@param</span> numbersPerLine 每行的字节数， 如果是负数，则看成无穷大，返回原字串</span><br><span class="line"> * <span class="doctag">@return</span> 在合适位置添加了换行符的字串</span><br><span class="line"> * <span class="doctag">@throws</span> UnsupportedEncodingException </span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">divideIntoMultiLines</span><span class="params">(String source,<span class="keyword">int</span> numbersPerLine)</span></span><br><span class="line">     <span class="keyword">throws</span> UnsupportedEncodingException</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> == source ) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> gbkLen = source.getBytes(<span class="string">"GBK"</span>).length;</span><br><span class="line">    <span class="keyword">if</span> (gbkLen &lt;= numbersPerLine || numbersPerLine &lt;=<span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> source;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>  countOfLines = (gbkLen - <span class="number">1</span>) / numbersPerLine +<span class="number">1</span> ;</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder(gbkLen + countOfLines-<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    <span class="keyword">int</span> len = source.length();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len ; i++) &#123;</span><br><span class="line">        ch = source.charAt(i);</span><br><span class="line">        count++;</span><br><span class="line">        <span class="keyword">if</span> (isChineseChar(ch)) &#123;</span><br><span class="line">            count++;<span class="comment">//中文字符占两个字节</span></span><br><span class="line">        &#125;</span><br><span class="line">        sb.append(ch);</span><br><span class="line">        <span class="keyword">if</span> (count &gt;= numbersPerLine) &#123;<span class="comment">//完成一行分割</span></span><br><span class="line">            count = <span class="number">0</span> ;</span><br><span class="line">            sb.append(<span class="string">'\n'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/算法/">算法</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/算法/">算法</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/21/如何将一行太长的字符串分割成多行/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/21/如何将一行太长的字符串分割成多行/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/11/Git笔记/" title="Git笔记" itemprop="url">Git笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-10T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-11</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ol>
+<li><font color="red">如何在命令行显示版本树</font><br>使用<code>git log --graph --oneline --all</code>  ， 效果如下：<br><img src="/images/gitTree.png" alt="命令行中的版本树"><br>为方便书写，可以使用以下命令设置别名<br><code>git config --global alias.tree &quot;log --oneline --decorate --all --graph&quot;</code><br>然后我们就可以输入命令<code>git tree</code> 就可以达到同样的效果了<br>参考：<a href="http://stackoverflow.com/questions/1064361/unable-to-show-a-git-tree-in-terminal" target="_blank" rel="external">http://stackoverflow.com/questions/1064361/unable-to-show-a-git-tree-in-terminal</a></li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/版本管理/">版本管理</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Git/">Git</a><a href="/tags/版本管理/">版本管理</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/11/Git笔记/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/11/Git笔记/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/07/Java的swing.GroupLayout布局管理器的使用方法和实例/" title="Java 的swing.GroupLayout布局管理器的使用方法和实例【图文说明】" itemprop="url">Java 的swing.GroupLayout布局管理器的使用方法和实例【图文说明】</a>
   </h1>
   <p class="article-author">By
@@ -669,135 +808,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/25/girlWalkingPro/" title="女生散步问题" itemprop="url">女生散步问题</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
-		
-  <p class="article-time">
-    <time datetime="2015-07-24T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="题目">题目</h1><blockquote>
-<p>个学校的15个女生一直3个一群上学。请问该如何安排才能使这些女生每周7天每天都和两个不同的同伴结伴同行呢？例如：用A到O来标识这些女孩，7天A正好和B到O这14个女孩各同行一次。而B到O每个人和都和其他14个女孩各同行一次。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/07/25/girlWalkingPro/#more">更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Logic/">Logic</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Logic/">Logic</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/07/25/girlWalkingPro/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/25/girlWalkingPro/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/24/dataMiningNote/" title="数据挖掘笔记" itemprop="url">数据挖掘笔记</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
-		
-  <p class="article-time">
-    <time datetime="2015-07-23T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-24</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Coming Soon
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/07/24/dataMiningNote/#more">更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/数据挖掘/">数据挖掘</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/数据挖掘/">数据挖掘</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/07/24/dataMiningNote/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/24/dataMiningNote/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
@@ -821,10 +831,6 @@
 		
 		  
 			<li><a href="/categories/Java/GC/" title="GC">GC<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
 		  
 		
 		  
@@ -860,7 +866,15 @@
 		  
 		
 		  
+			<li><a href="/categories/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/算法/" title="算法">算法<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/运维/" title="运维">运维<sup>1</sup></a></li>
 		  
 		
 		</ul>
@@ -889,7 +903,7 @@
 			
 		
 			
-				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
 			
 		
 			
@@ -897,7 +911,15 @@
 			
 		
 			
-				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
 			
 		
 			
@@ -905,7 +927,7 @@
 			
 		
 			
-				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
+				<li><a href="/tags/svn/" title="svn">svn<sup>1</sup></a></li>
 			
 		
 			
@@ -918,6 +940,14 @@
 		
 			
 				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
 			
 		
 			
@@ -1105,7 +1135,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
 		
 		<a href="/about" target="_blank" title="starqiu">starqiu</a>
 		

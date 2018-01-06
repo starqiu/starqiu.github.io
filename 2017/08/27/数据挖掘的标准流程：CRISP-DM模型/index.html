@@ -20,7 +20,7 @@
 <meta property="og:description" content="数据挖掘的标准流程：CRISP-DM模型">
 <meta property="og:image" content="https://github.com/images/dataMining/数据挖掘的标准流程：CRISP-DM模型 .png">
 <meta property="og:image" content="https://github.com/images/dataMining/CRISP-DM v1.0.jpg">
-<meta property="og:updated_time" content="2017-07-07T05:53:02.984Z">
+<meta property="og:updated_time" content="2017-07-07T05:56:51.651Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据挖掘的标准流程：CRISP-DM模型">
 <meta name="twitter:description" content="数据挖掘的标准流程：CRISP-DM模型">
@@ -119,7 +119,7 @@
 </ol>
 <a id="more"></a>
 <h1 id="流程">流程</h1><p>CRISP-DM 模型是数据挖掘最常用的标准流程，它为一个知识发现工程提供了一个完整的过程描述。该模型将一个知识发现工程分为6个不同的、但顺序并非完全不变的阶段，如下图所示。<br>[数据挖掘]数据挖掘的标准流程：CRISP-DM模型</p>
-<center><img src="/images/dataMining/数据挖掘的标准流程：CRISP-DM模型 .png" alt="数据挖掘的标准流程：CRISP-DM模型"> </center><br>1.    业务理解 （Business Understanding）<br>最初的阶段集中在理解项目目标和从业务的角度理解需求，同时将这个知识转化为数据挖掘问题的定义和完成目标的初步计划。<br>可能包含以下几个步骤：场景，利弊，目标，计划<br>1.    数据理解 （Data Understanding）<br>数据理解阶段从初始的数据收集开始，通过一些活动的处理，目的是熟悉数据，识别数据的质量问题，首次发现数据的内部属性，或是探测引起兴趣的子集去形成隐含信息的假设。<br>可能包含以下几个步骤：数据初始化信息收集，数据描述（表结构、表属性及其注释），数据探索，数据质量<br>1.    数据准备 （Data Preparation）<br>数据准备阶段包括从未处理数据中构造最终数据集的所有活动。这些数据将是模型工具的输入值。这个阶段的任务有个能执行多次，没有任何规定的顺序。任务包括表、记录和属性的选择，以及为模型工具转换和清洗数据。<br>可能包含以下几个步骤：数据集描述，数据筛选，数据清洗，数据构造（转换？ 衍生属性，记录生成），数据融合，数据格式化<br>1.     建模（Modeling）<br>在这个阶段，可以选择和应用不同的模型技术，模型参数被调整到最佳的数值。一般，有些技术可以解决一类相同的数据挖掘问题。有些技术在数据形成上有特殊要求，因此需要经常跳回到数据准备阶段。<br>可能包含以下几个步骤：模型选择，测试设计，模型参数设置（调参），模型评估<br>1.     评估（Evaluation）<br>到项目的这个阶段，你已经从数据分析的角度建立了一个高质量显示的模型。在开始最后部署模型之前，重要的事情是彻底地评估模型，检查构造模型的步骤，确保模型可以完成业务目标。这个阶段的关键目的是确定是否有重要业务问题没有被充分的考虑。在这个阶段结束后，一个数据挖掘结果使用的决定必须达成。<br>可能包含以下几个步骤：评估结果，模型提升，决策<br>1.     部署 （Deployment）<br>通常，模型的创建不是项目的结束。模型的作用是从数据中找到知识，获得的知识需要便于用户使用的方式重新组织和展现。根据需求，这个阶段可以产生简单的报告，或是实现一个比较复杂的、可重复的数据挖掘过程。在很多案例中，这个阶段是由客户而不是数据分析人员承担部署的工作。<br>可能包含以下几个步骤：部署计划，监控及维护，产生最终的报告，review报告<br>来源： <a href="http://blog.sina.com.cn/s/blog_5d60f0650101l4sl.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_5d60f0650101l4sl.html</a><br><br>目前的CRISP-DM版本是v1.0版（1999年），v2.0还在研究中。<br><br>尽管CRISP-DM v1.0包含了一些图示，但整体上看还是比较抽象和复杂的。所以，下面我又提供另一种模型，来对CRISP-DM v1.0的六阶段进行分解，以更清晰展示，理解和实施。<br><center><img src="/images/dataMining/CRISP-DM v1.0.jpg" alt="数据挖掘的标准流程：CRISP-DM模型"> </center>
+<center><img src="/images/dataMining/数据挖掘的标准流程：CRISP-DM模型 .png" alt="数据挖掘的标准流程：CRISP-DM模型"> </center><br>1.    业务理解 （Business Understanding）<br>最初的阶段集中在理解项目目标和从业务的角度理解需求，同时将这个知识转化为数据挖掘问题的定义和完成目标的初步计划。<br>可能包含以下几个步骤：场景，利弊，目标，计划<br>1.    数据理解 （Data Understanding）<br>数据理解阶段从初始的数据收集开始，通过一些活动的处理，目的是熟悉数据，识别数据的质量问题，首次发现数据的内部属性，或是探测引起兴趣的子集去形成隐含信息的假设。<br>可能包含以下几个步骤：数据初始化信息收集，数据描述（表结构、表属性及其注释），数据探索，数据质量<br>1.    数据准备 （Data Preparation）<br>数据准备阶段包括从未处理数据中构造最终数据集的所有活动。这些数据将是模型工具的输入值。这个阶段的任务有个能执行多次，没有任何规定的顺序。任务包括表、记录和属性的选择，以及为模型工具转换和清洗数据。<br>可能包含以下几个步骤：数据集描述，数据筛选，数据清洗，数据构造（转换？ 衍生属性，记录生成），数据融合，数据格式化<br>1.     建模（Modeling）<br>在这个阶段，可以选择和应用不同的模型技术，模型参数被调整到最佳的数值。一般，有些技术可以解决一类相同的数据挖掘问题。有些技术在数据形成上有特殊要求，因此需要经常跳回到数据准备阶段。<br>可能包含以下几个步骤：模型选择，测试设计，模型参数设置（调参），模型评估<br>1.     评估（Evaluation）<br>到项目的这个阶段，你已经从数据分析的角度建立了一个高质量显示的模型。在开始最后部署模型之前，重要的事情是彻底地评估模型，检查构造模型的步骤，确保模型可以完成业务目标。这个阶段的关键目的是确定是否有重要业务问题没有被充分的考虑。在这个阶段结束后，一个数据挖掘结果使用的决定必须达成。<br>可能包含以下几个步骤：评估结果，模型提升，决策<br>1.     部署 （Deployment）<br>通常，模型的创建不是项目的结束。模型的作用是从数据中找到知识，获得的知识需要便于用户使用的方式重新组织和展现。根据需求，这个阶段可以产生简单的报告，或是实现一个比较复杂的、可重复的数据挖掘过程。在很多案例中，这个阶段是由客户而不是数据分析人员承担部署的工作。<br>可能包含以下几个步骤：部署计划，监控及维护，产生最终的报告，review报告<br>来源： <a href="http://blog.sina.com.cn/s/blog_5d60f0650101l4sl.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_5d60f0650101l4sl.html</a><br><br>目前的CRISP-DM版本是v1.0版（1999年），v2.0还在研究中。<br><br>尽管CRISP-DM v1.0包含了一些图示，但整体上看还是比较抽象和复杂的。所以，下面我又提供另一种模型，来对CRISP-DM v1.0的六阶段进行分解，以更清晰展示，理解和实施。<br><center><img src="/images/dataMining/CRISP-DM v1.0.jpg" alt="CRISP-DM v1.0"> </center>
 
 <h1 id="参考文献">参考文献</h1><ol>
 <li><a href="https://www.the-modeling-agency.com/crisp-dm.pdf" target="_blank" rel="external">crisp-dm 1.0 - The Modeling Agency</a></li>
@@ -162,6 +162,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2017/12/13/记一次公司服务器上搭建svn server的经历/" title="记一次公司服务器上搭建svn server的经历">
+  <strong>上一篇：</strong><br/>
+  <span>
+  记一次公司服务器上搭建svn server的经历</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2017/07/05/books/"  title="书单">
@@ -207,10 +215,6 @@
 		  
 		
 		  
-			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
-		  
-		
-		  
 			<li><a href="/categories/Java/" title="Java">Java<sup>6</sup></a></li>
 		  
 		
@@ -243,7 +247,15 @@
 		  
 		
 		  
+			<li><a href="/categories/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/算法/" title="算法">算法<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/运维/" title="运维">运维<sup>1</sup></a></li>
 		  
 		
 		</ul>
@@ -272,7 +284,7 @@
 			
 		
 			
-				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
 			
 		
 			
@@ -280,7 +292,15 @@
 			
 		
 			
-				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
 			
 		
 			
@@ -288,7 +308,7 @@
 			
 		
 			
-				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
+				<li><a href="/tags/svn/" title="svn">svn<sup>1</sup></a></li>
 			
 		
 			
@@ -301,6 +321,14 @@
 		
 			
 				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
 			
 		
 			
@@ -488,7 +516,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
 		
 		<a href="/about" target="_blank" title="starqiu">starqiu</a>
 		

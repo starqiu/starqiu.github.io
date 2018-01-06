@@ -1,0 +1,759 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta name="baidu-site-verification" content="WxxBxzU1zW" />
+  <meta charset="UTF-8">
+  
+    <title>centos7离线安装docker | starqiu&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="starqiu">
+    
+
+    
+    <meta name="description" content="centos7离线安装docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos7离线安装docker">
+<meta property="og:url" content="https://github.com/2018/01/05/centos7离线安装docker/index.html">
+<meta property="og:site_name" content="starqiu's blog">
+<meta property="og:description" content="centos7离线安装docker">
+<meta property="og:updated_time" content="2018-01-06T03:22:07.215Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="centos7离线安装docker">
+<meta name="twitter:description" content="centos7离线安装docker">
+
+    
+    <link rel="alternative" href="/atom.xml" title="starqiu&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="starqiu&#39;s blog">starqiu&#39;s blog</a></h1>
+				<h2 class="blog-motto">知行合一</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">全部文章</a></li>
+					
+						<li><a href="/categories/Java">Java</a></li>
+					
+						<li><a href="/categories/Java8">Java8</a></li>
+					
+						<li><a href="/categories/R">R语言</a></li>
+					
+						<li><a href="/categories/数据挖掘">数据挖掘</a></li>
+					
+						<li><a href="/categories/算法">算法</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://search.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= 7129304121443985000 ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/01/05/centos7离线安装docker/" title="centos7离线安装docker" itemprop="url">centos7离线安装docker</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  <p class="article-time">
+    <time datetime="2018-01-04T16:00:00.000Z" itemprop="datePublished"> 发表于 2018-01-05</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载离线安装包"><span class="toc-number">1.</span> <span class="toc-text">下载离线安装包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建本地yum源"><span class="toc-number">2.</span> <span class="toc-text">构建本地yum源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装docker"><span class="toc-number">3.</span> <span class="toc-text">安装docker</span></a></li></ol>
+		
+		</div>
+		
+		<p>先在一台可以联网的相同操作系统环境下下载离线安装包，然后内网服务器构建本地yum源，最后安装docker</p>
+<h2 id="下载离线安装包">下载离线安装包</h2><ol>
+<li><p>在可以联网的机器上下载rpm包</p>
+<ul>
+<li><p>下载docker相关rpm到指定目录</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install --downloadonly --downloaddir=/home/qiuxing/repo/dockerRepo/   docker &#10;[root@hae71 dockerRepo]# ls&#10;container-selinux-2.33-1.git86f33cd.el7.noarch.rpm          dracut-033-502.el7.x86_64.rpm                libsemanage-2.5-8.el7.x86_64.rpm                       repodata&#10;container-storage-setup-0.8.0-3.git1d27ecf.el7.noarch.rpm   dracut-config-rescue-033-502.el7.x86_64.rpm  libsemanage-python-2.5-8.el7.x86_64.rpm                selinux-policy-3.13.1-166.el7_4.7.noarch.rpm&#10;device-mapper-1.02.140-8.el7.x86_64.rpm                     dracut-network-033-502.el7.x86_64.rpm        libsepol-2.5-6.el7.x86_64.rpm                          selinux-policy-targeted-3.13.1-166.el7_4.7.noarch.rpm&#10;device-mapper-event-1.02.140-8.el7.x86_64.rpm               glib2-2.50.3-3.el7.x86_64.rpm                lvm2-2.02.171-8.el7.x86_64.rpm                         setools-libs-3.3.8-1.1.el7.x86_64.rpm&#10;device-mapper-event-libs-1.02.140-8.el7.x86_64.rpm          initscripts-9.49.39-1.el7.x86_64.rpm         lvm2-libs-2.02.171-8.el7.x86_64.rpm                    skopeo-containers-0.1.26-2.dev.git2e8377a.el7.centos.x86_64.rpm&#10;device-mapper-libs-1.02.140-8.el7.x86_64.rpm                kmod-20-15.el7_4.6.x86_64.rpm                oci-register-machine-0-3.13.gitcd1e331.el7.x86_64.rpm  systemd-219-42.el7_4.4.x86_64.rpm&#10;device-mapper-persistent-data-0.7.0-0.1.rc6.el7.x86_64.rpm  libgudev1-219-42.el7_4.4.x86_64.rpm          oci-systemd-hook-0.1.14-1.git1ba44c6.el7.x86_64.rpm    systemd-libs-219-42.el7_4.4.x86_64.rpm&#10;docker-1.12.6-68.gitec8512b.el7.centos.x86_64.rpm           libselinux-2.5-11.el7.x86_64.rpm             oci-umount-2.3.0-1.git51e7c50.el7.x86_64.rpm           systemd-python-219-42.el7_4.4.x86_64.rpm&#10;docker-client-1.12.6-68.gitec8512b.el7.centos.x86_64.rpm    libselinux-python-2.5-11.el7.x86_64.rpm      policycoreutils-2.5-17.1.el7.x86_64.rpm                systemd-sysv-219-42.el7_4.4.x86_64.rpm&#10;docker-common-1.12.6-68.gitec8512b.el7.centos.x86_64.rpm    libselinux-utils-2.5-11.el7.x86_64.rpm       policycoreutils-python-2.5-17.1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载createrepo相关rpm到指定目录</p>
+<p>构建本地源之前，需要在本地安装createrepo，用于构建本地源</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install --downloadonly --downloaddir=/home/qiuxing/repo/createrepo createrepo&#10;&#10;[root@hae71 createrepo]# pwd&#10;/mnt/disk1/software/repo/createrepo&#10;[root@hae71 createrepo]# ls&#10;createrepo-0.9.9-28.el7.noarch.rpm  deltarpm-3.6-3.el7.x86_64.rpm  python-deltarpm-3.6-3.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="构建本地yum源">构建本地yum源</h2><ol>
+<li>将docker的rpm包拷贝到需要安装docker的局域网集群上面，例如：/home/qiuxing/repo/dockerRepo/  </li>
+<li>将docker的rpm包拷贝到需要安装docker的局域网集群上面，例如：/home/qiuxing/repo/createrepo/  </li>
+<li><p>构建本地yum源</p>
+<ul>
+<li>安装createrepo。<code>rpm -ivh /home/qiuxing/repo/createrepo/*.rpm</code></li>
+<li>备份/etc/yum.repos.d目录下文件。<code>ls /etc/yum.repos.d | xargs -I{} mv /etc/yum.repos.d/{} /etc/yum.repos.d/{}.bk</code></li>
+<li><p>创建新的*.repo文件，如：docker.repo，进行配置</p>
+<figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[local-yum]</span><br><span class="line"><span class="literal">name</span>=local-yum</span><br><span class="line"><span class="literal">baseurl</span>=<span class="keyword">file</span>:///<span class="literal">home</span>/qiuxing/repo/dockerRepo/              <span class="comment">#文件目录不能设置到i386，否则本地源使用会报错</span></span><br><span class="line"><span class="literal">enabled</span>=<span class="number">1</span></span><br><span class="line"><span class="literal">gpgcheck</span>=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置本地源。<code>createrepo -d /home/qiuxing/repo/dockerRepo/</code></p>
+</li>
+<li>输入yum repolist看是否能看到自己构建的本地源</li>
+<li>清除缓存，yum clean all</li>
+<li>创建缓存，yum makecache</li>
+<li><p>看本地源是否配置成功，通过yum list看是否输出了新的rpm包，如果能查询到，证明配置成功.<code>yum list | grep docker</code></p>
+  <figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="macrocall">@hae71</span> qiuxing]<span class="comment"># yum list | grep docker</span></span><br><span class="line">docker.x86_64                        <span class="number">2</span>:<span class="number">1.12</span><span class="number">.6</span>-<span class="number">68.</span>gitec8512b.el7.centos <span class="keyword">local</span>-yum</span><br><span class="line">docker-client.x86_64                 <span class="number">2</span>:<span class="number">1.12</span><span class="number">.6</span>-<span class="number">68.</span>gitec8512b.el7.centos <span class="keyword">local</span>-yum</span><br><span class="line">docker-common.x86_64                 <span class="number">2</span>:<span class="number">1.12</span><span class="number">.6</span>-<span class="number">68.</span>gitec8512b.el7.centos <span class="keyword">local</span>-yum</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="安装docker">安装docker</h2><p><code>yum install docker -y</code>，安装完成</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Installed:</span><br><span class="line">  docker<span class="class">.x86_64</span> <span class="number">2</span>:<span class="number">1.12</span>.<span class="number">6</span>-<span class="number">68</span><span class="class">.gitec8512b</span><span class="class">.el7</span><span class="class">.centos</span>                                                                                                                                                                                                                             </span><br><span class="line"></span><br><span class="line">Dependency Installed:</span><br><span class="line">  audit-libs-python<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.7</span>.<span class="number">6</span>-<span class="number">3</span><span class="class">.el7</span>                                  checkpolicy<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">4</span><span class="class">.el7</span>                                   container-selinux<span class="class">.noarch</span> <span class="number">2</span>:<span class="number">2.33</span>-<span class="number">1</span><span class="class">.git86f33cd</span><span class="class">.el7</span>                 container-storage-setup<span class="class">.noarch</span> <span class="number">0</span>:<span class="number">0.8</span>.<span class="number">0</span>-<span class="number">3</span><span class="class">.git1d27ecf</span><span class="class">.el7</span>          </span><br><span class="line">  device-mapper-persistent-data<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">0.7</span>.<span class="number">0</span>-<span class="number">0.1</span><span class="class">.rc6</span><span class="class">.el7</span>                docker-client<span class="class">.x86_64</span> <span class="number">2</span>:<span class="number">1.12</span>.<span class="number">6</span>-<span class="number">68</span><span class="class">.gitec8512b</span><span class="class">.el7</span><span class="class">.centos</span>           docker-common<span class="class">.x86_64</span> <span class="number">2</span>:<span class="number">1.12</span>.<span class="number">6</span>-<span class="number">68</span><span class="class">.gitec8512b</span><span class="class">.el7</span><span class="class">.centos</span>           libseccomp<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.3</span>.<span class="number">1</span>-<span class="number">3</span><span class="class">.el7</span>                                  </span><br><span class="line">  libsemanage-python<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">8</span><span class="class">.el7</span>                                   lvm2<span class="class">.x86_64</span> <span class="number">7</span>:<span class="number">2.02</span>.<span class="number">171</span>-<span class="number">8</span><span class="class">.el7</span>                                     oci-register-machine<span class="class">.x86_64</span> <span class="number">1</span>:<span class="number">0</span>-<span class="number">3.13</span><span class="class">.gitcd1e331</span><span class="class">.el7</span>              oci-systemd-hook<span class="class">.x86_64</span> <span class="number">1</span>:<span class="number">0.1</span>.<span class="number">14</span>-<span class="number">1</span><span class="class">.git1ba44c6</span><span class="class">.el7</span>                </span><br><span class="line">  oci-umount<span class="class">.x86_64</span> <span class="number">2</span>:<span class="number">2.3</span>.<span class="number">0</span>-<span class="number">1</span><span class="class">.git51e7c50</span><span class="class">.el7</span>                              policycoreutils-python<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">17.1</span><span class="class">.el7</span>                     python-IPy<span class="class">.noarch</span> <span class="number">0</span>:<span class="number">0.75</span>-<span class="number">6</span><span class="class">.el7</span>                                   setools-libs<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">3.3</span>.<span class="number">8</span>-<span class="number">1.1</span><span class="class">.el7</span>                              </span><br><span class="line">  skopeo-containers<span class="class">.x86_64</span> <span class="number">1</span>:<span class="number">0.1</span>.<span class="number">26</span>-<span class="number">2</span><span class="class">.dev</span><span class="class">.git2e8377a</span><span class="class">.el7</span><span class="class">.centos</span>          </span><br><span class="line"></span><br><span class="line">Updated:</span><br><span class="line">  dracut<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">033</span>-<span class="number">502</span><span class="class">.el7_4</span>.<span class="number">1</span>                                                                                                      initscripts<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">9.49</span>.<span class="number">39</span>-<span class="number">1</span><span class="class">.el7</span>                                                                                                     </span><br><span class="line"></span><br><span class="line">Dependency Updated:</span><br><span class="line">  audit<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.7</span>.<span class="number">6</span>-<span class="number">3</span><span class="class">.el7</span>               audit-libs<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.7</span>.<span class="number">6</span>-<span class="number">3</span><span class="class">.el7</span>               dracut-config-rescue<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">033</span>-<span class="number">502</span><span class="class">.el7_4</span>.<span class="number">1</span>          dracut-network<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">033</span>-<span class="number">502</span><span class="class">.el7_4</span>.<span class="number">1</span>    glib2<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.50</span>.<span class="number">3</span>-<span class="number">3</span><span class="class">.el7</span>             kmod<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">20</span>-<span class="number">15</span><span class="class">.el7_4</span>.<span class="number">6</span>              </span><br><span class="line">  libgudev1<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">219</span>-<span class="number">42</span><span class="class">.el7_4</span>.<span class="number">4</span>        libselinux<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">11</span><span class="class">.el7</span>                libselinux-python<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">11</span><span class="class">.el7</span>                  libselinux-utils<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">11</span><span class="class">.el7</span>       libsemanage<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">8</span><span class="class">.el7</span>          libsepol<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">6</span><span class="class">.el7</span>              </span><br><span class="line">  policycoreutils<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">17.1</span><span class="class">.el7</span>    selinux-policy<span class="class">.noarch</span> <span class="number">0</span>:<span class="number">3.13</span>.<span class="number">1</span>-<span class="number">166</span><span class="class">.el7_4</span>.<span class="number">7</span>    selinux-policy-targeted<span class="class">.noarch</span> <span class="number">0</span>:<span class="number">3.13</span>.<span class="number">1</span>-<span class="number">166</span><span class="class">.el7_4</span>.<span class="number">7</span>    systemd<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">219</span>-<span class="number">42</span><span class="class">.el7_4</span>.<span class="number">4</span>            systemd-libs<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">219</span>-<span class="number">42</span><span class="class">.el7_4</span>.<span class="number">4</span>    systemd-python<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">219</span>-<span class="number">42</span><span class="class">.el7_4</span>.<span class="number">4</span>   </span><br><span class="line">  systemd-sysv<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">219</span>-<span class="number">42</span><span class="class">.el7_4</span>.<span class="number">4</span>    </span><br><span class="line"></span><br><span class="line">Complete!</span><br></pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/运维/">运维</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CentOS/">CentOS</a><a href="/tags/Docker/">Docker</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://github.com/2018/01/05/centos7离线安装docker/" data-title="centos7离线安装docker | starqiu&#39;s blog" data-tsina="1665530845" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/12/13/记一次公司服务器上搭建svn server的经历/"  title="记一次公司服务器上搭建svn server的经历">
+ <strong>下一篇：</strong><br/> 
+ <span>记一次公司服务器上搭建svn server的经历
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2018/01/05/centos7离线安装docker/" data-title="centos7离线安装docker" data-url="https://github.com/2018/01/05/centos7离线安装docker/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载离线安装包"><span class="toc-number">1.</span> <span class="toc-text">下载离线安装包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建本地yum源"><span class="toc-number">2.</span> <span class="toc-text">构建本地yum源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装docker"><span class="toc-number">3.</span> <span class="toc-text">安装docker</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Books/" title="Books">Books<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/GC/" title="GC">GC<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Logic/" title="Logic">Logic<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/R/" title="R">R<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据挖掘/" title="数据挖掘">数据挖掘<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/测试/" title="测试">测试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/运维/" title="运维">运维<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Java/" title="Java">Java<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Logic/" title="Logic">Logic<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据挖掘/" title="数据挖掘">数据挖掘<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Swing/" title="Swing">Swing<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/svn/" title="svn">svn<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://toutiao.io/" target="_blank" title="开发者头条">开发者头条</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.jobbole.com/" target="_blank" title="伯乐在线">伯乐在线</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://www.coursera.org/" target="_blank" title="Coursera">Coursera</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.yinwang.org/" target="_blank" title="王垠的博客">王垠的博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://coolshell.cn/" target="_blank" title="CoolShell">CoolShell</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://stackoverflow.com/" target="_blank" title="stackoverflow">stackoverflow</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/jackfrued" target="_blank" title="骆昊的技术专栏">骆昊的技术专栏</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.iteye.com/blogs/tag/Java" target="_blank" title="iteye">iteye</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://droidyue.com/" target="_blank" title="技术小黑屋">技术小黑屋</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="ifeve.com" target="_blank" title="并发编程网">并发编程网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.importnew.com/" target="_blank" title="importnew">importnew</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blogwall.us/" target="_blank" title="程序员博客墙">程序员博客墙</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.caimi.la/category/Java/" target="_blank" title="采蜜博客">采蜜博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.raychase.net/category/java" target="_blank" title="四火的唠叨">四火的唠叨</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://it.deepinmind.com/" target="_blank" title="deepinmind">deepinmind</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="commentslist">
+  <p class="asidetitle">最新评论</p>
+  <ul class="ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-admin="1" data-excerpt-length="32" data-show-title="1"></ul>
+</div>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starqiugithubio"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Star Qiu in SIAT. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1665530845## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/starqiu" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:674867812@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="starqiu">starqiu</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starqiugithubio"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Feb3894e29cbb8bc3a4d89d220c4d46ed' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
