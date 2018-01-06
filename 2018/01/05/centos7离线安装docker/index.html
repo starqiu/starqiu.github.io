@@ -18,7 +18,7 @@
 <meta property="og:url" content="https://github.com/2018/01/05/centos7离线安装docker/index.html">
 <meta property="og:site_name" content="starqiu's blog">
 <meta property="og:description" content="centos7离线安装docker">
-<meta property="og:updated_time" content="2018-01-06T03:32:05.230Z">
+<meta property="og:updated_time" content="2018-01-06T04:10:33.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos7离线安装docker">
 <meta name="twitter:description" content="centos7离线安装docker">
@@ -112,20 +112,19 @@
 		
 		<p>先在一台可以联网的相同操作系统环境下下载离线安装包，然后内网服务器构建本地yum源，最后安装docker</p>
 <h2 id="下载离线安装包">下载离线安装包</h2><ol>
-<li><p>在可以联网的机器上下载rpm包</p>
-<a id="more"></a>
-<ul>
-<li><p>下载docker相关rpm到指定目录</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install --downloadonly --downloaddir=/home/qiuxing/repo/dockerRepo/   docker &#10;[root@hae71 dockerRepo]# ls&#10;container-selinux-2.33-1.git86f33cd.el7.noarch.rpm          dracut-033-502.el7.x86_64.rpm                libsemanage-2.5-8.el7.x86_64.rpm                       repodata&#10;container-storage-setup-0.8.0-3.git1d27ecf.el7.noarch.rpm   dracut-config-rescue-033-502.el7.x86_64.rpm  libsemanage-python-2.5-8.el7.x86_64.rpm                selinux-policy-3.13.1-166.el7_4.7.noarch.rpm&#10;device-mapper-1.02.140-8.el7.x86_64.rpm                     dracut-network-033-502.el7.x86_64.rpm        libsepol-2.5-6.el7.x86_64.rpm                          selinux-policy-targeted-3.13.1-166.el7_4.7.noarch.rpm&#10;device-mapper-event-1.02.140-8.el7.x86_64.rpm               glib2-2.50.3-3.el7.x86_64.rpm                lvm2-2.02.171-8.el7.x86_64.rpm                         setools-libs-3.3.8-1.1.el7.x86_64.rpm&#10;device-mapper-event-libs-1.02.140-8.el7.x86_64.rpm          initscripts-9.49.39-1.el7.x86_64.rpm         lvm2-libs-2.02.171-8.el7.x86_64.rpm                    skopeo-containers-0.1.26-2.dev.git2e8377a.el7.centos.x86_64.rpm&#10;device-mapper-libs-1.02.140-8.el7.x86_64.rpm                kmod-20-15.el7_4.6.x86_64.rpm                oci-register-machine-0-3.13.gitcd1e331.el7.x86_64.rpm  systemd-219-42.el7_4.4.x86_64.rpm&#10;device-mapper-persistent-data-0.7.0-0.1.rc6.el7.x86_64.rpm  libgudev1-219-42.el7_4.4.x86_64.rpm          oci-systemd-hook-0.1.14-1.git1ba44c6.el7.x86_64.rpm    systemd-libs-219-42.el7_4.4.x86_64.rpm&#10;docker-1.12.6-68.gitec8512b.el7.centos.x86_64.rpm           libselinux-2.5-11.el7.x86_64.rpm             oci-umount-2.3.0-1.git51e7c50.el7.x86_64.rpm           systemd-python-219-42.el7_4.4.x86_64.rpm&#10;docker-client-1.12.6-68.gitec8512b.el7.centos.x86_64.rpm    libselinux-python-2.5-11.el7.x86_64.rpm      policycoreutils-2.5-17.1.el7.x86_64.rpm                systemd-sysv-219-42.el7_4.4.x86_64.rpm&#10;docker-common-1.12.6-68.gitec8512b.el7.centos.x86_64.rpm    libselinux-utils-2.5-11.el7.x86_64.rpm       policycoreutils-python-2.5-17.1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>下载createrepo相关rpm到指定目录</p>
-<p>构建本地源之前，需要在本地安装createrepo，用于构建本地源</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install --downloadonly --downloaddir=/home/qiuxing/repo/createrepo createrepo&#10;&#10;[root@hae71 createrepo]# pwd&#10;/mnt/disk1/software/repo/createrepo&#10;[root@hae71 createrepo]# ls&#10;createrepo-0.9.9-28.el7.noarch.rpm  deltarpm-3.6-3.el7.x86_64.rpm  python-deltarpm-3.6-3.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
+<li>在可以联网的机器上下载rpm包</li>
 </ol>
-<h2 id="构建本地yum源">构建本地yum源</h2><ol>
+<a id="more"></a>
+<pre><code>+ 下载docker相关rpm到指定目录
+
+<span class="comment"><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install --downloadonly --downloaddir=/home/qiuxing/repo/dockerRepo/   docker &#10;[root@hae71 dockerRepo]# ls&#10;container-selinux-2.33-1.git86f33cd.el7.noarch.rpm          dracut-033-502.el7.x86_64.rpm                libsemanage-2.5-8.el7.x86_64.rpm                       repodata&#10;container-storage-setup-0.8.0-3.git1d27ecf.el7.noarch.rpm   dracut-config-rescue-033-502.el7.x86_64.rpm  libsemanage-python-2.5-8.el7.x86_64.rpm                selinux-policy-3.13.1-166.el7_4.7.noarch.rpm&#10;device-mapper-1.02.140-8.el7.x86_64.rpm                     dracut-network-033-502.el7.x86_64.rpm        libsepol-2.5-6.el7.x86_64.rpm                          selinux-policy-targeted-3.13.1-166.el7_4.7.noarch.rpm&#10;device-mapper-event-1.02.140-8.el7.x86_64.rpm               glib2-2.50.3-3.el7.x86_64.rpm                lvm2-2.02.171-8.el7.x86_64.rpm                         setools-libs-3.3.8-1.1.el7.x86_64.rpm&#10;device-mapper-event-libs-1.02.140-8.el7.x86_64.rpm          initscripts-9.49.39-1.el7.x86_64.rpm         lvm2-libs-2.02.171-8.el7.x86_64.rpm                    skopeo-containers-0.1.26-2.dev.git2e8377a.el7.centos.x86_64.rpm&#10;device-mapper-libs-1.02.140-8.el7.x86_64.rpm                kmod-20-15.el7_4.6.x86_64.rpm                oci-register-machine-0-3.13.gitcd1e331.el7.x86_64.rpm  systemd-219-42.el7_4.4.x86_64.rpm&#10;device-mapper-persistent-data-0.7.0-0.1.rc6.el7.x86_64.rpm  libgudev1-219-42.el7_4.4.x86_64.rpm          oci-systemd-hook-0.1.14-1.git1ba44c6.el7.x86_64.rpm    systemd-libs-219-42.el7_4.4.x86_64.rpm&#10;docker-1.12.6-68.gitec8512b.el7.centos.x86_64.rpm           libselinux-2.5-11.el7.x86_64.rpm             oci-umount-2.3.0-1.git51e7c50.el7.x86_64.rpm           systemd-python-219-42.el7_4.4.x86_64.rpm&#10;docker-client-1.12.6-68.gitec8512b.el7.centos.x86_64.rpm    libselinux-python-2.5-11.el7.x86_64.rpm      policycoreutils-2.5-17.1.el7.x86_64.rpm                systemd-sysv-219-42.el7_4.4.x86_64.rpm&#10;docker-common-1.12.6-68.gitec8512b.el7.centos.x86_64.rpm    libselinux-utils-2.5-11.el7.x86_64.rpm       policycoreutils-python-2.5-17.1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure></span>
+
++ 下载createrepo相关rpm到指定目录
+
+构建本地源之前，需要在本地安装createrepo，用于构建本地源
+
+<span class="comment"><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install --downloadonly --downloaddir=/home/qiuxing/repo/createrepo createrepo&#10;&#10;[root@hae71 createrepo]# pwd&#10;/mnt/disk1/software/repo/createrepo&#10;[root@hae71 createrepo]# ls&#10;createrepo-0.9.9-28.el7.noarch.rpm  deltarpm-3.6-3.el7.x86_64.rpm  python-deltarpm-3.6-3.el7.x86_64.rpm</span><br></pre></td></tr></table></figure></span>
+</code></pre><h2 id="构建本地yum源">构建本地yum源</h2><ol>
 <li>将docker的rpm包拷贝到需要安装docker的局域网集群上面，例如：/home/qiuxing/repo/dockerRepo/  </li>
 <li>将docker的rpm包拷贝到需要安装docker的局域网集群上面，例如：/home/qiuxing/repo/createrepo/  </li>
 <li><p>构建本地yum源</p>
