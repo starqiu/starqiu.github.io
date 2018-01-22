@@ -91,76 +91,6 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/24/如何使JOptionPane.showMessageDialog 显示的信息可复制/" title="如何使JOptionPane.showMessageDialog 显示的信息可复制" itemprop="url">如何使JOptionPane.showMessageDialog 显示的信息可复制</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-23T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-24</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <blockquote>
-<p>如何使JOptionPane.showMessageDialog 显示的信息分行显示且可复制?</p>
-</blockquote>
-<h1 id="分析">分析</h1><ol>
-<li>使用<code>JTextArea</code>，并将其设为不可编辑，使用其克复制功能</li>
-<li>调用<code>setLineWrap</code>和<code>setWrapStyleWord</code>方法使<code>JTextArea</code>按单词计数分行显示</li>
-<li>调用<code>setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER)</code>使得水平滑动按钮消失。</li>
-</ol>
-<h1 id="代码">代码</h1> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/**</span><br><span class="line">     * 显示错误信息提示框，以便提示用户错误信息</span><br><span class="line">     * <span class="doctag">@param</span> errorMsg 错误信息</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showErrorDialog</span><span class="params">(String errorMsg)</span></span>&#123;</span><br><span class="line">         <span class="comment">// create a JTextArea</span></span><br><span class="line">          JTextArea textArea = <span class="keyword">new</span> JTextArea(<span class="number">6</span>, <span class="number">25</span>);</span><br><span class="line">          textArea.setText(errorMsg + ErrorMsg.SEE_ERROR_LOG );</span><br><span class="line">          textArea.setEditable(<span class="keyword">false</span>);</span><br><span class="line">          textArea.setWrapStyleWord(<span class="keyword">true</span>);</span><br><span class="line">          textArea.setLineWrap(<span class="keyword">true</span>);</span><br><span class="line">          textArea.setCaretPosition(<span class="number">0</span>);</span><br><span class="line">           </span><br><span class="line">          <span class="comment">// wrap a scrollpane around it</span></span><br><span class="line">          JScrollPane scrollPane = <span class="keyword">new</span> JScrollPane(textArea);</span><br><span class="line">          scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);</span><br><span class="line"><span class="comment">//      String msg = CommonUtils.divideIntoMultiLines(errorMsg + ErrorMsg.SEE_ERROR_LOG, 20)  ;</span></span><br><span class="line">          JOptionPane.showMessageDialog(<span class="keyword">null</span>,scrollPane ,  <span class="string">"错误信息"</span>, JOptionPane.ERROR_MESSAGE);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Java/">Java</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Java/">Java</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/24/如何使JOptionPane.showMessageDialog 显示的信息可复制/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/24/如何使JOptionPane.showMessageDialog 显示的信息可复制/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
       <a href="/2015/08/21/如何将一行太长的字符串分割成多行/" title="如何将一行太长的字符串分割成多行" itemprop="url">如何将一行太长的字符串分割成多行</a>
   </h1>
   <p class="article-author">By
@@ -378,6 +308,79 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/04/给定数组a构造数组b/" title="给定数组a[N]构造数组b [N]——腾讯笔试" itemprop="url">给定数组a[N]构造数组b [N]——腾讯笔试</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-03T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-04</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="题目">题目</h1><blockquote>
+<p>给定一个数组a[N]，我们希望构造数组b [N]，其中b[j]=a[0]*a[1]…a[N-1] / a[j]，在构造过程中，不允许使用除法：要求O（1）空间复杂度和O（n）的时间复杂度；除遍历计数器与a[N] b[N]外，不可使用新的变量（包括栈临时变量、堆空间和全局静态变量等）</p>
+</blockquote>
+<h1 id="解答">解答</h1><p>不能使用除法，那就不能直接全部做乘法再做除法。<br><code>b[j]=a[0]*a[1]…a[N-1] / a[j]</code>，其实就是a中除去第j个数其他数相乘。<br>既然不能使用除法，就只能将整个式子分成两部分：<code>a[0]*a[1]*...*a[j-1]</code> 和 <code>a[j+1]*a[j+2]*...*a[N-1]</code></p>
+<ol>
+<li><p>首先构造第一部分<br>令b[0] = 1 , <code>b[j] = b[j-1]*a[j-1]</code><br>b[1] = a[0]<br>b[2] = a[0]*a[1]<br>…<br>b[j] = a[0]*a[1]*…*a[j-1]<br>…<br>b[n-1] = a[0]*a[1]*…*a[n-2]</p>
+</li>
+<li><p>然后开始构造第二部分<br>因为初始都是从1开始构造，所以这次我们需要从后往后前构造。<br>令b[0] = 1 , <code>b[j] = b[0]*b[j]</code> ，每次前进重新计算b[0]的值，作为临时变量 : <code>b[0]= b[0]*a[j]</code></p>
+<p>b[n-1] = a[0]*a[1]*…*a[n-2]* 1 , b[0] = a[n-1]<br>b[n-2] = a[0]*a[1]*…*a[n-3]* a[n-1] , b[0] = a[n-1]*a[n-2]<br>b[n-3] = a[0]*a[1]*…*a[n-4]*a[n-2]* a[n-1] , b[0] = a[n-1]*a[n-2]*a[n-3]<br>…<br>b[j] = a[0]*a[1]*…*a[j-1].*a[j+1]* a[j+2]*..*a[n-2]* a[n-1] , b[0] = a[n-1]*a[n-2]*..*a[j]<br>…<br>b[1] = a[0]*a[2]*…*a[n-3]*a[n-2]* a[n-1], b[0] = a[n-1]*a[n-2]*..*a[1]</p>
+<p>此部分，每当计算b[j]时，<code>b[0] = a[n-1]*a[n-2]*...a[j]</code> ,正好是下一次需要计算的右边部分。<br>此时，所有的b[j] 都满足 <code>b[j]=a[0]*a[1]…a[N-1] / a[j]</code></p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/08/04/给定数组a构造数组b/#more">更多</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/算法/">算法</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/算法/">算法</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/04/给定数组a构造数组b/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/04/给定数组a构造数组b/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/04/顺时针操作矩阵/" title="顺时针操作矩阵" itemprop="url">顺时针操作矩阵</a>
   </h1>
   <p class="article-author">By
@@ -437,79 +440,6 @@
 	
 	  	<span></span>
 		<a href="/2015/08/04/顺时针操作矩阵/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/04/顺时针操作矩阵/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/04/给定数组a构造数组b/" title="给定数组a[N]构造数组b [N]——腾讯笔试" itemprop="url">给定数组a[N]构造数组b [N]——腾讯笔试</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-03T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-04</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="题目">题目</h1><blockquote>
-<p>给定一个数组a[N]，我们希望构造数组b [N]，其中b[j]=a[0]*a[1]…a[N-1] / a[j]，在构造过程中，不允许使用除法：要求O（1）空间复杂度和O（n）的时间复杂度；除遍历计数器与a[N] b[N]外，不可使用新的变量（包括栈临时变量、堆空间和全局静态变量等）</p>
-</blockquote>
-<h1 id="解答">解答</h1><p>不能使用除法，那就不能直接全部做乘法再做除法。<br><code>b[j]=a[0]*a[1]…a[N-1] / a[j]</code>，其实就是a中除去第j个数其他数相乘。<br>既然不能使用除法，就只能将整个式子分成两部分：<code>a[0]*a[1]*...*a[j-1]</code> 和 <code>a[j+1]*a[j+2]*...*a[N-1]</code></p>
-<ol>
-<li><p>首先构造第一部分<br>令b[0] = 1 , <code>b[j] = b[j-1]*a[j-1]</code><br>b[1] = a[0]<br>b[2] = a[0]*a[1]<br>…<br>b[j] = a[0]*a[1]*…*a[j-1]<br>…<br>b[n-1] = a[0]*a[1]*…*a[n-2]</p>
-</li>
-<li><p>然后开始构造第二部分<br>因为初始都是从1开始构造，所以这次我们需要从后往后前构造。<br>令b[0] = 1 , <code>b[j] = b[0]*b[j]</code> ，每次前进重新计算b[0]的值，作为临时变量 : <code>b[0]= b[0]*a[j]</code></p>
-<p>b[n-1] = a[0]*a[1]*…*a[n-2]* 1 , b[0] = a[n-1]<br>b[n-2] = a[0]*a[1]*…*a[n-3]* a[n-1] , b[0] = a[n-1]*a[n-2]<br>b[n-3] = a[0]*a[1]*…*a[n-4]*a[n-2]* a[n-1] , b[0] = a[n-1]*a[n-2]*a[n-3]<br>…<br>b[j] = a[0]*a[1]*…*a[j-1].*a[j+1]* a[j+2]*..*a[n-2]* a[n-1] , b[0] = a[n-1]*a[n-2]*..*a[j]<br>…<br>b[1] = a[0]*a[2]*…*a[n-3]*a[n-2]* a[n-1], b[0] = a[n-1]*a[n-2]*..*a[1]</p>
-<p>此部分，每当计算b[j]时，<code>b[0] = a[n-1]*a[n-2]*...a[j]</code> ,正好是下一次需要计算的右边部分。<br>此时，所有的b[j] 都满足 <code>b[j]=a[0]*a[1]…a[N-1] / a[j]</code></p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/08/04/给定数组a构造数组b/#more">更多</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/算法/">算法</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/算法/">算法</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/04/给定数组a构造数组b/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/04/给定数组a构造数组b/" data-count-type="comments">&nbsp;</a>
 	
 </div>
 
@@ -812,6 +742,72 @@
 
 
 
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/07/26/passWritingExamPro/" title="笔试通过问题" itemprop="url">笔试通过问题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  <p class="article-time">
+    <time datetime="2015-07-25T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-26</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="题目">题目</h1><blockquote>
+<p>某招聘笔试共有120人参加，考试有6道题。1-6道分别有86人，88人，92人，76人，72人和70人答对，如果答对3道或3道以上通过笔试，问至少有多少人通过？</p>
+</blockquote>
+<h1 id="解法">解法</h1><p>最差的情况是<strong>答对2道题和6题的人足够多</strong>总共答对题次<code>86+88+92+76+72+70=484</code><br>每人至少答对2题，答对6题的人有：<code>(484-240)/4=61</code></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Logic/">Logic</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Logic/">Logic</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/07/26/passWritingExamPro/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/26/passWritingExamPro/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
@@ -927,11 +923,15 @@
 			
 		
 			
-				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
 			
 		
 			
@@ -943,11 +943,11 @@
 			
 		
 			
-				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
 			
 		
 			
@@ -964,10 +964,6 @@
 		
 			
 				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
 			
 		
 		</ul>
