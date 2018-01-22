@@ -5,23 +5,23 @@
   <meta name="baidu-site-verification" content="WxxBxzU1zW" />
   <meta charset="UTF-8">
   
-    <title>如何禁止一个容器的所有行为 | starqiu&#39;s blog</title>
+    <title>test | starqiu&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="starqiu">
     
 
     
-    <meta name="description" content="如何禁止一个容器的所有行为">
+    <meta name="description" content="test">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何禁止一个容器的所有行为">
-<meta property="og:url" content="https://github.com/2015/08/25/如何禁止一个容器的所有行为/index.html">
+<meta property="og:title" content="test">
+<meta property="og:url" content="https://github.com/2018/01/22/test/index.html">
 <meta property="og:site_name" content="starqiu's blog">
-<meta property="og:description" content="如何禁止一个容器的所有行为">
-<meta property="og:updated_time" content="2015-08-25T01:47:40.000Z">
+<meta property="og:description" content="test">
+<meta property="og:updated_time" content="2018-01-22T11:15:34.364Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何禁止一个容器的所有行为">
-<meta name="twitter:description" content="如何禁止一个容器的所有行为">
+<meta name="twitter:title" content="test">
+<meta name="twitter:description" content="test">
 
     
     <link rel="alternative" href="/atom.xml" title="starqiu&#39;s blog" type="application/atom+xml">
@@ -90,14 +90,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/25/如何禁止一个容器的所有行为/" title="如何禁止一个容器的所有行为" itemprop="url">如何禁止一个容器的所有行为</a>
+      <a href="/2018/01/22/test/" title="test" itemprop="url">test</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-24T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-25</time>
+    <time datetime="2018-01-21T16:00:00.000Z" itemprop="datePublished"> 发表于 2018-01-22</time>
     
   </p>
 </header>
@@ -106,29 +106,13 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#分析"><span class="toc-number">1.</span> <span class="toc-text">分析</span></a></li></ol>
+			
 		
 		</div>
 		
-		<blockquote>
-<p>如何禁止（disable）一个容器的所有行为（包括不响应任何事件）？</p>
-</blockquote>
-<h1 id="分析">分析</h1><ol>
-<li><p>一个容器还包括子容器，子容器也是需要禁止的，因此需要使用递归来解决。代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 改变一个容器及其子容器的enbale状态</span><br><span class="line"> * <span class="doctag">@param</span> container</span><br><span class="line"> * <span class="doctag">@param</span> enable　如果为false则Disable  容器</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">enableComponents</span><span class="params">(Container container, <span class="keyword">boolean</span> enable)</span> </span>&#123;</span><br><span class="line">    Component[] components = container.getComponents();</span><br><span class="line">    <span class="keyword">for</span> (Component component : components) &#123;</span><br><span class="line">        component.setEnabled(enable);</span><br><span class="line">        <span class="keyword">if</span> (component <span class="keyword">instanceof</span> Container) &#123;</span><br><span class="line">            enableComponents((Container)component, enable);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>disable一个容器并不会临时移除事件</p>
-<p>javadoc中的描述是：</p>
-<blockquote>
-<p>Enables or disables this component, depending on the value of the parameter b. An enabled component can respond<br>to user input and generate events. Components are enabled initially by default.<br><strong>Note: Disabling a lightweight component does not prevent it from receiving MouseEvents. </strong><br><strong>Note: Disabling a heavyweight container prevents all components in this container from receiving any input events. </strong></p>
-</blockquote>
-<p>可以看到，disable一个容器并不会临时移除事件。此时有两种解决方案：</p>
-</li>
+		<ol>
+<li>test</li>
 </ol>
-<ul>
-<li>移除所有事件。但如果以后还需要添加这些事件的话，需要保存这些事件，操作起来比较麻烦。</li>
-<li>在所有事件的处理方法开始时，添加判断<code>isEnabled</code>代码，如果为<code>false</code>则直接返回。代码如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!container.isEnabled()) &#123;<span class="comment">//确保panel被禁止时不处理事件。</span></span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -136,13 +120,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Java/">Java</a>
+  <a class="article-category-link" href="/categories/test/">test</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Java/">Java</a><a href="/tags/Swing/">Swing</a>
+  <span></span> <a href="/tags/test/">test</a>
   </div>
 
 </div>
@@ -151,7 +135,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://github.com/2015/08/25/如何禁止一个容器的所有行为/" data-title="如何禁止一个容器的所有行为 | starqiu&#39;s blog" data-tsina="1665530845" class="share clearfix">
+	  <div data-url="https://github.com/2018/01/22/test/" data-title="test | starqiu&#39;s blog" data-tsina="1665530845" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -164,19 +148,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/08/26/找出重复3遍的数字/" title="找出重复3遍的数字">
-  <strong>上一篇：</strong><br/>
-  <span>
-  找出重复3遍的数字</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/08/24/如何使JOptionPane.showMessageDialog 显示的信息可复制/"  title="如何使JOptionPane.showMessageDialog 显示的信息可复制">
+<a href="/2018/01/05/centos7离线安装docker/"  title="centos7离线安装docker">
  <strong>下一篇：</strong><br/> 
- <span>如何使JOptionPane.showMessageDialog 显示的信息可复制
+ <span>centos7离线安装docker
 </span>
 </a>
 </div>
@@ -185,7 +161,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/08/25/如何禁止一个容器的所有行为/" data-title="如何禁止一个容器的所有行为" data-url="https://github.com/2015/08/25/如何禁止一个容器的所有行为/"></div>
+	<div class="ds-thread" data-thread-key="2018/01/22/test/" data-title="test" data-url="https://github.com/2018/01/22/test/"></div>
 </section>
 
 
@@ -195,7 +171,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#分析"><span class="toc-number">1.</span> <span class="toc-text">分析</span></a></li></ol>
+ 
  
   </div>
 
