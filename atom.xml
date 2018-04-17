@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/"/>
-  <updated>2018-01-06T04:10:33.119Z</updated>
+  <updated>2018-04-17T12:35:56.749Z</updated>
   <id>https://github.com/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>centos7离线安装docker</title>
-    <link href="https://github.com/2018/01/05/centos7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85docker/"/>
-    <id>https://github.com/2018/01/05/centos7离线安装docker/</id>
-    <published>2018-01-04T16:00:00.000Z</published>
-    <updated>2018-01-06T04:10:33.119Z</updated>
+    <link href="https://github.com/2018/04/17/centos7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85docker/"/>
+    <id>https://github.com/2018/04/17/centos7离线安装docker/</id>
+    <published>2018-04-16T16:00:00.000Z</published>
+    <updated>2018-04-17T12:35:56.749Z</updated>
     
     <content type="html"><![CDATA[<p>先在一台可以联网的相同操作系统环境下下载离线安装包，然后内网服务器构建本地yum源，最后安装docker</p>
 <h2 id="下载离线安装包">下载离线安装包</h2><ol>
