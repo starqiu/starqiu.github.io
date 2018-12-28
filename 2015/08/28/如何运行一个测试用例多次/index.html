@@ -1,8 +1,8 @@
 
  <!DOCTYPE HTML>
 <html lang="zh-CN">
-<head>
-  <meta name="baidu-site-verification" content="WxxBxzU1zW" />
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta name="baidu-site-verification" content="WxxBxzU1zW">
   <meta charset="UTF-8">
   
     <title>如何运行一个测试用例多次 | starqiu&#39;s blog</title>
@@ -13,11 +13,13 @@
 
     
     <meta name="description" content="如何运行一个测试用例多次">
+<meta name="keywords" content="Java,测试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何运行一个测试用例多次">
 <meta property="og:url" content="https://github.com/2015/08/28/如何运行一个测试用例多次/index.html">
-<meta property="og:site_name" content="starqiu's blog">
+<meta property="og:site_name" content="starqiu&#39;s blog">
 <meta property="og:description" content="如何运行一个测试用例多次">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2015-08-27T03:18:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何运行一个测试用例多次">
@@ -33,16 +35,16 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
   <body>
     <header>
       
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"/></a>
+				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"></a>
 			</div>
 			
 			<div id="textlogo">
@@ -75,16 +77,16 @@
  					
 						<form class="search" action="http://search.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= 7129304121443985000 ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						<input name="s" type="hidden" value="7129304121443985000"><input type="text" name="q" size="30" placeholder="搜索"><br>
 						</form>
 					
 					</li>
 				</ul>
-			</nav>			
+			</ul></nav>			
 </div>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
@@ -96,7 +98,7 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2015-08-27T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-28</time>
     
   </p>
@@ -110,31 +112,31 @@
 		
 		</div>
 		
-		<h1 id="问题">问题</h1><blockquote>
+		<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><blockquote>
 <p>如何运行一个测试用例多次？</p>
 </blockquote>
-<h1 id="解答">解答</h1><ol>
+<h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><ol>
 <li>使用@RunWith(Parameterized.class)，需要多写一些无谓的代码</li>
-<li>使用Rule,自己实现Repeat注解.见<a href="http://www.codeaffine.com/2013/04/10/running-junit-tests-repeatedly-without-loops/" target="_blank" rel="external">参考４</a></li>
-<li>使用Runner,自己实现Repeat注解.见<a href="http://codehowtos.blogspot.com/2011/04/run-junit-test-repeatedly.html" target="_blank" rel="external">参考１</a>　这个方法目前实验起来最好。<br>使用：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@RunWith</span>(ExtendedRunner.class)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleTest3</span> </span>&#123;  </span><br><span class="line">     <span class="annotation">@Test</span>  </span><br><span class="line">     <span class="annotation">@Repeat</span>(<span class="number">10</span>)  </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sometimesFail</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">          <span class="keyword">int</span> rand = <span class="keyword">new</span> Random().nextInt(<span class="number">3</span>);  </span><br><span class="line">          <span class="keyword">if</span> (rand % <span class="number">3</span> == <span class="number">0</span>) &#123;  </span><br><span class="line">               fail();  </span><br><span class="line">          &#125;  </span><br><span class="line">     &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>使用Rule,自己实现Repeat注解.见[参考４][4]</li>
+<li>使用Runner,自己实现Repeat注解.见<a href="http://codehowtos.blogspot.com/2011/04/run-junit-test-repeatedly.html" target="_blank" rel="noopener">参考１</a>　这个方法目前实验起来最好。<br>使用：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(ExtendedRunner.class)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleTest3</span> </span>&#123;  </span><br><span class="line">     <span class="meta">@Test</span>  </span><br><span class="line">     <span class="meta">@Repeat</span>(<span class="number">10</span>)  </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sometimesFail</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">          <span class="keyword">int</span> rand = <span class="keyword">new</span> Random().nextInt(<span class="number">3</span>);  </span><br><span class="line">          <span class="keyword">if</span> (rand % <span class="number">3</span> == <span class="number">0</span>) &#123;  </span><br><span class="line">               fail();  </span><br><span class="line">          &#125;  </span><br><span class="line">     &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <a id="more"></a>
-<p>  Repeat.java：<br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@Retention</span>(RetentionPolicy.RUNTIME)  </span><br><span class="line"><span class="annotation">@Target</span>(&#123;ElementType.METHOD&#125;)  </span><br><span class="line"><span class="keyword">public</span> <span class="annotation">@interface</span> Repeat &#123;  </span><br><span class="line">     <span class="function"><span class="keyword">int</span> <span class="title">value</span><span class="params">()</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>  ExtendedRunner.java：<br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExtendedRunner</span> <span class="keyword">extends</span> <span class="title">BlockJUnit4ClassRunner</span> </span>&#123;  </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="title">ExtendedRunner</span><span class="params">(Class&lt;?&gt; klass)</span> <span class="keyword">throws</span> InitializationError </span>&#123;  </span><br><span class="line">          <span class="keyword">super</span>(klass);  </span><br><span class="line">     &#125;  </span><br><span class="line">  </span><br><span class="line">     <span class="annotation">@Override</span>  </span><br><span class="line">     <span class="function"><span class="keyword">protected</span> Description <span class="title">describeChild</span><span class="params">(FrameworkMethod method)</span> </span>&#123;  </span><br><span class="line">          <span class="keyword">if</span> (method.getAnnotation(Repeat.class) != <span class="keyword">null</span> &amp;&amp;  </span><br><span class="line">                    method.getAnnotation(Ignore.class) == <span class="keyword">null</span>) &#123;  </span><br><span class="line">               <span class="keyword">return</span> describeRepeatTest(method);  </span><br><span class="line">          &#125;  </span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">super</span>.describeChild(method);  </span><br><span class="line">     &#125;  </span><br><span class="line">  </span><br><span class="line">     <span class="function"><span class="keyword">private</span> Description <span class="title">describeRepeatTest</span><span class="params">(FrameworkMethod method)</span> </span>&#123;  </span><br><span class="line">          <span class="keyword">int</span> times = method.getAnnotation(Repeat.class).value();  </span><br><span class="line">  </span><br><span class="line">          Description description = Description.createSuiteDescription(  </span><br><span class="line">                    testName(method) + <span class="string">" ["</span> + times + <span class="string">" times]"</span>,  </span><br><span class="line">                    method.getAnnotations());  </span><br><span class="line">  </span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= times; i++) &#123;  </span><br><span class="line">               description.addChild(Description.createTestDescription(  </span><br><span class="line">                         getTestClass().getJavaClass(),  </span><br><span class="line">                         <span class="string">"["</span> + i + <span class="string">"] "</span> + testName(method)));  </span><br><span class="line">          &#125;  </span><br><span class="line">          <span class="keyword">return</span> description;  </span><br><span class="line">     &#125;  </span><br><span class="line">  </span><br><span class="line">     <span class="annotation">@Override</span>  </span><br><span class="line">     <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">runChild</span><span class="params">(<span class="keyword">final</span> FrameworkMethod method, RunNotifier notifier)</span> </span>&#123;  </span><br><span class="line">          Description description = describeChild(method);  </span><br><span class="line">            </span><br><span class="line">          <span class="keyword">if</span> (method.getAnnotation(Repeat.class) != <span class="keyword">null</span> &amp;&amp;  </span><br><span class="line">                    method.getAnnotation(Ignore.class) == <span class="keyword">null</span>) &#123;  </span><br><span class="line">               runRepeatedly(methodBlock(method), description, notifier);  </span><br><span class="line">          &#125;  </span><br><span class="line">          <span class="keyword">super</span>.runChild(method, notifier);  </span><br><span class="line">     &#125;  </span><br><span class="line">  </span><br><span class="line">     <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">runRepeatedly</span><span class="params">(Statement statement, Description description,  </span><br><span class="line">               RunNotifier notifier)</span> </span>&#123;  </span><br><span class="line">          <span class="keyword">for</span> (Description desc : description.getChildren()) &#123;  </span><br><span class="line">               runLeaf(statement, desc, notifier);  </span><br><span class="line">          &#125;  </span><br><span class="line">     &#125;  </span><br><span class="line">       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ol>
+<p>  Repeat.java：<br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)  </span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.METHOD&#125;)  </span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Repeat &#123;  </span><br><span class="line">     <span class="function"><span class="keyword">int</span> <span class="title">value</span><span class="params">()</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  ExtendedRunner.java：<br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExtendedRunner</span> <span class="keyword">extends</span> <span class="title">BlockJUnit4ClassRunner</span> </span>&#123;  </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="title">ExtendedRunner</span><span class="params">(Class&lt;?&gt; klass)</span> <span class="keyword">throws</span> InitializationError </span>&#123;  </span><br><span class="line">          <span class="keyword">super</span>(klass);  </span><br><span class="line">     &#125;  </span><br><span class="line">  </span><br><span class="line">     <span class="meta">@Override</span>  </span><br><span class="line">     <span class="function"><span class="keyword">protected</span> Description <span class="title">describeChild</span><span class="params">(FrameworkMethod method)</span> </span>&#123;  </span><br><span class="line">          <span class="keyword">if</span> (method.getAnnotation(Repeat.class) != <span class="keyword">null</span> &amp;&amp;  </span><br><span class="line">                    method.getAnnotation(Ignore.class) == <span class="keyword">null</span>) &#123;  </span><br><span class="line">               <span class="keyword">return</span> describeRepeatTest(method);  </span><br><span class="line">          &#125;  </span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">super</span>.describeChild(method);  </span><br><span class="line">     &#125;  </span><br><span class="line">  </span><br><span class="line">     <span class="function"><span class="keyword">private</span> Description <span class="title">describeRepeatTest</span><span class="params">(FrameworkMethod method)</span> </span>&#123;  </span><br><span class="line">          <span class="keyword">int</span> times = method.getAnnotation(Repeat.class).value();  </span><br><span class="line">  </span><br><span class="line">          Description description = Description.createSuiteDescription(  </span><br><span class="line">                    testName(method) + <span class="string">" ["</span> + times + <span class="string">" times]"</span>,  </span><br><span class="line">                    method.getAnnotations());  </span><br><span class="line">  </span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= times; i++) &#123;  </span><br><span class="line">               description.addChild(Description.createTestDescription(  </span><br><span class="line">                         getTestClass().getJavaClass(),  </span><br><span class="line">                         <span class="string">"["</span> + i + <span class="string">"] "</span> + testName(method)));  </span><br><span class="line">          &#125;  </span><br><span class="line">          <span class="keyword">return</span> description;  </span><br><span class="line">     &#125;  </span><br><span class="line">  </span><br><span class="line">     <span class="meta">@Override</span>  </span><br><span class="line">     <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">runChild</span><span class="params">(<span class="keyword">final</span> FrameworkMethod method, RunNotifier notifier)</span> </span>&#123;  </span><br><span class="line">          Description description = describeChild(method);  </span><br><span class="line">            </span><br><span class="line">          <span class="keyword">if</span> (method.getAnnotation(Repeat.class) != <span class="keyword">null</span> &amp;&amp;  </span><br><span class="line">                    method.getAnnotation(Ignore.class) == <span class="keyword">null</span>) &#123;  </span><br><span class="line">               runRepeatedly(methodBlock(method), description, notifier);  </span><br><span class="line">          &#125;  </span><br><span class="line">          <span class="keyword">super</span>.runChild(method, notifier);  </span><br><span class="line">     &#125;  </span><br><span class="line">  </span><br><span class="line">     <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">runRepeatedly</span><span class="params">(Statement statement, Description description,  </span></span></span><br><span class="line"><span class="function"><span class="params">               RunNotifier notifier)</span> </span>&#123;  </span><br><span class="line">          <span class="keyword">for</span> (Description desc : description.getChildren()) &#123;  </span><br><span class="line">               runLeaf(statement, desc, notifier);  </span><br><span class="line">          &#125;  </span><br><span class="line">     &#125;  </span><br><span class="line">       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
 <li>如果使用了Spring框架，则可以使用注解@Repeat(value = 10)</li>
 <li><p>另外写一个运行多次的用例，代码如下。多个用例被当成了一个用例。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">itWorks</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// stuff</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="annotation">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">itWorksRepeatably</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        itWorks();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">itWorks</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// stuff</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">itWorksRepeatably</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        itWorks();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使用tempus-fugit 库，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@RunWith</span>(IntermittentTestRunner.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntermittentTestRunnerTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> testCounter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">   <span class="annotation">@Test</span></span><br><span class="line">   <span class="annotation">@Intermittent</span>(repition = <span class="number">99</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">annotatedTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      testCounter++;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(IntermittentTestRunner.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntermittentTestRunnerTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> testCounter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="meta">@Intermittent</span>(repition = <span class="number">99</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">annotatedTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      testCounter++;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>使用easytest-core 库，代码如下。见<a href="http://www.javacodegeeks.com/2013/10/write-effective-load-tests-using-junit-and-repeat-annotation.html" target="_blank" rel="external">参考３</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@Test</span></span><br><span class="line"><span class="annotation">@Repeat</span>(times=<span class="number">20</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testLookup</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = &#123;<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> i = lookupNumber(arr);</span><br><span class="line">    assertEquals(<span class="number">3</span>, i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>使用easytest-core 库，代码如下。见[参考３][3]</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="meta">@Repeat</span>(times=<span class="number">20</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testLookup</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = &#123;<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> i = lookupNumber(arr);</span><br><span class="line">    assertEquals(<span class="number">3</span>, i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h1 id="参考">参考</h1><p>[2]:  　<a href="http://stackoverflow.com/questions/1492856/easy-way-of-running-the-same-junit-test-over-and-over" target="_blank" rel="external">http://stackoverflow.com/questions/1492856/easy-way-of-running-the-same-junit-test-over-and-over</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[2]:  　<a href="http://stackoverflow.com/questions/1492856/easy-way-of-running-the-same-junit-test-over-and-over" target="_blank" rel="noopener">http://stackoverflow.com/questions/1492856/easy-way-of-running-the-same-junit-test-over-and-over</a><br>[3]:  <a href="http://www.javacodegeeks.com/2013/10/write-effective-load-tests-using-junit-and-repeat-annotation.html" target="_blank" rel="noopener">http://www.javacodegeeks.com/2013/10/write-effective-load-tests-using-junit-and-repeat-annotation.html</a><br>[4]:  <a href="http://www.codeaffine.com/2013/04/10/running-junit-tests-repeatedly-without-loops/" target="_blank" rel="noopener">http://www.codeaffine.com/2013/04/10/running-junit-tests-repeatedly-without-loops/</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -170,9 +172,9 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
+ <div class="prev">
  <a href="/2015/08/30/给hexo jacman增加“最新评论”的widget/" title="给hexo/jacman增加“最新评论”的widget">
-  <strong>上一篇：</strong><br/>
+  <strong>上一篇：</strong><br>
   <span>
   给hexo/jacman增加“最新评论”的widget</span>
 </a>
@@ -180,8 +182,8 @@
 
 
 <div class="next">
-<a href="/2015/08/27/单元测试笔记/"  title="单元测试笔记">
- <strong>下一篇：</strong><br/> 
+<a href="/2015/08/27/单元测试笔记/" title="单元测试笔记">
+ <strong>下一篇：</strong><br> 
  <span>单元测试笔记
 </span>
 </a>
@@ -243,7 +245,7 @@
 		  
 		
 		  
-			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 		  
 		
 		  
@@ -296,6 +298,14 @@
 			
 		
 			
+				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
 			
 		
@@ -304,23 +314,7 @@
 			
 		
 			
-				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 			
 		
 			
@@ -332,11 +326,19 @@
 			
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
@@ -348,11 +350,11 @@
 			
 		
 			
-				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -497,7 +499,7 @@
 </aside>
 </div>
     </div>
-    <footer><div id="footer" >
+    <footer><div id="footer">
 	
 	<div class="line">
 		<span></span>
@@ -506,11 +508,11 @@
 	
 	
 	<section class="info">
-		<p> Hello ,I&#39;m Star Qiu in SIAT. <br/>
+		<p> Hello ,I&#39;m Star Qiu in SIAT. <br>
 			This is my blog,believe it or not.</p>
 	</section>
 	 
-	<div class="social-font" class="clearfix">
+	<div class="social-font">
 		
 		<a href="http://weibo.com/1665530845## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
 		
@@ -695,8 +697,7 @@ MathJax.Hub.Config({
   tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
 }); 
 </script>
-<script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <!-- Analytics Begin -->
@@ -715,7 +716,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

@@ -1,634 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-
-    
   <url>
+    <loc>https://github.com/2018/12/28/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</loc>
+    <lastmod>2018-12-28T07:02:41.216Z</lastmod>
+  </url>  <url>
     <loc>https://github.com/2018/04/17/centos7%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85docker/</loc>
-    <lastmod>2018-04-17T12:35:56.749Z</lastmod>
-    <data>
-        <display>
-        <title>centos7离线安装docker</title>
-        <pubTime>2018-04-16T16:00:00.000Z</pubTime>
-        
-        <tag>CentOS</tag>
-         
-        <tag>Docker</tag>
-         
-         
-           
-             
-              <breadCrumb title="运维" url="https://github.com/categories/%E8%BF%90%E7%BB%B4/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-04-20T01:41:32.043Z</lastmod>
+  </url>  <url>
     <loc>https://github.com/2015/01/22/test/</loc>
-    <lastmod>2018-01-22T11:24:12.533Z</lastmod>
-    <data>
-        <display>
-        <title>test</title>
-        <pubTime>2015-01-21T16:00:00.000Z</pubTime>
-        
-        <tag>test</tag>
-         
-         
-           
-             
-              <breadCrumb title="test" url="https://github.com/categories/test/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-01-22T11:24:12.534Z</lastmod>
+  </url>  <url>
     <loc>https://github.com/2017/12/13/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%85%AC%E5%8F%B8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E6%90%AD%E5%BB%BAsvn%20server%E7%9A%84%E7%BB%8F%E5%8E%86/</loc>
     <lastmod>2018-01-06T04:31:46.536Z</lastmod>
-    <data>
-        <display>
-        <title>记一次公司服务器上搭建svn server的经历</title>
-        <pubTime>2017-12-12T16:00:00.000Z</pubTime>
-        
-        <tag>svn</tag>
-         
-        <tag>版本管理</tag>
-         
-         
-           
-             
-              <breadCrumb title="版本管理" url="https://github.com/categories/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/08/11/Git%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2017-12-13T06:39:06.767Z</lastmod>
-    <data>
-        <display>
-        <title>Git笔记</title>
-        <pubTime>2015-08-10T16:00:00.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-        <tag>版本管理</tag>
-         
-         
-           
-             
-              <breadCrumb title="版本管理" url="https://github.com/categories/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2017/08/27/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E7%9A%84%E6%A0%87%E5%87%86%E6%B5%81%E7%A8%8B%EF%BC%9ACRISP-DM%E6%A8%A1%E5%9E%8B/</loc>
-    <lastmod>2017-07-07T05:56:51.651Z</lastmod>
-    <data>
-        <display>
-        <title>数据挖掘的标准流程：CRISP-DM模型</title>
-        <pubTime>2017-08-26T16:00:00.000Z</pubTime>
-        
-        <tag>数据挖掘</tag>
-         
-         
-           
-             
-              <breadCrumb title="数据挖掘" url="https://github.com/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-07-07T05:56:51.652Z</lastmod>
+  </url>  <url>
     <loc>https://github.com/2017/07/05/books/</loc>
-    <lastmod>2017-07-05T05:35:01.434Z</lastmod>
-    <data>
-        <display>
-        <title>书单</title>
-        <pubTime>2017-07-04T16:00:00.000Z</pubTime>
-        
-        <tag>Books</tag>
-         
-         
-           
-             
-              <breadCrumb title="Books" url="https://github.com/categories/Books/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-07-05T05:35:01.435Z</lastmod>
+  </url>  <url>
     <loc>https://github.com/2015/08/30/%E7%BB%99hexo%20jacman%E5%A2%9E%E5%8A%A0%E2%80%9C%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA%E2%80%9D%E7%9A%84widget/</loc>
     <lastmod>2015-08-30T06:46:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>给hexo/jacman增加“最新评论”的widget</title>
-        <pubTime>2015-08-29T16:00:00.000Z</pubTime>
-        
-        <tag>hexo</tag>
-         
-        <tag>theme</tag>
-         
-         
-           
-             
-              <breadCrumb title="hexo" url="https://github.com/categories/hexo/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/08/26/%E6%89%BE%E5%87%BA%E9%87%8D%E5%A4%8D3%E9%81%8D%E7%9A%84%E6%95%B0%E5%AD%97/</loc>
     <lastmod>2015-08-27T07:24:56.000Z</lastmod>
-    <data>
-        <display>
-        <title>找出重复3遍的数字</title>
-        <pubTime>2015-08-25T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://github.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/08/27/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2015-08-27T06:48:04.000Z</lastmod>
-    <data>
-        <display>
-        <title>单元测试笔记</title>
-        <pubTime>2015-08-26T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>测试</tag>
-         
-         
-           
-             
-              <breadCrumb title="测试" url="https://github.com/categories/%E6%B5%8B%E8%AF%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/08/28/%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E5%A4%9A%E6%AC%A1/</loc>
     <lastmod>2015-08-27T03:18:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>如何运行一个测试用例多次</title>
-        <pubTime>2015-08-27T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>测试</tag>
-         
-         
-           
-             
-              <breadCrumb title="测试" url="https://github.com/categories/%E6%B5%8B%E8%AF%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/08/25/%E5%A6%82%E4%BD%95%E7%A6%81%E6%AD%A2%E4%B8%80%E4%B8%AA%E5%AE%B9%E5%99%A8%E7%9A%84%E6%89%80%E6%9C%89%E8%A1%8C%E4%B8%BA/</loc>
     <lastmod>2015-08-25T01:47:40.000Z</lastmod>
-    <data>
-        <display>
-        <title>如何禁止一个容器的所有行为</title>
-        <pubTime>2015-08-24T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>Swing</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="https://github.com/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/08/24/%E5%A6%82%E4%BD%95%E4%BD%BFJOptionPane.showMessageDialog%20%E6%98%BE%E7%A4%BA%E7%9A%84%E4%BF%A1%E6%81%AF%E5%8F%AF%E5%A4%8D%E5%88%B6/</loc>
     <lastmod>2015-08-24T09:31:44.000Z</lastmod>
-    <data>
-        <display>
-        <title>如何使JOptionPane.showMessageDialog 显示的信息可复制</title>
-        <pubTime>2015-08-23T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="https://github.com/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/08/21/%E5%A6%82%E4%BD%95%E5%B0%86%E4%B8%80%E8%A1%8C%E5%A4%AA%E9%95%BF%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%86%E5%89%B2%E6%88%90%E5%A4%9A%E8%A1%8C/</loc>
     <lastmod>2015-08-24T09:29:30.000Z</lastmod>
-    <data>
-        <display>
-        <title>如何将一行太长的字符串分割成多行</title>
-        <pubTime>2015-08-20T16:00:00.000Z</pubTime>
-        
-        <tag>算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://github.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/07/21/javaNote/</loc>
     <lastmod>2015-08-24T09:22:38.000Z</lastmod>
-    <data>
-        <display>
-        <title>Java笔记</title>
-        <pubTime>2015-07-20T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="https://github.com/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/07/17/rCluster/</loc>
     <lastmod>2015-08-11T08:31:56.000Z</lastmod>
-    <data>
-        <display>
-        <title>R中的聚类方法</title>
-        <pubTime>2015-07-16T16:00:00.000Z</pubTime>
-        
-        <tag>R</tag>
-         
-        <tag>数据挖掘</tag>
-         
-         
-           
-             
-              <breadCrumb title="数据挖掘" url="https://github.com/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/08/07/Java%E7%9A%84swing.GroupLayout%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E5%92%8C%E5%AE%9E%E4%BE%8B/</loc>
     <lastmod>2015-08-11T08:24:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>Java 的swing.GroupLayout布局管理器的使用方法和实例【图文说明】</title>
-        <pubTime>2015-08-06T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="https://github.com/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/07/24/dataMiningNote/</loc>
     <lastmod>2015-08-11T08:22:40.000Z</lastmod>
-    <data>
-        <display>
-        <title>数据挖掘笔记</title>
-        <pubTime>2015-07-23T16:00:00.000Z</pubTime>
-        
-        <tag>数据挖掘</tag>
-         
-         
-           
-             
-              <breadCrumb title="数据挖掘" url="https://github.com/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/08/03/5%E4%B8%AA%E4%B8%8D%E5%90%8C%E6%95%B4%E6%95%B0%E4%B9%8B%E5%92%8C%E5%B0%8F%E4%BA%8E100/</loc>
     <lastmod>2015-08-11T08:22:20.000Z</lastmod>
-    <data>
-        <display>
-        <title>5个不同整数之和小于100</title>
-        <pubTime>2015-08-02T16:00:00.000Z</pubTime>
-        
-        <tag>算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://github.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/08/04/%E7%BB%99%E5%AE%9A%E6%95%B0%E7%BB%84a%E6%9E%84%E9%80%A0%E6%95%B0%E7%BB%84b/</loc>
     <lastmod>2015-08-06T03:25:20.000Z</lastmod>
-    <data>
-        <display>
-        <title>给定数组a[N]构造数组b [N]——腾讯笔试</title>
-        <pubTime>2015-08-03T16:00:00.000Z</pubTime>
-        
-        <tag>算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://github.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/08/04/%E9%A1%BA%E6%97%B6%E9%92%88%E6%93%8D%E4%BD%9C%E7%9F%A9%E9%98%B5/</loc>
     <lastmod>2015-08-04T10:56:54.000Z</lastmod>
-    <data>
-        <display>
-        <title>顺时针操作矩阵</title>
-        <pubTime>2015-08-03T16:00:00.000Z</pubTime>
-        
-        <tag>算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://github.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/07/22/javaGc/</loc>
     <lastmod>2015-08-04T10:49:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>java垃圾回收机制笔记</title>
-        <pubTime>2015-07-21T16:00:00.000Z</pubTime>
-        
-        <tag>GC</tag>
-         
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="https://github.com/categories/Java/"/>
-          
-             
-              <breadCrumb title="GC" url="https://github.com/categories/Java/GC/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/07/23/java8Note/</loc>
     <lastmod>2015-08-04T02:50:14.000Z</lastmod>
-    <data>
-        <display>
-        <title>Java8笔记</title>
-        <pubTime>2015-07-22T16:00:00.000Z</pubTime>
-        
-        <tag>Java8</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java8" url="https://github.com/categories/Java8/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/07/27/useStacksImplementsQueue/</loc>
     <lastmod>2015-07-31T01:46:58.000Z</lastmod>
-    <data>
-        <display>
-        <title>用两个栈实现队列</title>
-        <pubTime>2015-07-26T16:00:00.000Z</pubTime>
-        
-        <tag>算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://github.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/07/28/topNPro/</loc>
     <lastmod>2015-07-31T01:46:14.000Z</lastmod>
-    <data>
-        <display>
-        <title>Top N 问题</title>
-        <pubTime>2015-07-27T16:00:00.000Z</pubTime>
-        
-        <tag>算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://github.com/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/07/18/rNote/</loc>
     <lastmod>2015-07-29T02:42:40.000Z</lastmod>
-    <data>
-        <display>
-        <title>R笔记</title>
-        <pubTime>2015-07-17T16:00:00.000Z</pubTime>
-        
-        <tag>R</tag>
-         
-         
-           
-             
-              <breadCrumb title="R" url="https://github.com/categories/R/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/07/29/%E6%95%B0%E7%BB%84%E4%B8%AD%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/</loc>
     <lastmod>2015-07-29T02:27:14.000Z</lastmod>
-    <data>
-        <display>
-        <title>数组中只出现一次的数字</title>
-        <pubTime>2015-07-28T16:00:00.000Z</pubTime>
-        
-        <tag>Logic</tag>
-         
-         
-           
-             
-              <breadCrumb title="Logic" url="https://github.com/categories/Logic/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/07/19/swingNote/</loc>
     <lastmod>2015-07-29T02:20:50.000Z</lastmod>
-    <data>
-        <display>
-        <title>Swing 笔记</title>
-        <pubTime>2015-07-18T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>Swing</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="https://github.com/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/07/20/latex/</loc>
     <lastmod>2015-07-29T02:20:28.000Z</lastmod>
-    <data>
-        <display>
-        <title>Latex 笔记</title>
-        <pubTime>2015-07-19T16:00:00.000Z</pubTime>
-        
-        <tag>LaTeX</tag>
-         
-         
-           
-             
-              <breadCrumb title="LaTeX" url="https://github.com/categories/LaTeX/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/07/25/girlWalkingPro/</loc>
     <lastmod>2015-07-29T02:19:24.000Z</lastmod>
-    <data>
-        <display>
-        <title>女生散步问题</title>
-        <pubTime>2015-07-24T16:00:00.000Z</pubTime>
-        
-        <tag>Logic</tag>
-         
-         
-           
-             
-              <breadCrumb title="Logic" url="https://github.com/categories/Logic/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+  </url>  <url>
     <loc>https://github.com/2015/07/26/passWritingExamPro/</loc>
     <lastmod>2015-07-29T02:19:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>笔试通过问题</title>
-        <pubTime>2015-07-25T16:00:00.000Z</pubTime>
-        
-        <tag>Logic</tag>
-         
-         
-           
-             
-              <breadCrumb title="Logic" url="https://github.com/categories/Logic/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-    
+  </url>
 </urlset>

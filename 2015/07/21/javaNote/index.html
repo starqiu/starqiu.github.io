@@ -1,8 +1,8 @@
 
  <!DOCTYPE HTML>
 <html lang="zh-CN">
-<head>
-  <meta name="baidu-site-verification" content="WxxBxzU1zW" />
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta name="baidu-site-verification" content="WxxBxzU1zW">
   <meta charset="UTF-8">
   
     <title>Java笔记 | starqiu&#39;s blog</title>
@@ -13,11 +13,13 @@
 
     
     <meta name="description" content="使用Java时遇到的问题及解决方案">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java笔记">
 <meta property="og:url" content="https://github.com/2015/07/21/javaNote/index.html">
-<meta property="og:site_name" content="starqiu's blog">
+<meta property="og:site_name" content="starqiu&#39;s blog">
 <meta property="og:description" content="使用Java时遇到的问题及解决方案">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2015-08-24T09:22:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java笔记">
@@ -33,16 +35,16 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
   <body>
     <header>
       
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"/></a>
+				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"></a>
 			</div>
 			
 			<div id="textlogo">
@@ -75,16 +77,16 @@
  					
 						<form class="search" action="http://search.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= 7129304121443985000 ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						<input name="s" type="hidden" value="7129304121443985000"><input type="text" name="q" size="30" placeholder="搜索"><br>
 						</form>
 					
 					</li>
 				</ul>
-			</nav>			
+			</ul></nav>			
 </div>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
@@ -96,7 +98,7 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2015-07-20T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-21</time>
     
   </p>
@@ -119,11 +121,11 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.Math.*;</span><br></pre></td></tr></table></figure>
 <p>则可以这样调用：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> r = cos(PI * theta);</span><br></pre></td></tr></table></figure>
-<p>需要注意的是：<font color="red">并不推荐这样做</font>。只有当一个方法或是变量经常使用时才使用静态导入，不然很容易造成误解，以为 <code>cos</code> 方法是当前类的方法，可读性差。个人比较喜欢在测试用例或是非产品类的项目中使用静态导入。<br>参考: <a href="http://docs.oracle.com/javase/1.5.0/docs/guide/language/static-import.html" target="_blank" rel="external">http://docs.oracle.com/javase/1.5.0/docs/guide/language/static-import.html</a></p>
+<p>需要注意的是：<font color="red">并不推荐这样做</font>。只有当一个方法或是变量经常使用时才使用静态导入，不然很容易造成误解，以为 <code>cos</code> 方法是当前类的方法，可读性差。个人比较喜欢在测试用例或是非产品类的项目中使用静态导入。<br>参考: <a href="http://docs.oracle.com/javase/1.5.0/docs/guide/language/static-import.html" target="_blank" rel="noopener">http://docs.oracle.com/javase/1.5.0/docs/guide/language/static-import.html</a></p>
 </li>
 <li><p><font color="red">接口都继承自Object吗？如果不是，那为什么接口有equals方法？</font></p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">        Employee e = <span class="keyword">null</span>;</span><br><span class="line">        e.equals(<span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title">Employee</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>首先接口与Object没有继承关系。其次接口对于Object中的每个public方法都有一个隐式声明，如果对 <code>final</code> 方法覆盖，则会编译错误。<br>参考：<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-9.html#jls-9.2" target="_blank" rel="external">http://docs.oracle.com/javase/specs/jls/se7/html/jls-9.html#jls-9.2</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Test &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Employee e = null;</span><br><span class="line">        e.equals(null);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Employee &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先接口与Object没有继承关系。其次接口对于Object中的每个public方法都有一个隐式声明，如果对 <code>final</code> 方法覆盖，则会编译错误。<br>参考：<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-9.html#jls-9.2" target="_blank" rel="noopener">http://docs.oracle.com/javase/specs/jls/se7/html/jls-9.html#jls-9.2</a></p>
 <a id="more"></a></li>
 </ol>
   
@@ -161,9 +163,9 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
+ <div class="prev">
  <a href="/2015/07/22/javaGc/" title="java垃圾回收机制笔记">
-  <strong>上一篇：</strong><br/>
+  <strong>上一篇：</strong><br>
   <span>
   java垃圾回收机制笔记</span>
 </a>
@@ -171,8 +173,8 @@
 
 
 <div class="next">
-<a href="/2015/07/20/latex/"  title="Latex 笔记">
- <strong>下一篇：</strong><br/> 
+<a href="/2015/07/20/latex/" title="Latex 笔记">
+ <strong>下一篇：</strong><br> 
  <span>Latex 笔记
 </span>
 </a>
@@ -234,7 +236,7 @@
 		  
 		
 		  
-			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 		  
 		
 		  
@@ -287,6 +289,14 @@
 			
 		
 			
+				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
 			
 		
@@ -295,23 +305,7 @@
 			
 		
 			
-				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 			
 		
 			
@@ -323,11 +317,19 @@
 			
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
@@ -339,11 +341,11 @@
 			
 		
 			
-				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -488,7 +490,7 @@
 </aside>
 </div>
     </div>
-    <footer><div id="footer" >
+    <footer><div id="footer">
 	
 	<div class="line">
 		<span></span>
@@ -497,11 +499,11 @@
 	
 	
 	<section class="info">
-		<p> Hello ,I&#39;m Star Qiu in SIAT. <br/>
+		<p> Hello ,I&#39;m Star Qiu in SIAT. <br>
 			This is my blog,believe it or not.</p>
 	</section>
 	 
-	<div class="social-font" class="clearfix">
+	<div class="social-font">
 		
 		<a href="http://weibo.com/1665530845## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
 		
@@ -686,8 +688,7 @@ MathJax.Hub.Config({
   tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
 }); 
 </script>
-<script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <!-- Analytics Begin -->
@@ -706,7 +707,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

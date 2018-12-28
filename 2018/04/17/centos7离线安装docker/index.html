@@ -1,8 +1,8 @@
 
  <!DOCTYPE HTML>
 <html lang="zh-CN">
-<head>
-  <meta name="baidu-site-verification" content="WxxBxzU1zW" />
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta name="baidu-site-verification" content="WxxBxzU1zW">
   <meta charset="UTF-8">
   
     <title>centos7离线安装docker | starqiu&#39;s blog</title>
@@ -13,12 +13,14 @@
 
     
     <meta name="description" content="centos7离线安装docker">
+<meta name="keywords" content="CentOS,Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="centos7离线安装docker">
 <meta property="og:url" content="https://github.com/2018/04/17/centos7离线安装docker/index.html">
-<meta property="og:site_name" content="starqiu's blog">
+<meta property="og:site_name" content="starqiu&#39;s blog">
 <meta property="og:description" content="centos7离线安装docker">
-<meta property="og:updated_time" content="2018-04-17T12:35:56.749Z">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-20T01:41:32.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos7离线安装docker">
 <meta name="twitter:description" content="centos7离线安装docker">
@@ -33,16 +35,16 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
   <body>
     <header>
       
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"/></a>
+				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"></a>
 			</div>
 			
 			<div id="textlogo">
@@ -75,16 +77,16 @@
  					
 						<form class="search" action="http://search.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= 7129304121443985000 ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						<input name="s" type="hidden" value="7129304121443985000"><input type="text" name="q" size="30" placeholder="搜索"><br>
 						</form>
 					
 					</li>
 				</ul>
-			</nav>			
+			</ul></nav>			
 </div>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
@@ -96,7 +98,7 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2018-04-16T16:00:00.000Z" itemprop="datePublished"> 发表于 2018-04-17</time>
     
   </p>
@@ -111,20 +113,20 @@
 		</div>
 		
 		<p>先在一台可以联网的相同操作系统环境下下载离线安装包，然后内网服务器构建本地yum源，最后安装docker</p>
-<h2 id="下载离线安装包">下载离线安装包</h2><ol>
+<h2 id="下载离线安装包"><a href="#下载离线安装包" class="headerlink" title="下载离线安装包"></a>下载离线安装包</h2><ol>
 <li>在可以联网的机器上下载rpm包</li>
 </ol>
 <a id="more"></a>
 <pre><code>+ 下载docker相关rpm到指定目录
 
-<span class="comment"><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install --downloadonly --downloaddir=/home/qiuxing/repo/dockerRepo/   docker &#10;[root@hae71 dockerRepo]# ls&#10;container-selinux-2.33-1.git86f33cd.el7.noarch.rpm          dracut-033-502.el7.x86_64.rpm                libsemanage-2.5-8.el7.x86_64.rpm                       repodata&#10;container-storage-setup-0.8.0-3.git1d27ecf.el7.noarch.rpm   dracut-config-rescue-033-502.el7.x86_64.rpm  libsemanage-python-2.5-8.el7.x86_64.rpm                selinux-policy-3.13.1-166.el7_4.7.noarch.rpm&#10;device-mapper-1.02.140-8.el7.x86_64.rpm                     dracut-network-033-502.el7.x86_64.rpm        libsepol-2.5-6.el7.x86_64.rpm                          selinux-policy-targeted-3.13.1-166.el7_4.7.noarch.rpm&#10;device-mapper-event-1.02.140-8.el7.x86_64.rpm               glib2-2.50.3-3.el7.x86_64.rpm                lvm2-2.02.171-8.el7.x86_64.rpm                         setools-libs-3.3.8-1.1.el7.x86_64.rpm&#10;device-mapper-event-libs-1.02.140-8.el7.x86_64.rpm          initscripts-9.49.39-1.el7.x86_64.rpm         lvm2-libs-2.02.171-8.el7.x86_64.rpm                    skopeo-containers-0.1.26-2.dev.git2e8377a.el7.centos.x86_64.rpm&#10;device-mapper-libs-1.02.140-8.el7.x86_64.rpm                kmod-20-15.el7_4.6.x86_64.rpm                oci-register-machine-0-3.13.gitcd1e331.el7.x86_64.rpm  systemd-219-42.el7_4.4.x86_64.rpm&#10;device-mapper-persistent-data-0.7.0-0.1.rc6.el7.x86_64.rpm  libgudev1-219-42.el7_4.4.x86_64.rpm          oci-systemd-hook-0.1.14-1.git1ba44c6.el7.x86_64.rpm    systemd-libs-219-42.el7_4.4.x86_64.rpm&#10;docker-1.12.6-68.gitec8512b.el7.centos.x86_64.rpm           libselinux-2.5-11.el7.x86_64.rpm             oci-umount-2.3.0-1.git51e7c50.el7.x86_64.rpm           systemd-python-219-42.el7_4.4.x86_64.rpm&#10;docker-client-1.12.6-68.gitec8512b.el7.centos.x86_64.rpm    libselinux-python-2.5-11.el7.x86_64.rpm      policycoreutils-2.5-17.1.el7.x86_64.rpm                systemd-sysv-219-42.el7_4.4.x86_64.rpm&#10;docker-common-1.12.6-68.gitec8512b.el7.centos.x86_64.rpm    libselinux-utils-2.5-11.el7.x86_64.rpm       policycoreutils-python-2.5-17.1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure></span>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">yum install --downloadonly --downloaddir=/home/qiuxing/repo/dockerRepo/   docker </span><br><span class="line">[root@hae71 dockerRepo]# l  s</span><br><span class="line">container-selinux-2.33-1.git86f33cd.el7.noarch.rpm          dracut-033-502.el7.x86_64.rpm                libsemanage-2.5-8.el7.x86_64.rpm                       repodata</span><br><span class="line">container-storage-setup-0.8.0-3.git1d27ecf.el7.noarch.rpm   dracut-config-rescue-033-502.el7.x86_64.rpm  libsemanage-python-2.5-8.el7.x86_64.rpm                selinux-policy-3.13.1-166.el7_4.7.noarch.rpm</span><br><span class="line">device-mapper-1.02.140-8.el7.x86_64.rpm                     dracut-network-033-502.el7.x86_64.rpm        libsepol-2.5-6.el7.x86_64.rpm                          selinux-policy-targeted-3.13.1-166.el7_4.7.noarch.rpm</span><br><span class="line">device-mapper-event-1.02.140-8.el7.x86_64.rpm               glib2-2.50.3-3.el7.x86_64.rpm                lvm2-2.02.171-8.el7.x86_64.rpm                         setools-libs-3.3.8-1.1.el7.x86_64.rpm</span><br><span class="line">device-mapper-event-libs-1.02.140-8.el7.x86_64.rpm          initscripts-9.49.39-1.el7.x86_64.rpm         lvm2-libs-2.02.171-8.el7.x86_64.rpm                    skopeo-containers-0.1.26-2.dev.git2e8377a.el7.centos.x86_64.rpm</span><br><span class="line">device-mapper-libs-1.02.140-8.el7.x86_64.rpm                kmod-20-15.el7_4.6.x86_64.rpm                oci-register-machine-0-3.13.gitcd1e331.el7.x86_64.rpm  systemd-219-42.el7_4.4.x86_64.rpm</span><br><span class="line">device-mapper-persistent-data-0.7.0-0.1.rc6.el7.x86_64.rpm  libgudev1-219-42.el7_4.4.x86_64.rpm          oci-systemd-hook-0.1.14-1.git1ba44c6.el7.x86_64.rpm    systemd-libs-219-42.el7_4.4.x86_64.rpm</span><br><span class="line">docker-1.12.6-68.gitec8512b.el7.centos.x86_64.rpm           libselinux-2.5-11.el7.x86_64.rpm             oci-umount-2.3.0-1.git51e7c50.el7.x86_64.rpm           systemd-python-219-42.el7_4.4.x86_64.rpm</span><br><span class="line">docker-client-1.12.6-68.gitec8512b.el7.centos.x86_64.rpm    libselinux-python-2.5-11.el7.x86_64.rpm      policycoreutils-2.5-17.1.el7.x86_64.rpm                systemd-sysv-219-42.el7_4.4.x86_64.rpm</span><br><span class="line">docker-common-1.12.6-68.gitec8512b.el7.centos.x86_64.rpm    libselinux-utils-2.5-11.el7.x86_64.rpm       policycoreutils-python-2.5-17.1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
 
 + 下载createrepo相关rpm到指定目录
 
 构建本地源之前，需要在本地安装createrepo，用于构建本地源
 
-<span class="comment"><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install --downloadonly --downloaddir=/home/qiuxing/repo/createrepo createrepo&#10;&#10;[root@hae71 createrepo]# pwd&#10;/mnt/disk1/software/repo/createrepo&#10;[root@hae71 createrepo]# ls&#10;createrepo-0.9.9-28.el7.noarch.rpm  deltarpm-3.6-3.el7.x86_64.rpm  python-deltarpm-3.6-3.el7.x86_64.rpm</span><br></pre></td></tr></table></figure></span>
-</code></pre><h2 id="构建本地yum源">构建本地yum源</h2><ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install --downloadonly --downloaddir=/home/qiuxing/repo/createrepo createrepo</span><br><span class="line"></span><br><span class="line">[root@hae71 createrepo]# pwd</span><br><span class="line">/mnt/disk1/software/repo/createrepo</span><br><span class="line">[root@hae71 createrepo]# ls</span><br><span class="line">createrepo-0.9.9-28.el7.noarch.rpm  deltarpm-3.6-3.el7.x86_64.rpm  python-deltarpm-3.6-3.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="构建本地yum源"><a href="#构建本地yum源" class="headerlink" title="构建本地yum源"></a>构建本地yum源</h2><ol>
 <li>将docker的rpm包拷贝到需要安装docker的局域网集群上面，例如：/home/qiuxing/repo/dockerRepo/  </li>
 <li>将docker的rpm包拷贝到需要安装docker的局域网集群上面，例如：/home/qiuxing/repo/createrepo/  </li>
 <li><p>构建本地yum源</p>
@@ -132,7 +134,7 @@
 <li>安装createrepo。<code>rpm -ivh /home/qiuxing/repo/createrepo/*.rpm</code></li>
 <li>备份/etc/yum.repos.d目录下文件。<code>ls /etc/yum.repos.d | xargs -I{} mv /etc/yum.repos.d/{} /etc/yum.repos.d/{}.bk</code></li>
 <li><p>创建新的*.repo文件，如：docker.repo，进行配置</p>
-<figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[local-yum]</span><br><span class="line"><span class="literal">name</span>=local-yum</span><br><span class="line"><span class="literal">baseurl</span>=<span class="keyword">file</span>:///<span class="literal">home</span>/qiuxing/repo/dockerRepo/              <span class="comment">#文件目录不能设置到i386，否则本地源使用会报错</span></span><br><span class="line"><span class="literal">enabled</span>=<span class="number">1</span></span><br><span class="line"><span class="literal">gpgcheck</span>=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[local-yum]</span><br><span class="line">name=local-yum</span><br><span class="line">baseurl=file:///home/qiuxing/repo/dockerRepo/              #文件目录不能设置到i386，否则本地源使用会报错</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>设置本地源。<code>createrepo -d /home/qiuxing/repo/dockerRepo/</code></p>
 </li>
@@ -140,13 +142,13 @@
 <li>清除缓存，yum clean all</li>
 <li>创建缓存，yum makecache</li>
 <li><p>看本地源是否配置成功，通过yum list看是否输出了新的rpm包，如果能查询到，证明配置成功.<code>yum list | grep docker</code></p>
-  <figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="macrocall">@hae71</span> qiuxing]<span class="comment"># yum list | grep docker</span></span><br><span class="line">docker.x86_64                        <span class="number">2</span>:<span class="number">1.12</span><span class="number">.6</span>-<span class="number">68.</span>gitec8512b.el7.centos <span class="keyword">local</span>-yum</span><br><span class="line">docker-client.x86_64                 <span class="number">2</span>:<span class="number">1.12</span><span class="number">.6</span>-<span class="number">68.</span>gitec8512b.el7.centos <span class="keyword">local</span>-yum</span><br><span class="line">docker-common.x86_64                 <span class="number">2</span>:<span class="number">1.12</span><span class="number">.6</span>-<span class="number">68.</span>gitec8512b.el7.centos <span class="keyword">local</span>-yum</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@hae71 qiuxing]# yum list | grep docker</span><br><span class="line">docker.x86_64                        2:1.12.6-68.gitec8512b.el7.centos local-yum</span><br><span class="line">docker-client.x86_64                 2:1.12.6-68.gitec8512b.el7.centos local-yum</span><br><span class="line">docker-common.x86_64                 2:1.12.6-68.gitec8512b.el7.centos local-yum</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ol>
-<h2 id="安装docker">安装docker</h2><p><code>yum install docker -y</code>，安装完成</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Installed:</span><br><span class="line">  docker<span class="class">.x86_64</span> <span class="number">2</span>:<span class="number">1.12</span>.<span class="number">6</span>-<span class="number">68</span><span class="class">.gitec8512b</span><span class="class">.el7</span><span class="class">.centos</span>                                                                                                                                                                                                                             </span><br><span class="line"></span><br><span class="line">Dependency Installed:</span><br><span class="line">  audit-libs-python<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.7</span>.<span class="number">6</span>-<span class="number">3</span><span class="class">.el7</span>                                  checkpolicy<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">4</span><span class="class">.el7</span>                                   container-selinux<span class="class">.noarch</span> <span class="number">2</span>:<span class="number">2.33</span>-<span class="number">1</span><span class="class">.git86f33cd</span><span class="class">.el7</span>                 container-storage-setup<span class="class">.noarch</span> <span class="number">0</span>:<span class="number">0.8</span>.<span class="number">0</span>-<span class="number">3</span><span class="class">.git1d27ecf</span><span class="class">.el7</span>          </span><br><span class="line">  device-mapper-persistent-data<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">0.7</span>.<span class="number">0</span>-<span class="number">0.1</span><span class="class">.rc6</span><span class="class">.el7</span>                docker-client<span class="class">.x86_64</span> <span class="number">2</span>:<span class="number">1.12</span>.<span class="number">6</span>-<span class="number">68</span><span class="class">.gitec8512b</span><span class="class">.el7</span><span class="class">.centos</span>           docker-common<span class="class">.x86_64</span> <span class="number">2</span>:<span class="number">1.12</span>.<span class="number">6</span>-<span class="number">68</span><span class="class">.gitec8512b</span><span class="class">.el7</span><span class="class">.centos</span>           libseccomp<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.3</span>.<span class="number">1</span>-<span class="number">3</span><span class="class">.el7</span>                                  </span><br><span class="line">  libsemanage-python<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">8</span><span class="class">.el7</span>                                   lvm2<span class="class">.x86_64</span> <span class="number">7</span>:<span class="number">2.02</span>.<span class="number">171</span>-<span class="number">8</span><span class="class">.el7</span>                                     oci-register-machine<span class="class">.x86_64</span> <span class="number">1</span>:<span class="number">0</span>-<span class="number">3.13</span><span class="class">.gitcd1e331</span><span class="class">.el7</span>              oci-systemd-hook<span class="class">.x86_64</span> <span class="number">1</span>:<span class="number">0.1</span>.<span class="number">14</span>-<span class="number">1</span><span class="class">.git1ba44c6</span><span class="class">.el7</span>                </span><br><span class="line">  oci-umount<span class="class">.x86_64</span> <span class="number">2</span>:<span class="number">2.3</span>.<span class="number">0</span>-<span class="number">1</span><span class="class">.git51e7c50</span><span class="class">.el7</span>                              policycoreutils-python<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">17.1</span><span class="class">.el7</span>                     python-IPy<span class="class">.noarch</span> <span class="number">0</span>:<span class="number">0.75</span>-<span class="number">6</span><span class="class">.el7</span>                                   setools-libs<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">3.3</span>.<span class="number">8</span>-<span class="number">1.1</span><span class="class">.el7</span>                              </span><br><span class="line">  skopeo-containers<span class="class">.x86_64</span> <span class="number">1</span>:<span class="number">0.1</span>.<span class="number">26</span>-<span class="number">2</span><span class="class">.dev</span><span class="class">.git2e8377a</span><span class="class">.el7</span><span class="class">.centos</span>          </span><br><span class="line"></span><br><span class="line">Updated:</span><br><span class="line">  dracut<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">033</span>-<span class="number">502</span><span class="class">.el7_4</span>.<span class="number">1</span>                                                                                                      initscripts<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">9.49</span>.<span class="number">39</span>-<span class="number">1</span><span class="class">.el7</span>                                                                                                     </span><br><span class="line"></span><br><span class="line">Dependency Updated:</span><br><span class="line">  audit<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.7</span>.<span class="number">6</span>-<span class="number">3</span><span class="class">.el7</span>               audit-libs<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.7</span>.<span class="number">6</span>-<span class="number">3</span><span class="class">.el7</span>               dracut-config-rescue<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">033</span>-<span class="number">502</span><span class="class">.el7_4</span>.<span class="number">1</span>          dracut-network<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">033</span>-<span class="number">502</span><span class="class">.el7_4</span>.<span class="number">1</span>    glib2<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.50</span>.<span class="number">3</span>-<span class="number">3</span><span class="class">.el7</span>             kmod<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">20</span>-<span class="number">15</span><span class="class">.el7_4</span>.<span class="number">6</span>              </span><br><span class="line">  libgudev1<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">219</span>-<span class="number">42</span><span class="class">.el7_4</span>.<span class="number">4</span>        libselinux<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">11</span><span class="class">.el7</span>                libselinux-python<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">11</span><span class="class">.el7</span>                  libselinux-utils<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">11</span><span class="class">.el7</span>       libsemanage<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">8</span><span class="class">.el7</span>          libsepol<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">6</span><span class="class">.el7</span>              </span><br><span class="line">  policycoreutils<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">2.5</span>-<span class="number">17.1</span><span class="class">.el7</span>    selinux-policy<span class="class">.noarch</span> <span class="number">0</span>:<span class="number">3.13</span>.<span class="number">1</span>-<span class="number">166</span><span class="class">.el7_4</span>.<span class="number">7</span>    selinux-policy-targeted<span class="class">.noarch</span> <span class="number">0</span>:<span class="number">3.13</span>.<span class="number">1</span>-<span class="number">166</span><span class="class">.el7_4</span>.<span class="number">7</span>    systemd<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">219</span>-<span class="number">42</span><span class="class">.el7_4</span>.<span class="number">4</span>            systemd-libs<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">219</span>-<span class="number">42</span><span class="class">.el7_4</span>.<span class="number">4</span>    systemd-python<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">219</span>-<span class="number">42</span><span class="class">.el7_4</span>.<span class="number">4</span>   </span><br><span class="line">  systemd-sysv<span class="class">.x86_64</span> <span class="number">0</span>:<span class="number">219</span>-<span class="number">42</span><span class="class">.el7_4</span>.<span class="number">4</span>    </span><br><span class="line"></span><br><span class="line">Complete!</span><br></pre></td></tr></table></figure>  
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><p><code>yum install docker -y</code>，安装完成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Installed:</span><br><span class="line">  docker.x86_64 2:1.12.6-68.gitec8512b.el7.centos                                                                                                                                                                                                                             </span><br><span class="line"></span><br><span class="line">Dependency Installed:</span><br><span class="line">  audit-libs-python.x86_64 0:2.7.6-3.el7                                  checkpolicy.x86_64 0:2.5-4.el7                                   container-selinux.noarch 2:2.33-1.git86f33cd.el7                 container-storage-setup.noarch 0:0.8.0-3.git1d27ecf.el7          </span><br><span class="line">  device-mapper-persistent-data.x86_64 0:0.7.0-0.1.rc6.el7                docker-client.x86_64 2:1.12.6-68.gitec8512b.el7.centos           docker-common.x86_64 2:1.12.6-68.gitec8512b.el7.centos           libseccomp.x86_64 0:2.3.1-3.el7                                  </span><br><span class="line">  libsemanage-python.x86_64 0:2.5-8.el7                                   lvm2.x86_64 7:2.02.171-8.el7                                     oci-register-machine.x86_64 1:0-3.13.gitcd1e331.el7              oci-systemd-hook.x86_64 1:0.1.14-1.git1ba44c6.el7                </span><br><span class="line">  oci-umount.x86_64 2:2.3.0-1.git51e7c50.el7                              policycoreutils-python.x86_64 0:2.5-17.1.el7                     python-IPy.noarch 0:0.75-6.el7                                   setools-libs.x86_64 0:3.3.8-1.1.el7                              </span><br><span class="line">  skopeo-containers.x86_64 1:0.1.26-2.dev.git2e8377a.el7.centos          </span><br><span class="line"></span><br><span class="line">Updated:</span><br><span class="line">  dracut.x86_64 0:033-502.el7_4.1                                                                                                      initscripts.x86_64 0:9.49.39-1.el7                                                                                                     </span><br><span class="line"></span><br><span class="line">Dependency Updated:</span><br><span class="line">  audit.x86_64 0:2.7.6-3.el7               audit-libs.x86_64 0:2.7.6-3.el7               dracut-config-rescue.x86_64 0:033-502.el7_4.1          dracut-network.x86_64 0:033-502.el7_4.1    glib2.x86_64 0:2.50.3-3.el7             kmod.x86_64 0:20-15.el7_4.6              </span><br><span class="line">  libgudev1.x86_64 0:219-42.el7_4.4        libselinux.x86_64 0:2.5-11.el7                libselinux-python.x86_64 0:2.5-11.el7                  libselinux-utils.x86_64 0:2.5-11.el7       libsemanage.x86_64 0:2.5-8.el7          libsepol.x86_64 0:2.5-6.el7              </span><br><span class="line">  policycoreutils.x86_64 0:2.5-17.1.el7    selinux-policy.noarch 0:3.13.1-166.el7_4.7    selinux-policy-targeted.noarch 0:3.13.1-166.el7_4.7    systemd.x86_64 0:219-42.el7_4.4            systemd-libs.x86_64 0:219-42.el7_4.4    systemd-python.x86_64 0:219-42.el7_4.4   </span><br><span class="line">  systemd-sysv.x86_64 0:219-42.el7_4.4    </span><br><span class="line"></span><br><span class="line">Complete!</span><br></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -181,10 +183,18 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev">
+ <a href="/2018/12/28/hexo搭建博客问题汇总/hexo搭建博客问题汇总/" title="hexo搭建博客问题汇总">
+  <strong>上一篇：</strong><br>
+  <span>
+  hexo搭建博客问题汇总</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/2017/12/13/记一次公司服务器上搭建svn server的经历/"  title="记一次公司服务器上搭建svn server的经历">
- <strong>下一篇：</strong><br/> 
+<a href="/2017/12/13/记一次公司服务器上搭建svn server的经历/" title="记一次公司服务器上搭建svn server的经历">
+ <strong>下一篇：</strong><br> 
  <span>记一次公司服务器上搭建svn server的经历
 </span>
 </a>
@@ -246,7 +256,7 @@
 		  
 		
 		  
-			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 		  
 		
 		  
@@ -299,6 +309,14 @@
 			
 		
 			
+				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
 			
 		
@@ -307,23 +325,7 @@
 			
 		
 			
-				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 			
 		
 			
@@ -335,11 +337,19 @@
 			
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
@@ -351,11 +361,11 @@
 			
 		
 			
-				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -500,7 +510,7 @@
 </aside>
 </div>
     </div>
-    <footer><div id="footer" >
+    <footer><div id="footer">
 	
 	<div class="line">
 		<span></span>
@@ -509,11 +519,11 @@
 	
 	
 	<section class="info">
-		<p> Hello ,I&#39;m Star Qiu in SIAT. <br/>
+		<p> Hello ,I&#39;m Star Qiu in SIAT. <br>
 			This is my blog,believe it or not.</p>
 	</section>
 	 
-	<div class="social-font" class="clearfix">
+	<div class="social-font">
 		
 		<a href="http://weibo.com/1665530845## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
 		
@@ -698,8 +708,7 @@ MathJax.Hub.Config({
   tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
 }); 
 </script>
-<script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <!-- Analytics Begin -->
@@ -718,7 +727,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

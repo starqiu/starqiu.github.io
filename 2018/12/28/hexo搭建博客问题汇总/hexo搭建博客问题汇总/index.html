@@ -5,25 +5,25 @@
   <meta name="baidu-site-verification" content="WxxBxzU1zW">
   <meta charset="UTF-8">
   
-    <title>女生散步问题 | starqiu&#39;s blog</title>
+    <title>hexo搭建博客问题汇总 | starqiu&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="starqiu">
     
 
     
-    <meta name="description" content="题目 个学校的15个女生一直3个一群上学。请问该如何安排才能使这些女生每周7天每天都和两个不同的同伴结伴同行呢？例如：用A到O来标识这些女孩，7天A正好和B到O这14个女孩各同行一次。而B到O每个人和都和其他14个女孩各同行一次。">
-<meta name="keywords" content="Logic">
+    <meta name="description" content="记录搭建博客本身遇到的问题，方便后续快速解决问题">
+<meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="女生散步问题">
-<meta property="og:url" content="https://github.com/2015/07/25/girlWalkingPro/index.html">
+<meta property="og:title" content="hexo搭建博客问题汇总">
+<meta property="og:url" content="https://github.com/2018/12/28/hexo搭建博客问题汇总/hexo搭建博客问题汇总/index.html">
 <meta property="og:site_name" content="starqiu&#39;s blog">
-<meta property="og:description" content="题目 个学校的15个女生一直3个一群上学。请问该如何安排才能使这些女生每周7天每天都和两个不同的同伴结伴同行呢？例如：用A到O来标识这些女孩，7天A正好和B到O这14个女孩各同行一次。而B到O每个人和都和其他14个女孩各同行一次。">
+<meta property="og:description" content="记录搭建博客本身遇到的问题，方便后续快速解决问题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2015-07-29T02:19:24.000Z">
+<meta property="og:updated_time" content="2018-12-28T07:02:41.216Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="女生散步问题">
-<meta name="twitter:description" content="题目 个学校的15个女生一直3个一群上学。请问该如何安排才能使这些女生每周7天每天都和两个不同的同伴结伴同行呢？例如：用A到O来标识这些女孩，7天A正好和B到O这14个女孩各同行一次。而B到O每个人和都和其他14个女孩各同行一次。">
+<meta name="twitter:title" content="hexo搭建博客问题汇总">
+<meta name="twitter:description" content="记录搭建博客本身遇到的问题，方便后续快速解决问题">
 
     
     <link rel="alternative" href="/atom.xml" title="starqiu&#39;s blog" type="application/atom+xml">
@@ -92,14 +92,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/07/25/girlWalkingPro/" title="女生散步问题" itemprop="url">女生散步问题</a>
+      <a href="/2018/12/28/hexo搭建博客问题汇总/hexo搭建博客问题汇总/" title="hexo搭建博客问题汇总" itemprop="url">hexo搭建博客问题汇总</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
   </p><p class="article-time">
-    <time datetime="2015-07-24T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-25</time>
+    <time datetime="2018-12-27T16:00:00.000Z" itemprop="datePublished"> 发表于 2018-12-28</time>
     
   </p>
 </header>
@@ -108,22 +108,29 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解法"><span class="toc-number">2.</span> <span class="toc-text">解法</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
-<p>个学校的15个女生一直3个一群上学。请问该如何安排才能使这些女生每周7天每天都和两个不同的同伴结伴同行呢？例如：用A到O来标识这些女孩，7天A正好和B到O这14个女孩各同行一次。而B到O每个人和都和其他14个女孩各同行一次。<br><a id="more"></a></p>
+		<ol>
+<li><font color="red"> YML文件key重复问题</font>
+
+</li>
+</ol>
+<p>起因：一年前搭建了一个博客，后来要在公司的电脑上写博客，在这个过程中hexo和nodejs都已经升级了，使用最新版的nodejs和hexo重新执行，出错，，错误信息如下：</p>
+<blockquote>
+<p>ERROR Theme config load failed.<br>ERROR Process failed: _config.yml<br>YAMLException: duplicated mapping key at line 63, column -1167:<br>​    author:<br>   ^</p>
 </blockquote>
-<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><p>其实解题思路就是要你找出所有的三人组合,而且这个三人组合里面不能有重复过的两人组合.<br>三人组合所有情况:C(3,15) =  35 × 13  种。但是,三人组合显然不是我们想要的,因为里面有太多的重复了。<br>题目要的就是每两个人之间在一起只出现过一次,所以先考虑二人组合。二人组合所有情况:C(2,15) =  15 × 7  种。<br>就好比如题目的A~O标号同学,对于二人组合,就有：<br>AB,AC,AD,AE,AF,AG…….AM,AO;<br>      BC,BD,BE,BF,BG……BM,BO;<br>………<br>                                     NM,NO;<br>                                           MO;<br>然后通过研究得出了以下几点结论:</p>
-<p><strong>结论1.</strong><br>三人行, 说明是这三个人的组合,是三个组合, 而且成为了一个环.<br>就比如 ABC 这三个同学吧,  他就是AB,BC,AC这三个组合而来的一个环.<br>同样,ADE这三个同学,就是有二人组合可能性里面的AD,DE,AE构成的.<br>至于为什么要说他是一个环?<br>这个很重要,真的…….我一开始忽略了一点,就随便拿起来就组合…结果多出了几个剩男剩女..(不<br>上面题目说了,组合只能出现一次,<br>比如你最后多出了EI,FH,CE,CH,BF,BI,这里六个组合,理应还能再组成两队人的.<br>可惜不成环,所以就失败了.</p>
-<p><strong>结论2.</strong><br>三人行问题,先求出二人组合,二人组合搭配数整除3,得出的就是可行的不同组合.<br>题目的15人求三人行.二人组合有105种,除3之后就是最多有35个环,刚好5组×7天 =35<br>题目得解.不能整除3的话,呵呵!</p>
-<p><strong>结论3.</strong><br>每一个三人组合,是三个二人组合连接而成.同时,每一个同学,在这三个二人组合里面,都出现了2次.<br>比如ABC这个三人组合,是由AB,AC,BC这三个二人组合而来的.同时A出现了2次,B出现了2次,C也出现了2次…<br>听上去好像很白痴的结论,其实这个很重要.</p>
-<p>我就换个问题说吧,假如把题目的15个人改成6个人里面求三人行的组合呢?<br>咋一算,二人组合所有情况:C(2,15) =  3 × 5  种。再除以3,得到5个环.按照结论2来说应该有5个环,就是可以有五种组合才对.可不,你可以尝试用ABCDEF这六个代号去试试画连通图.</p>
-<p>假如ABC成了一个环,  ADE成了一个环,  AF就是剩男剩女了. 上面就说了,一个环内的一个代号至少出现两次. ABC中A在AB,AC出现.    ADE中在AD,AE中出现.那么AF无论跟谁怎么组合,都不可能成环了.所以结论就是总人数必须是奇数才不会有人多出来.</p>
-<p>解决方法这么一来就有很多了,可以用广度搜索树,可以用队列,也可以用图…为了怕麻烦就换个简单点的数据.比如9个人求三人行的组合可能情况.</p>
-<p>首先  ,根据<code>结论1</code><br>由<code>结论2</code>得出   36÷3=12  ,说明理应可以构成12个环<br>9个人是奇数,也满足<code>结论3</code>.<br>标号   ABCDEFGHI<br>组合的可能情况<br>ABC       ADE       AFG        AHI<br>BDF       BEI       BGH     (第二个为啥不是BEG呢,因为BHI是不行的,要跳着来组合,学着点)<br>CDH       CEG       CFI<br>DGI       EFH </p>
-<p>三人组合所有情况:C(3,15) =  35 × 13  种</p>
+<p>之前只关注根目录下的<code>_config.yml</code>, 没有找到重复的author, 后来全局搜索了一下，发现在themes/jacman下也有一个<code>_config.yml</code>, 确保两个文件没有重复的key即可。</p>
+<ol start="2">
+<li><font color="red">highlight.js：  Cannot set property ‘lastIndex’  of undefined</font>
+
+</li>
+</ol>
+<p>修改站点配置文件的<code>_config.yml</code>，把 <code>auto_detect</code> 设置为<code>false</code> 即可。</p>
+<ol start="2">
+<li></li>
+</ol>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -131,13 +138,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Logic/">Logic</a>
+  <a class="article-category-link" href="/categories/hexo/">hexo</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Logic/">Logic</a>
+  <span></span> <a href="/tags/hexo/">hexo</a>
   </div>
 
 </div>
@@ -146,7 +153,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://github.com/2015/07/25/girlWalkingPro/" data-title="女生散步问题 | starqiu&#39;s blog" data-tsina="1665530845" class="share clearfix">
+	  <div data-url="https://github.com/2018/12/28/hexo搭建博客问题汇总/hexo搭建博客问题汇总/" data-title="hexo搭建博客问题汇总 | starqiu&#39;s blog" data-tsina="1665530845" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -159,19 +166,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev">
- <a href="/2015/07/26/passWritingExamPro/" title="笔试通过问题">
-  <strong>上一篇：</strong><br>
-  <span>
-  笔试通过问题</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/07/24/dataMiningNote/" title="数据挖掘笔记">
+<a href="/2018/04/17/centos7离线安装docker/" title="centos7离线安装docker">
  <strong>下一篇：</strong><br> 
- <span>数据挖掘笔记
+ <span>centos7离线安装docker
 </span>
 </a>
 </div>
@@ -180,7 +179,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/07/25/girlWalkingPro/" data-title="女生散步问题" data-url="https://github.com/2015/07/25/girlWalkingPro/"></div>
+	<div class="ds-thread" data-thread-key="2018/12/28/hexo搭建博客问题汇总/hexo搭建博客问题汇总/" data-title="hexo搭建博客问题汇总" data-url="https://github.com/2018/12/28/hexo搭建博客问题汇总/hexo搭建博客问题汇总/"></div>
 </section>
 
 
@@ -190,7 +189,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解法"><span class="toc-number">2.</span> <span class="toc-text">解法</span></a></li></ol>
+ 
  
   </div>
 

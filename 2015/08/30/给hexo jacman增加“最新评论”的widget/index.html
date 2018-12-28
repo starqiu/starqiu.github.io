@@ -1,8 +1,8 @@
 
  <!DOCTYPE HTML>
 <html lang="zh-CN">
-<head>
-  <meta name="baidu-site-verification" content="WxxBxzU1zW" />
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta name="baidu-site-verification" content="WxxBxzU1zW">
   <meta charset="UTF-8">
   
     <title>给hexo/jacman增加“最新评论”的widget | starqiu&#39;s blog</title>
@@ -13,14 +13,16 @@
 
     
     <meta name="description" content="给hexo/jacman增加“最新评论”的widget">
+<meta name="keywords" content="hexo,theme">
 <meta property="og:type" content="article">
-<meta property="og:title" content="给hexo/jacman增加“最新评论”的widget">
+<meta property="og:title" content="给hexo&#x2F;jacman增加“最新评论”的widget">
 <meta property="og:url" content="https://github.com/2015/08/30/给hexo jacman增加“最新评论”的widget/index.html">
-<meta property="og:site_name" content="starqiu's blog">
+<meta property="og:site_name" content="starqiu&#39;s blog">
 <meta property="og:description" content="给hexo/jacman增加“最新评论”的widget">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2015-08-30T06:46:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="给hexo/jacman增加“最新评论”的widget">
+<meta name="twitter:title" content="给hexo&#x2F;jacman增加“最新评论”的widget">
 <meta name="twitter:description" content="给hexo/jacman增加“最新评论”的widget">
 
     
@@ -33,16 +35,16 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
   <body>
     <header>
       
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"/></a>
+				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"></a>
 			</div>
 			
 			<div id="textlogo">
@@ -75,16 +77,16 @@
  					
 						<form class="search" action="http://search.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= 7129304121443985000 ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						<input name="s" type="hidden" value="7129304121443985000"><input type="text" name="q" size="30" placeholder="搜索"><br>
 						</form>
 					
 					</li>
 				</ul>
-			</nav>			
+			</ul></nav>			
 </div>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
@@ -96,7 +98,7 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2015-08-29T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-30</time>
     
   </p>
@@ -111,15 +113,15 @@
 		</div>
 		
 		<p>jacman使用了多说的评论系统，多说有最新评论的嵌入代码。当然直接嵌入肯定是不行的，和整体风格不统一看着不好看，那么就搞个类似友情链接、目录之类的widget好了。本文目标是新建一个widget显示多说的最新评论。</p>
-<h1 id="步骤">步骤</h1><h2 id="新建widget">新建widget</h2><p>widget 文件在路径<code>themes/pacman/layout/_widget/</code>下，参考links.ejs以及archives.ejs及多说的嵌入代码，在该目录下新建一个comment.ejs文件，内容如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (theme.duoshuo_recent_comment &amp;&amp; theme.duoshuo_shortname.length) &#123; %&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"commentslist"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"asidetitle"</span>&gt;</span><span class="tag">&lt;<span class="title">%=</span> <span class="attribute">__</span>('<span class="attribute">comments</span>') %&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"ds-recent-comments"</span> <span class="attribute">data-num-items</span>=<span class="value">"5"</span> <span class="attribute">data-show-avatars</span>=<span class="value">"0"</span> <span class="attribute">data-show-time</span>=<span class="value">"1"</span> <span class="attribute">data-show-admin</span>=<span class="value">"1"</span> <span class="attribute">data-excerpt-length</span>=<span class="value">"32"</span> <span class="attribute">data-show-title</span>=<span class="value">"1"</span>&gt;</span><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--多说js加载开始，一个页面只需要加载一次 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">  <span class="keyword">var</span> duoshuoQuery = &#123;short_name:<span class="string">"&lt;%= theme.duoshuo.short_name %&gt;"</span>&#125;;</span><br><span class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">    ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;</span><br><span class="line">    ds.src = <span class="string">'http://static.duoshuo.com/embed.js'</span>;</span><br><span class="line">    ds.charset = <span class="string">'UTF-8'</span>;</span><br><span class="line">    (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);</span><br><span class="line">  &#125;)();</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--多说js加载结束，一个页面只需要加载一次 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">%</span> &#125; %&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-<p>下面那段js是多说提供的嵌入代码，<code>&lt;ul&gt;</code>标签有一些参数可以指定评论的具体数量之类的，大致有以下可选参数<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//以下参数均为可选</span></span><br><span class="line"><span class="built_in">data</span><span class="attribute">-num</span><span class="attribute">-items</span><span class="subst">=</span><span class="string">"10"</span>     <span class="comment">//显示最新评论的条数，最大支持200条</span></span><br><span class="line"><span class="built_in">data</span><span class="attribute">-show</span><span class="attribute">-avatars</span><span class="subst">=</span><span class="string">"1"</span>   <span class="comment">//是否显示头像，1：显示，0：不显示</span></span><br><span class="line"><span class="built_in">data</span><span class="attribute">-show</span><span class="attribute">-time</span><span class="subst">=</span><span class="string">"1"</span>      <span class="comment">//是否显示时间，1：显示，0：不显示</span></span><br><span class="line"><span class="built_in">data</span><span class="attribute">-show</span><span class="attribute">-title</span><span class="subst">=</span><span class="string">"0"</span>     <span class="comment">//是否显示标题，1：显示，0：不显示</span></span><br><span class="line"><span class="built_in">data</span><span class="attribute">-show</span><span class="attribute">-admin</span><span class="subst">=</span><span class="string">"1"</span>     <span class="comment">//是否显示管理员的评论，1：显示，0：不显示</span></span><br><span class="line"><span class="built_in">data</span><span class="attribute">-excerpt</span><span class="attribute">-length</span><span class="subst">=</span><span class="string">"70"</span><span class="comment">//最大显示评论汉字数</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="配置widget">配置widget</h2><ol>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="新建widget"><a href="#新建widget" class="headerlink" title="新建widget"></a>新建widget</h2><p>widget 文件在路径<code>themes/pacman/layout/_widget/</code>下，参考links.ejs以及archives.ejs及多说的嵌入代码，在该目录下新建一个comment.ejs文件，内容如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (theme.duoshuo_recent_comment &amp;&amp; theme.duoshuo_shortname.length) &#123; %&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"commentslist"</span>&gt;</span><br><span class="line">  &lt;p <span class="class"><span class="keyword">class</span></span>=<span class="string">"asidetitle"</span>&gt;&lt;%= __('comments') %&gt;&lt;/p&gt;</span><br><span class="line">  &lt;ul <span class="class"><span class="keyword">class</span></span>=<span class="string">"ds-recent-comments"</span> data-num-items=<span class="string">"5"</span> data-show-avatars=<span class="string">"0"</span> data-show-time=<span class="string">"1"</span> data-show-admin=<span class="string">"1"</span> data-excerpt-length=<span class="string">"32"</span> data-show-title=<span class="string">"1"</span>&gt;&lt;/ul&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;!--多说js加载开始，一个页面只需要加载一次 --&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">  var duoshuoQuery = &#123;short_name:"</span>&lt;%= theme.duoshuo.short_name %&gt;<span class="string">"&#125;;</span></span><br><span class="line"><span class="string">  (function() &#123;</span></span><br><span class="line"><span class="string">    var ds = document.createElement('script');</span></span><br><span class="line"><span class="string">    ds.type = 'text/javascript';ds.async = true;</span></span><br><span class="line"><span class="string">    ds.src = 'http://static.duoshuo.com/embed.js';</span></span><br><span class="line"><span class="string">    ds.charset = 'UTF-8';</span></span><br><span class="line"><span class="string">    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);</span></span><br><span class="line"><span class="string">  &#125;)();</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;!--多说js加载结束，一个页面只需要加载一次 --&gt;</span></span><br><span class="line"><span class="string">&lt;% &#125; %&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>下面那段js是多说提供的嵌入代码，<code>&lt;ul&gt;</code>标签有一些参数可以指定评论的具体数量之类的，大致有以下可选参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> //以下参数均为可选</span><br><span class="line">data-num-items=&quot;10&quot;     //显示最新评论的条数，最大支持200条</span><br><span class="line">data-show-avatars=&quot;1&quot;   //是否显示头像，1：显示，0：不显示</span><br><span class="line">data-show-time=&quot;1&quot;      //是否显示时间，1：显示，0：不显示</span><br><span class="line">data-show-title=&quot;0&quot;     //是否显示标题，1：显示，0：不显示</span><br><span class="line">data-show-admin=&quot;1&quot;     //是否显示管理员的评论，1：显示，0：不显示</span><br><span class="line">data-excerpt-length=&quot;70&quot;//最大显示评论汉字数</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置widget"><a href="#配置widget" class="headerlink" title="配置widget"></a>配置widget</h2><ol>
 <li>首先先添加“最新评论”的多语言版本字符串值<br>即用变量comments表示，需要修改的相关文件为themes/pacman/languages/*.yml，看一下文件内容就知道怎么改了</li>
-<li>添加一下相关的css样式<br>这里是以友情链接widget的css作为基准，稍加修改的，在<code>themes/pacman/source/css/_partial/aside.styl</code>文件末尾添加如下内容：<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//comments</span></span><br><span class="line"><span class="class">.commentslist</span></span><br><span class="line">  <span class="attribute">margin-top</span> <span class="number">0.5em</span> </span><br><span class="line">  <span class="at_rule">@media</span> mini</span><br><span class="line">    <span class="attribute">width</span> <span class="number">45%</span> </span><br><span class="line">    <span class="attribute">float</span> <span class="attribute">left</span></span><br><span class="line">    <span class="attribute">margin</span> <span class="number">0</span> <span class="number">5%</span> <span class="number">0</span> <span class="number">0</span> </span><br><span class="line">  <span class="at_rule">@media</span> tablet </span><br><span class="line">    <span class="attribute">width</span> <span class="number">100%</span></span><br><span class="line">    <span class="attribute">float</span> <span class="attribute">none</span></span><br><span class="line">    <span class="attribute">margin</span> <span class="number">1em</span> <span class="number">0</span> <span class="number">0</span> </span><br><span class="line">  <span class="tag">ul</span>  </span><br><span class="line">    <span class="attribute">padding</span> <span class="number">0.5em</span> <span class="number">0</span></span><br><span class="line">    <span class="tag">a</span>   </span><br><span class="line">      <span class="attribute">font-size</span> <span class="number">1em</span> </span><br><span class="line">      <span class="attribute">line-height</span> <span class="attribute">line-height</span></span><br><span class="line">      <span class="attribute">display</span> block</span><br><span class="line">      <span class="attribute">padding</span> <span class="number">0</span></span><br><span class="line">      <span class="pseudo">&amp;:hover</span><br><span class="line"></span>        <span class="attribute">color</span> <span class="attribute">color</span>-theme</span><br><span class="line">        <span class="attribute">transition</span> <span class="attribute">color</span> .<span class="number">25s</span></span><br><span class="line"></span><br><span class="line"><span class="class">.ds-excerpt</span></span><br><span class="line">  <span class="attribute">font-size</span> <span class="number">1.1em</span></span><br><span class="line">  <span class="attribute">color</span> <span class="attribute">color</span>-theme</span><br><span class="line"></span><br><span class="line"><span class="class">.ds-recent-comments</span></span><br><span class="line">  <span class="attribute">margin-top</span> -<span class="number">0.6em</span></span><br><span class="line">  <span class="attribute">margin-left</span> <span class="number">0.3em</span></span><br></pre></td></tr></table></figure>
+<li>添加一下相关的css样式<br>这里是以友情链接widget的css作为基准，稍加修改的，在<code>themes/pacman/source/css/_partial/aside.styl</code>文件末尾添加如下内容：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> //comments</span><br><span class="line">.commentslist</span><br><span class="line">  margin-top 0.5em </span><br><span class="line">  @media mini</span><br><span class="line">    width 45% </span><br><span class="line">    float left</span><br><span class="line">    margin 0 5% 0 0 </span><br><span class="line">  @media tablet </span><br><span class="line">    width 100%</span><br><span class="line">    float none</span><br><span class="line">    margin 1em 0 0 </span><br><span class="line">  ul  </span><br><span class="line">    padding 0.5em 0</span><br><span class="line">    a   </span><br><span class="line">      font-size 1em </span><br><span class="line">      line-height line-height</span><br><span class="line">      display block</span><br><span class="line">      padding 0</span><br><span class="line">      &amp;:hover</span><br><span class="line">        color color-theme</span><br><span class="line">        transition color .25s</span><br><span class="line"></span><br><span class="line">.ds-excerpt</span><br><span class="line">  font-size 1.1em</span><br><span class="line">  color color-theme</span><br><span class="line"></span><br><span class="line">.ds-recent-comments</span><br><span class="line">  margin-top -0.6em</span><br><span class="line">  margin-left 0.3em</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="开启widget">开启widget</h2><p>在<code>themes/jacman/_config.yml</code>的comment处添加配置<code>duoshuo_recent_comment: true</code></p>
-<h1 id="参考">参考</h1><p>[1]： <a href="http://odinliu.com/2014/12/03/%E7%BB%99hexo-pacman%E5%A2%9E%E5%8A%A0%E2%80%9C%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA%E2%80%9D%E7%9A%84widget/" target="_blank" rel="external">给hexo/pacman增加“最新评论”的widget</a></p>
+<h2 id="开启widget"><a href="#开启widget" class="headerlink" title="开启widget"></a>开启widget</h2><p>在<code>themes/jacman/_config.yml</code>的comment处添加配置<code>duoshuo_recent_comment: true</code></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1]： <a href="http://odinliu.com/2014/12/03/%E7%BB%99hexo-pacman%E5%A2%9E%E5%8A%A0%E2%80%9C%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA%E2%80%9D%E7%9A%84widget/" target="_blank" rel="noopener">给hexo/pacman增加“最新评论”的widget</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -155,9 +157,9 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
+ <div class="prev">
  <a href="/2017/07/05/books/" title="书单">
-  <strong>上一篇：</strong><br/>
+  <strong>上一篇：</strong><br>
   <span>
   书单</span>
 </a>
@@ -165,8 +167,8 @@
 
 
 <div class="next">
-<a href="/2015/08/28/如何运行一个测试用例多次/"  title="如何运行一个测试用例多次">
- <strong>下一篇：</strong><br/> 
+<a href="/2015/08/28/如何运行一个测试用例多次/" title="如何运行一个测试用例多次">
+ <strong>下一篇：</strong><br> 
  <span>如何运行一个测试用例多次
 </span>
 </a>
@@ -228,7 +230,7 @@
 		  
 		
 		  
-			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 		  
 		
 		  
@@ -281,6 +283,14 @@
 			
 		
 			
+				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
 			
 		
@@ -289,23 +299,7 @@
 			
 		
 			
-				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 			
 		
 			
@@ -317,11 +311,19 @@
 			
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
@@ -333,11 +335,11 @@
 			
 		
 			
-				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -482,7 +484,7 @@
 </aside>
 </div>
     </div>
-    <footer><div id="footer" >
+    <footer><div id="footer">
 	
 	<div class="line">
 		<span></span>
@@ -491,11 +493,11 @@
 	
 	
 	<section class="info">
-		<p> Hello ,I&#39;m Star Qiu in SIAT. <br/>
+		<p> Hello ,I&#39;m Star Qiu in SIAT. <br>
 			This is my blog,believe it or not.</p>
 	</section>
 	 
-	<div class="social-font" class="clearfix">
+	<div class="social-font">
 		
 		<a href="http://weibo.com/1665530845## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
 		
@@ -680,8 +682,7 @@ MathJax.Hub.Config({
   tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
 }); 
 </script>
-<script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <!-- Analytics Begin -->
@@ -700,7 +701,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

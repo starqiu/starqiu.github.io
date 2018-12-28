@@ -5,25 +5,23 @@
   <meta name="baidu-site-verification" content="WxxBxzU1zW">
   <meta charset="UTF-8">
   
-    <title>女生散步问题 | starqiu&#39;s blog</title>
+    <title>starqiu&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="starqiu">
     
 
     
-    <meta name="description" content="题目 个学校的15个女生一直3个一群上学。请问该如何安排才能使这些女生每周7天每天都和两个不同的同伴结伴同行呢？例如：用A到O来标识这些女孩，7天A正好和B到O这14个女孩各同行一次。而B到O每个人和都和其他14个女孩各同行一次。">
-<meta name="keywords" content="Logic">
-<meta property="og:type" content="article">
-<meta property="og:title" content="女生散步问题">
-<meta property="og:url" content="https://github.com/2015/07/25/girlWalkingPro/index.html">
+    <meta name="description" content="share Java ,R , Data Mining">
+<meta property="og:type" content="website">
+<meta property="og:title" content="starqiu&#39;s blog">
+<meta property="og:url" content="https://github.com/page/4/index.html">
 <meta property="og:site_name" content="starqiu&#39;s blog">
-<meta property="og:description" content="题目 个学校的15个女生一直3个一群上学。请问该如何安排才能使这些女生每周7天每天都和两个不同的同伴结伴同行呢？例如：用A到O来标识这些女孩，7天A正好和B到O这14个女孩各同行一次。而B到O每个人和都和其他14个女孩各同行一次。">
+<meta property="og:description" content="share Java ,R , Data Mining">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2015-07-29T02:19:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="女生散步问题">
-<meta name="twitter:description" content="题目 个学校的15个女生一直3个一群上学。请问该如何安排才能使这些女生每周7天每天都和两个不同的同伴结伴同行呢？例如：用A到O来标识这些女孩，7天A正好和B到O这14个女孩各同行一次。而B到O每个人和都和其他14个女孩各同行一次。">
+<meta name="twitter:title" content="starqiu&#39;s blog">
+<meta name="twitter:description" content="share Java ,R , Data Mining">
 
     
     <link rel="alternative" href="/atom.xml" title="starqiu&#39;s blog" type="application/atom+xml">
@@ -86,113 +84,80 @@
 </div>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope="" itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/07/25/girlWalkingPro/" title="女生散步问题" itemprop="url">女生散步问题</a>
+      <a href="/2015/01/22/test/" title="test" itemprop="url">test</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
   </p><p class="article-time">
-    <time datetime="2015-07-24T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-25</time>
+    <time datetime="2015-01-21T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-01-22</time>
     
   </p>
 </header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解法"><span class="toc-number">2.</span> <span class="toc-text">解法</span></a></li></ol>
-		
-		</div>
-		
-		<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
-<p>个学校的15个女生一直3个一群上学。请问该如何安排才能使这些女生每周7天每天都和两个不同的同伴结伴同行呢？例如：用A到O来标识这些女孩，7天A正好和B到O这14个女孩各同行一次。而B到O每个人和都和其他14个女孩各同行一次。<br><a id="more"></a></p>
-</blockquote>
-<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><p>其实解题思路就是要你找出所有的三人组合,而且这个三人组合里面不能有重复过的两人组合.<br>三人组合所有情况:C(3,15) =  35 × 13  种。但是,三人组合显然不是我们想要的,因为里面有太多的重复了。<br>题目要的就是每两个人之间在一起只出现过一次,所以先考虑二人组合。二人组合所有情况:C(2,15) =  15 × 7  种。<br>就好比如题目的A~O标号同学,对于二人组合,就有：<br>AB,AC,AD,AE,AF,AG…….AM,AO;<br>      BC,BD,BE,BF,BG……BM,BO;<br>………<br>                                     NM,NO;<br>                                           MO;<br>然后通过研究得出了以下几点结论:</p>
-<p><strong>结论1.</strong><br>三人行, 说明是这三个人的组合,是三个组合, 而且成为了一个环.<br>就比如 ABC 这三个同学吧,  他就是AB,BC,AC这三个组合而来的一个环.<br>同样,ADE这三个同学,就是有二人组合可能性里面的AD,DE,AE构成的.<br>至于为什么要说他是一个环?<br>这个很重要,真的…….我一开始忽略了一点,就随便拿起来就组合…结果多出了几个剩男剩女..(不<br>上面题目说了,组合只能出现一次,<br>比如你最后多出了EI,FH,CE,CH,BF,BI,这里六个组合,理应还能再组成两队人的.<br>可惜不成环,所以就失败了.</p>
-<p><strong>结论2.</strong><br>三人行问题,先求出二人组合,二人组合搭配数整除3,得出的就是可行的不同组合.<br>题目的15人求三人行.二人组合有105种,除3之后就是最多有35个环,刚好5组×7天 =35<br>题目得解.不能整除3的话,呵呵!</p>
-<p><strong>结论3.</strong><br>每一个三人组合,是三个二人组合连接而成.同时,每一个同学,在这三个二人组合里面,都出现了2次.<br>比如ABC这个三人组合,是由AB,AC,BC这三个二人组合而来的.同时A出现了2次,B出现了2次,C也出现了2次…<br>听上去好像很白痴的结论,其实这个很重要.</p>
-<p>我就换个问题说吧,假如把题目的15个人改成6个人里面求三人行的组合呢?<br>咋一算,二人组合所有情况:C(2,15) =  3 × 5  种。再除以3,得到5个环.按照结论2来说应该有5个环,就是可以有五种组合才对.可不,你可以尝试用ABCDEF这六个代号去试试画连通图.</p>
-<p>假如ABC成了一个环,  ADE成了一个环,  AF就是剩男剩女了. 上面就说了,一个环内的一个代号至少出现两次. ABC中A在AB,AC出现.    ADE中在AD,AE中出现.那么AF无论跟谁怎么组合,都不可能成环了.所以结论就是总人数必须是奇数才不会有人多出来.</p>
-<p>解决方法这么一来就有很多了,可以用广度搜索树,可以用队列,也可以用图…为了怕麻烦就换个简单点的数据.比如9个人求三人行的组合可能情况.</p>
-<p>首先  ,根据<code>结论1</code><br>由<code>结论2</code>得出   36÷3=12  ,说明理应可以构成12个环<br>9个人是奇数,也满足<code>结论3</code>.<br>标号   ABCDEFGHI<br>组合的可能情况<br>ABC       ADE       AFG        AHI<br>BDF       BEI       BGH     (第二个为啥不是BEG呢,因为BHI是不行的,要跳着来组合,学着点)<br>CDH       CEG       CFI<br>DGI       EFH </p>
-<p>三人组合所有情况:C(3,15) =  35 × 13  种</p>
-  
-	</div>
-		<footer class="article-footer clearfix">
+    <div class="article-content">
+        
+        <ol>
+<li>test</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Logic/">Logic</a>
+  <a class="article-category-link" href="/categories/test/">test</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Logic/">Logic</a>
+  <span></span> <a href="/tags/test/">test</a>
   </div>
 
 </div>
 
 
 
-	<div class="article-share" id="share">
-	
-	  <div data-url="https://github.com/2015/07/25/girlWalkingPro/" data-title="女生散步问题 | starqiu&#39;s blog" data-tsina="1665530845" class="share clearfix">
-	  </div>
-	
-	</div>
 
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/01/22/test/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/01/22/test/" data-count-type="comments">&nbsp;</a>
+	
+</div>
 
 </footer>
 
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev">
- <a href="/2015/07/26/passWritingExamPro/" title="笔试通过问题">
-  <strong>上一篇：</strong><br>
-  <span>
-  笔试通过问题</span>
-</a>
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/3/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
 </div>
-
-
-<div class="next">
-<a href="/2015/07/24/dataMiningNote/" title="数据挖掘笔记">
- <strong>下一篇：</strong><br> 
- <span>数据挖掘笔记
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/07/25/girlWalkingPro/" data-title="女生散步问题" data-url="https://github.com/2015/07/25/girlWalkingPro/"></div>
-</section>
-
-
-</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解法"><span class="toc-number">2.</span> <span class="toc-text">解法</span></a></li></ol>
- 
-  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -573,89 +538,12 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
 
 
 
@@ -720,4 +608,4 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Tiny_search End -->
 
   </body>
-</html>
+ </html>

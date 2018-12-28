@@ -1,8 +1,8 @@
 
  <!DOCTYPE HTML>
 <html lang="zh-CN">
-<head>
-  <meta name="baidu-site-verification" content="WxxBxzU1zW" />
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta name="baidu-site-verification" content="WxxBxzU1zW">
   <meta charset="UTF-8">
   
     <title>5个不同整数之和小于100 | starqiu&#39;s blog</title>
@@ -13,11 +13,13 @@
 
     
     <meta name="description" content="求1到100内，任取5个不同整数之和小于100的取法有多少中。">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="5个不同整数之和小于100">
 <meta property="og:url" content="https://github.com/2015/08/03/5个不同整数之和小于100/index.html">
-<meta property="og:site_name" content="starqiu's blog">
+<meta property="og:site_name" content="starqiu&#39;s blog">
 <meta property="og:description" content="求1到100内，任取5个不同整数之和小于100的取法有多少中。">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2015-08-11T08:22:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="5个不同整数之和小于100">
@@ -33,16 +35,16 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
   <body>
     <header>
       
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"/></a>
+				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"></a>
 			</div>
 			
 			<div id="textlogo">
@@ -75,16 +77,16 @@
  					
 						<form class="search" action="http://search.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= 7129304121443985000 ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						<input name="s" type="hidden" value="7129304121443985000"><input type="text" name="q" size="30" placeholder="搜索"><br>
 						</form>
 					
 					</li>
 				</ul>
-			</nav>			
+			</ul></nav>			
 </div>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
@@ -96,7 +98,7 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2015-08-02T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-03</time>
     
   </p>
@@ -110,11 +112,11 @@
 		
 		</div>
 		
-		<h1 id="题目">题目</h1><blockquote>
+		<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
 <p>求1到100内，任取5个不同整数之和小于100的取法有多少中。列出主要思路即可。（新浪研发笔试）</p>
 </blockquote>
-<h1 id="解答">解答</h1><p>需要取5个不同整数，设为x1,x2,x3,x4,x5 (<code>x1&lt;x2&lt;x3&lt;x4&lt;x5</code> 且 <code>x1+x2+x3+x4+x5&lt;100</code>) 。<br>由<code>100  &gt; x1+x2+x3+x4+x5 &gt; x1+x1+x1+x1+x1 &gt;5*x1</code> 得 <code>x1 &lt;20</code><br>直接使用5重循环即可解决。</p>
-<h1 id="代码">代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">long</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> x1 = <span class="number">1</span>; x1 &lt; <span class="number">20</span>; x1++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> x2 = x1+<span class="number">1</span>; x2 &lt;<span class="number">100</span>; x2++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x3 = x2+<span class="number">1</span>; x3 &lt;<span class="number">100</span>; x3++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> x4 = x3+<span class="number">1</span>; x4 &lt;<span class="number">100</span>; x4++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> x5 = x4+<span class="number">1</span>; x5 &lt;<span class="number">100</span>; x5++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (x1+x2+x3+x4+x5 &lt; <span class="number">100</span>) &#123;</span><br><span class="line">                        System.out.printf(<span class="string">"%d %d %d %d %d \n"</span>,x1,x2,x3,x4,x5);</span><br><span class="line">                        count++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(count);</span><br></pre></td></tr></table></figure>  
+<h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><p>需要取5个不同整数，设为x1,x2,x3,x4,x5 (<code>x1&lt;x2&lt;x3&lt;x4&lt;x5</code> 且 <code>x1+x2+x3+x4+x5&lt;100</code>) 。<br>由<code>100  &gt; x1+x2+x3+x4+x5 &gt; x1+x1+x1+x1+x1 &gt;5*x1</code> 得 <code>x1 &lt;20</code><br>直接使用5重循环即可解决。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">long</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> x1 = <span class="number">1</span>; x1 &lt; <span class="number">20</span>; x1++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> x2 = x1+<span class="number">1</span>; x2 &lt;<span class="number">100</span>; x2++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x3 = x2+<span class="number">1</span>; x3 &lt;<span class="number">100</span>; x3++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> x4 = x3+<span class="number">1</span>; x4 &lt;<span class="number">100</span>; x4++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> x5 = x4+<span class="number">1</span>; x5 &lt;<span class="number">100</span>; x5++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (x1+x2+x3+x4+x5 &lt; <span class="number">100</span>) &#123;</span><br><span class="line">                        System.out.printf(<span class="string">"%d %d %d %d %d \n"</span>,x1,x2,x3,x4,x5);</span><br><span class="line">                        count++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(count);</span><br></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -149,9 +151,9 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
+ <div class="prev">
  <a href="/2015/08/04/顺时针操作矩阵/" title="顺时针操作矩阵">
-  <strong>上一篇：</strong><br/>
+  <strong>上一篇：</strong><br>
   <span>
   顺时针操作矩阵</span>
 </a>
@@ -159,8 +161,8 @@
 
 
 <div class="next">
-<a href="/2015/07/29/数组中只出现一次的数字/"  title="数组中只出现一次的数字">
- <strong>下一篇：</strong><br/> 
+<a href="/2015/07/29/数组中只出现一次的数字/" title="数组中只出现一次的数字">
+ <strong>下一篇：</strong><br> 
  <span>数组中只出现一次的数字
 </span>
 </a>
@@ -222,7 +224,7 @@
 		  
 		
 		  
-			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 		  
 		
 		  
@@ -275,6 +277,14 @@
 			
 		
 			
+				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
 			
 		
@@ -283,23 +293,7 @@
 			
 		
 			
-				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 			
 		
 			
@@ -311,11 +305,19 @@
 			
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
@@ -327,11 +329,11 @@
 			
 		
 			
-				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -476,7 +478,7 @@
 </aside>
 </div>
     </div>
-    <footer><div id="footer" >
+    <footer><div id="footer">
 	
 	<div class="line">
 		<span></span>
@@ -485,11 +487,11 @@
 	
 	
 	<section class="info">
-		<p> Hello ,I&#39;m Star Qiu in SIAT. <br/>
+		<p> Hello ,I&#39;m Star Qiu in SIAT. <br>
 			This is my blog,believe it or not.</p>
 	</section>
 	 
-	<div class="social-font" class="clearfix">
+	<div class="social-font">
 		
 		<a href="http://weibo.com/1665530845## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
 		
@@ -674,8 +676,7 @@ MathJax.Hub.Config({
   tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
 }); 
 </script>
-<script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <!-- Analytics Begin -->
@@ -694,7 +695,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

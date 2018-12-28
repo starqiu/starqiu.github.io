@@ -1,8 +1,8 @@
 
  <!DOCTYPE HTML>
 <html lang="zh-CN">
-<head>
-  <meta name="baidu-site-verification" content="WxxBxzU1zW" />
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta name="baidu-site-verification" content="WxxBxzU1zW">
   <meta charset="UTF-8">
   
     <title>Top N 问题 | starqiu&#39;s blog</title>
@@ -13,11 +13,13 @@
 
     
     <meta name="description" content="设计一组N个数，确定其中第k个最大值">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Top N 问题">
 <meta property="og:url" content="https://github.com/2015/07/28/topNPro/index.html">
-<meta property="og:site_name" content="starqiu's blog">
+<meta property="og:site_name" content="starqiu&#39;s blog">
 <meta property="og:description" content="设计一组N个数，确定其中第k个最大值">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2015-07-31T01:46:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Top N 问题">
@@ -33,16 +35,16 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
   <body>
     <header>
       
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"/></a>
+				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"></a>
 			</div>
 			
 			<div id="textlogo">
@@ -75,16 +77,16 @@
  					
 						<form class="search" action="http://search.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= 7129304121443985000 ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						<input name="s" type="hidden" value="7129304121443985000"><input type="text" name="q" size="30" placeholder="搜索"><br>
 						</form>
 					
 					</li>
 				</ul>
-			</nav>			
+			</ul></nav>			
 </div>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
@@ -96,7 +98,7 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2015-07-27T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-28</time>
     
   </p>
@@ -110,11 +112,11 @@
 		
 		</div>
 		
-		<p>转载自 <a href="http://www.cnblogs.com/zhjp11/archive/2010/02/26/1674227.html" target="_blank" rel="external">http://www.cnblogs.com/zhjp11/archive/2010/02/26/1674227.html</a><br>原文格式不太好，调整下格式</p>
+		<p>转载自 <a href="http://www.cnblogs.com/zhjp11/archive/2010/02/26/1674227.html" target="_blank" rel="noopener">http://www.cnblogs.com/zhjp11/archive/2010/02/26/1674227.html</a><br>原文格式不太好，调整下格式</p>
 <p>今天看算法分析是，看到一个这样的问题，就是在一堆数据中查找到第k个大的值。</p>
-<h2 id="题目">题目</h2><pre><code>设计一组<span class="keyword">N</span>个数，确定其中第k个最大值
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><pre><code>设计一组N个数，确定其中第k个最大值
 </code></pre><p>这是一个选择问题，当然，解决这个问题的方法很多，本人在网上搜索了一番，查找到以下的方式，决定很好，推荐给大家。<br>所谓“第（前）k大数问题”指的是在长度为n(n&gt;=k)的乱序数组中S找出从大到小顺序的第（前）k个数的问题。</p>
-<h2 id="解法">解法</h2><ul>
+<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><ul>
 <li><strong>解法1</strong>： 我们可以对这个乱序数组按照从大到小先行排序，然后取出前k大，总的时间复杂度为O(n*logn + k)。</li>
 <li><strong>解法2</strong>： 利用选择排序或交互排序，K次选择后即可得到第k大的数。总的时间复杂度为O(n*k)</li>
 <li><strong>解法3</strong>： 利用快速排序的思想，从数组S中随机找出一个元素X，把数组分为两部分Sa和Sb。Sa中的元素大于等于X，Sb中元素小于X。这时有两种情况：<ul>
@@ -128,24 +130,24 @@
 <li><strong>解法7</strong>：利用hash保存数组中元素Si出现的次数，利用计数排序的思想，线性从大到小扫描过程中，前面有k-1个数则为第k大数，<strong>平均情况下时间复杂度O(n)</strong><a id="more"></a>
 </li>
 </ul>
-<h2 id="举一反三">举一反三</h2><ol>
+<h2 id="举一反三"><a href="#举一反三" class="headerlink" title="举一反三"></a>举一反三</h2><ol>
 <li>STL中可以用nth_element求得类似的第n大的数（由谓词决定），使用的是<code>解法3</code>中的思想，还可以用partial_sort对区间进行部分排序，得到类似前k大的数（由谓词决定），它采用的是<code>解法5</code>的思想。</li>
 <li><p>求中位数实际上是第k大数的特例。《编程之美》2.5节课后习题：</p>
 <ul>
 <li><p>如果需要找出N个数中最大的K个不同的浮点数呢？比如，含有10个浮点数的数组（1.5，1.5，2.5，3.5，3.5，5，0，- 1.5，3.5）中最大的3个不同的浮点数是（5，3.5，2.5）。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">解答：上面的解法均适用，需要注意的是浮点数比较时和整数不同，另外求hashkey的方法也会略有不同。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">解答：上面的解法均适用，需要注意的是浮点数比较时和整数不同，另外求hashkey的方法也会略有不同。</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>如果是找第k到第m(0&lt;k&lt;=m&lt;=n)大的数呢？</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">解答：如果把问题看做<span class="keyword">m</span>-k+1个第k大问题，则前面解法均适用。</span><br><span class="line">但是对于类似前k大这样的问题，最好使用解法5或者解法7，总体复杂度较低。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">解答：如果把问题看做m-k+1个第k大问题，则前面解法均适用。</span><br><span class="line">但是对于类似前k大这样的问题，最好使用解法5或者解法7，总体复杂度较低。</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在搜索引擎中，网络上的每个网页都有“权威性”权重，如page rank。如果我们需要寻找权重最大的K个网页，而网页的权重会不断地更新，那么算法要如何变动以达到快速更新（incremental update）并及时返回权重最大的K个网页？</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">提示：堆排序？当每一个网页权重更新的时候，更新堆。还有更好的方法吗？</span><br><span class="line">解答：要达到快速的更新，我们可以解法<span class="number">5</span>，使用映射二分堆，可以使更新的操作达到<span class="function"><span class="title">O</span><span class="params">(logn)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">提示：堆排序？当每一个网页权重更新的时候，更新堆。还有更好的方法吗？</span><br><span class="line">解答：要达到快速的更新，我们可以解法5，使用映射二分堆，可以使更新的操作达到O(logn)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在实际应用中，还有一个“精确度”的问题。我们可能并不需要返回严格意义上的最大的K个元素，在边界位置允许出现一些误差。当用户输入一个query的时候，对于每一个文档d来说，它跟这个query之间都有一个相关性衡量权重f (query, d)。搜索引擎需要返回给用户的就是相关性权重最大的K个网页。如果每页10个网页，用户不会关心第1000页开外搜索结果的“精确度”，稍有误差是可以接受的。比如我们可以返回相关性第10 001大的网页，而不是第9999大的。在这种情况下，算法该如何改进才能更快更有效率呢？网页的数目可能大到一台机器无法容纳得下，这时怎么办呢？</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">提示：</span><br><span class="line">归并排序？如果每台机器都返回最相关的K个文档，</span><br><span class="line">那么所有机器上最相关K个文档的并集肯定包含全集中最相关的K个文档。</span><br><span class="line">由于边界情况并不需要非常精确，如果每台机器返回最好的K<span class="operator">'</span>个文档，那么K<span class="operator">'</span>应该如何取值，</span><br><span class="line">以达到我们返回最相关的<span class="number">90</span><span class="comment">%*K个文档是完全精确的，</span></span><br><span class="line">或者最终返回的最相关的K个文档精确度超过<span class="number">90</span><span class="comment">%（最相关的K个文档中90%以上在全集中相关性的确排在前K），</span></span><br><span class="line">或者最终返回的最相关的K个文档最差的相关性排序没有超出<span class="number">110</span><span class="comment">%*K。</span></span><br><span class="line"></span><br><span class="line">解答：</span><br><span class="line">正如提示中所说，可以让每台机器返回最相关的K<span class="operator">'</span>个文档，</span><br><span class="line">然后利用归并排序的思想，得到所有文档中最相关的K个。 </span><br><span class="line">最好的情况是这K个文档在所有机器中平均分布，这时每台机器只要K<span class="operator">'</span> = K / n （n为所有机器总数）；</span><br><span class="line">最坏情况，所有最相关的K个文档只出现在其中的某一台机器上，这时K<span class="operator">'</span>需近似等于K了。</span><br><span class="line">我觉得比较好的做法可以在每台机器上维护一个堆，然后对堆顶元素实行归并排序。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">提示：</span><br><span class="line">归并排序？如果每台机器都返回最相关的K个文档，</span><br><span class="line">那么所有机器上最相关K个文档的并集肯定包含全集中最相关的K个文档。</span><br><span class="line">由于边界情况并不需要非常精确，如果每台机器返回最好的K&apos;个文档，那么K&apos;应该如何取值，</span><br><span class="line">以达到我们返回最相关的90%*K个文档是完全精确的，</span><br><span class="line">或者最终返回的最相关的K个文档精确度超过90%（最相关的K个文档中90%以上在全集中相关性的确排在前K），</span><br><span class="line">或者最终返回的最相关的K个文档最差的相关性排序没有超出110%*K。</span><br><span class="line"></span><br><span class="line">解答：</span><br><span class="line">正如提示中所说，可以让每台机器返回最相关的K&apos;个文档，</span><br><span class="line">然后利用归并排序的思想，得到所有文档中最相关的K个。 </span><br><span class="line">最好的情况是这K个文档在所有机器中平均分布，这时每台机器只要K&apos; = K / n （n为所有机器总数）；</span><br><span class="line">最坏情况，所有最相关的K个文档只出现在其中的某一台机器上，这时K&apos;需近似等于K了。</span><br><span class="line">我觉得比较好的做法可以在每台机器上维护一个堆，然后对堆顶元素实行归并排序。</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>如第4点所说，对于每个文档d，相对于不同的关键字q1, q2, …, qm，分别有相关性权重f（d, q1），f（d, q2）, …, f（d, qm）。如果用户输入关键字qi之后，我们已经获得了最相关的K个文档，而已知关键字qj跟关键字qi相似，文档跟这两个关键字的权重大小比较靠近，那么关键字qi的最相关的K个文档，对寻找qj最相关的K个文档有没有帮助呢？</p>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">解答：肯定是有帮助的。</span><br><span class="line">在搜索关键字qj最相关的<span class="keyword">K</span>个文档时，</span><br><span class="line">可以在qj的“近义词”相关文档中搜索部分，然后在全局的所有文档中在搜索部分。</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">解答：肯定是有帮助的。</span><br><span class="line">在搜索关键字qj最相关的K个文档时，</span><br><span class="line">可以在qj的“近义词”相关文档中搜索部分，然后在全局的所有文档中在搜索部分。</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ol>
@@ -184,9 +186,9 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
+ <div class="prev">
  <a href="/2015/07/29/数组中只出现一次的数字/" title="数组中只出现一次的数字">
-  <strong>上一篇：</strong><br/>
+  <strong>上一篇：</strong><br>
   <span>
   数组中只出现一次的数字</span>
 </a>
@@ -194,8 +196,8 @@
 
 
 <div class="next">
-<a href="/2015/07/27/useStacksImplementsQueue/"  title="用两个栈实现队列">
- <strong>下一篇：</strong><br/> 
+<a href="/2015/07/27/useStacksImplementsQueue/" title="用两个栈实现队列">
+ <strong>下一篇：</strong><br> 
  <span>用两个栈实现队列
 </span>
 </a>
@@ -257,7 +259,7 @@
 		  
 		
 		  
-			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 		  
 		
 		  
@@ -310,6 +312,14 @@
 			
 		
 			
+				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
 			
 		
@@ -318,23 +328,7 @@
 			
 		
 			
-				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 			
 		
 			
@@ -346,11 +340,19 @@
 			
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
@@ -362,11 +364,11 @@
 			
 		
 			
-				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -511,7 +513,7 @@
 </aside>
 </div>
     </div>
-    <footer><div id="footer" >
+    <footer><div id="footer">
 	
 	<div class="line">
 		<span></span>
@@ -520,11 +522,11 @@
 	
 	
 	<section class="info">
-		<p> Hello ,I&#39;m Star Qiu in SIAT. <br/>
+		<p> Hello ,I&#39;m Star Qiu in SIAT. <br>
 			This is my blog,believe it or not.</p>
 	</section>
 	 
-	<div class="social-font" class="clearfix">
+	<div class="social-font">
 		
 		<a href="http://weibo.com/1665530845## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
 		
@@ -709,8 +711,7 @@ MathJax.Hub.Config({
   tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
 }); 
 </script>
-<script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <!-- Analytics Begin -->
@@ -729,7 +730,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

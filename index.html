@@ -1,8 +1,8 @@
 
  <!DOCTYPE HTML>
 <html lang="zh-CN">
-<head>
-  <meta name="baidu-site-verification" content="WxxBxzU1zW" />
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta name="baidu-site-verification" content="WxxBxzU1zW">
   <meta charset="UTF-8">
   
     <title>starqiu&#39;s blog</title>
@@ -14,12 +14,13 @@
     
     <meta name="description" content="share Java ,R , Data Mining">
 <meta property="og:type" content="website">
-<meta property="og:title" content="starqiu's blog">
+<meta property="og:title" content="starqiu&#39;s blog">
 <meta property="og:url" content="https://github.com/index.html">
-<meta property="og:site_name" content="starqiu's blog">
+<meta property="og:site_name" content="starqiu&#39;s blog">
 <meta property="og:description" content="share Java ,R , Data Mining">
+<meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="starqiu's blog">
+<meta name="twitter:title" content="starqiu&#39;s blog">
 <meta name="twitter:description" content="share Java ,R , Data Mining">
 
     
@@ -32,16 +33,16 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
   <body>
     <header>
       
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"/></a>
+				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"></a>
 			</div>
 			
 			<div id="textlogo">
@@ -74,16 +75,97 @@
  					
 						<form class="search" action="http://search.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= 7129304121443985000 ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						<input name="s" type="hidden" value="7129304121443985000"><input type="text" name="q" size="30" placeholder="搜索"><br>
 						</form>
 					
 					</li>
 				</ul>
-			</nav>			
+			</ul></nav>			
 </div>
     </header>
     <div id="container">
       <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/12/28/hexo搭建博客问题汇总/hexo搭建博客问题汇总/" title="hexo搭建博客问题汇总" itemprop="url">hexo搭建博客问题汇总</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  </p><p class="article-time">
+    <time datetime="2018-12-27T16:00:00.000Z" itemprop="datePublished"> 发表于 2018-12-28</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ol>
+<li><font color="red"> YML文件key重复问题</font>
+
+</li>
+</ol>
+<p>起因：一年前搭建了一个博客，后来要在公司的电脑上写博客，在这个过程中hexo和nodejs都已经升级了，使用最新版的nodejs和hexo重新执行，出错，，错误信息如下：</p>
+<blockquote>
+<p>ERROR Theme config load failed.<br>ERROR Process failed: _config.yml<br>YAMLException: duplicated mapping key at line 63, column -1167:<br>​    author:<br>   ^</p>
+</blockquote>
+<p>之前只关注根目录下的<code>_config.yml</code>, 没有找到重复的author, 后来全局搜索了一下，发现在themes/jacman下也有一个<code>_config.yml</code>, 确保两个文件没有重复的key即可。</p>
+<ol start="2">
+<li><font color="red">highlight.js：  Cannot set property ‘lastIndex’  of undefined</font>
+
+</li>
+</ol>
+<p>修改站点配置文件的<code>_config.yml</code>，把 <code>auto_detect</code> 设置为<code>false</code> 即可。</p>
+<ol start="2">
+<li></li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/hexo/">hexo</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hexo/">hexo</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2018/12/28/hexo搭建博客问题汇总/hexo搭建博客问题汇总/#comments" class="ds-thread-count comments-count-link" data-thread-key="2018/12/28/hexo搭建博客问题汇总/hexo搭建博客问题汇总/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
 
    
     
@@ -97,7 +179,7 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2018-04-16T16:00:00.000Z" itemprop="datePublished"> 发表于 2018-04-17</time>
     
   </p>
@@ -105,7 +187,7 @@
     <div class="article-content">
         
         <p>先在一台可以联网的相同操作系统环境下下载离线安装包，然后内网服务器构建本地yum源，最后安装docker</p>
-<h2 id="下载离线安装包">下载离线安装包</h2><ol>
+<h2 id="下载离线安装包"><a href="#下载离线安装包" class="headerlink" title="下载离线安装包"></a>下载离线安装包</h2><ol>
 <li>在可以联网的机器上下载rpm包</li>
 </ol>
         
@@ -164,15 +246,15 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2017-12-12T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-12-13</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h2 id="初始环境">初始环境</h2><p>系统：CentOS 6.7</p>
-<h2 id="安装必须的软件">安装必须的软件</h2><ol>
+        <h2 id="初始环境"><a href="#初始环境" class="headerlink" title="初始环境"></a>初始环境</h2><p>系统：CentOS 6.7</p>
+<h2 id="安装必须的软件"><a href="#安装必须的软件" class="headerlink" title="安装必须的软件"></a>安装必须的软件</h2><ol>
 <li><p>安装SVN服务器<br>如果已安装，使用<code>svnserve --version</code>查看版本<br>如果未安装，运行<code>yum -y install subversion</code>命令</p>
 </li>
 <li><p>支持WEB方式管理SVN服务器<br>如果要支持web方式访问，还需要安装<code>httpd mod_dav_svn mod_perl</code>, 运行<code>yum -y install httpd mod_dav_svn mod_perl</code>命令。</p>
@@ -197,7 +279,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/svn/">svn</a><a href="/tags/版本管理/">版本管理</a>
+  <span></span> <a href="/tags/版本管理/">版本管理</a><a href="/tags/svn/">svn</a>
   </div>
 
 </div>
@@ -234,14 +316,14 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2017-08-26T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-08-27</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h1 id="定义">定义</h1><p>CRISP-DM是Cross-Industry Standard Process for Data Mining的缩写，也就是数据挖掘的跨行业标准流程，是一个已被业界证明的有效指南。它作为：</p>
+        <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>CRISP-DM是Cross-Industry Standard Process for Data Mining的缩写，也就是数据挖掘的跨行业标准流程，是一个已被业界证明的有效指南。它作为：</p>
 <ol>
 <li>一种方法论: 包含了对数据挖掘项目的六个典型阶段，以及每个阶段所包含的任务，并且解释了这些任务之间的关系。</li>
 <li>一种流程模型: CRISP-DM提供了对数据挖掘生命周期的一个概览。这个生命周期模型包含了六个阶段，模型里的箭头指明了各阶段间最重要和频繁的依赖项。这些阶段的次序并非是严格的，事实上，大多数项目在需要的时候，会在各阶段之间来回反复。</li>
@@ -302,14 +384,14 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2017-07-04T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-07-05</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h2 id="想读">想读</h2><ul>
+        <h2 id="想读"><a href="#想读" class="headerlink" title="想读"></a>想读</h2><ul>
 <li>数据挖掘:概念与技术(原书第3版)</li>
 <li>Java性能优化权威指南</li>
 <li>统计思维:程序员数学之概率统计 唐尼 (Allen B.Downey)</li>
@@ -327,7 +409,7 @@
             <a href="/2017/07/05/books/#more">更多</a>
           
        </p>
-    </div>
+    </li></ul></div>
     <footer class="article-footer clearfix">
 <div class="article-catetags">
 
@@ -376,7 +458,7 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2015-08-29T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-30</time>
     
   </p>
@@ -384,15 +466,15 @@
     <div class="article-content">
         
         <p>jacman使用了多说的评论系统，多说有最新评论的嵌入代码。当然直接嵌入肯定是不行的，和整体风格不统一看着不好看，那么就搞个类似友情链接、目录之类的widget好了。本文目标是新建一个widget显示多说的最新评论。</p>
-<h1 id="步骤">步骤</h1><h2 id="新建widget">新建widget</h2><p>widget 文件在路径<code>themes/pacman/layout/_widget/</code>下，参考links.ejs以及archives.ejs及多说的嵌入代码，在该目录下新建一个comment.ejs文件，内容如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (theme.duoshuo_recent_comment &amp;&amp; theme.duoshuo_shortname.length) &#123; %&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"commentslist"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"asidetitle"</span>&gt;</span><span class="tag">&lt;<span class="title">%=</span> <span class="attribute">__</span>('<span class="attribute">comments</span>') %&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"ds-recent-comments"</span> <span class="attribute">data-num-items</span>=<span class="value">"5"</span> <span class="attribute">data-show-avatars</span>=<span class="value">"0"</span> <span class="attribute">data-show-time</span>=<span class="value">"1"</span> <span class="attribute">data-show-admin</span>=<span class="value">"1"</span> <span class="attribute">data-excerpt-length</span>=<span class="value">"32"</span> <span class="attribute">data-show-title</span>=<span class="value">"1"</span>&gt;</span><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--多说js加载开始，一个页面只需要加载一次 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">  <span class="keyword">var</span> duoshuoQuery = &#123;short_name:<span class="string">"&lt;%= theme.duoshuo.short_name %&gt;"</span>&#125;;</span><br><span class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">    ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;</span><br><span class="line">    ds.src = <span class="string">'http://static.duoshuo.com/embed.js'</span>;</span><br><span class="line">    ds.charset = <span class="string">'UTF-8'</span>;</span><br><span class="line">    (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);</span><br><span class="line">  &#125;)();</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--多说js加载结束，一个页面只需要加载一次 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">%</span> &#125; %&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-<p>下面那段js是多说提供的嵌入代码，<code>&lt;ul&gt;</code>标签有一些参数可以指定评论的具体数量之类的，大致有以下可选参数<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//以下参数均为可选</span></span><br><span class="line"><span class="built_in">data</span><span class="attribute">-num</span><span class="attribute">-items</span><span class="subst">=</span><span class="string">"10"</span>     <span class="comment">//显示最新评论的条数，最大支持200条</span></span><br><span class="line"><span class="built_in">data</span><span class="attribute">-show</span><span class="attribute">-avatars</span><span class="subst">=</span><span class="string">"1"</span>   <span class="comment">//是否显示头像，1：显示，0：不显示</span></span><br><span class="line"><span class="built_in">data</span><span class="attribute">-show</span><span class="attribute">-time</span><span class="subst">=</span><span class="string">"1"</span>      <span class="comment">//是否显示时间，1：显示，0：不显示</span></span><br><span class="line"><span class="built_in">data</span><span class="attribute">-show</span><span class="attribute">-title</span><span class="subst">=</span><span class="string">"0"</span>     <span class="comment">//是否显示标题，1：显示，0：不显示</span></span><br><span class="line"><span class="built_in">data</span><span class="attribute">-show</span><span class="attribute">-admin</span><span class="subst">=</span><span class="string">"1"</span>     <span class="comment">//是否显示管理员的评论，1：显示，0：不显示</span></span><br><span class="line"><span class="built_in">data</span><span class="attribute">-excerpt</span><span class="attribute">-length</span><span class="subst">=</span><span class="string">"70"</span><span class="comment">//最大显示评论汉字数</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="配置widget">配置widget</h2><ol>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="新建widget"><a href="#新建widget" class="headerlink" title="新建widget"></a>新建widget</h2><p>widget 文件在路径<code>themes/pacman/layout/_widget/</code>下，参考links.ejs以及archives.ejs及多说的嵌入代码，在该目录下新建一个comment.ejs文件，内容如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (theme.duoshuo_recent_comment &amp;&amp; theme.duoshuo_shortname.length) &#123; %&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"commentslist"</span>&gt;</span><br><span class="line">  &lt;p <span class="class"><span class="keyword">class</span></span>=<span class="string">"asidetitle"</span>&gt;&lt;%= __('comments') %&gt;&lt;/p&gt;</span><br><span class="line">  &lt;ul <span class="class"><span class="keyword">class</span></span>=<span class="string">"ds-recent-comments"</span> data-num-items=<span class="string">"5"</span> data-show-avatars=<span class="string">"0"</span> data-show-time=<span class="string">"1"</span> data-show-admin=<span class="string">"1"</span> data-excerpt-length=<span class="string">"32"</span> data-show-title=<span class="string">"1"</span>&gt;&lt;/ul&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;!--多说js加载开始，一个页面只需要加载一次 --&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">  var duoshuoQuery = &#123;short_name:"</span>&lt;%= theme.duoshuo.short_name %&gt;<span class="string">"&#125;;</span></span><br><span class="line"><span class="string">  (function() &#123;</span></span><br><span class="line"><span class="string">    var ds = document.createElement('script');</span></span><br><span class="line"><span class="string">    ds.type = 'text/javascript';ds.async = true;</span></span><br><span class="line"><span class="string">    ds.src = 'http://static.duoshuo.com/embed.js';</span></span><br><span class="line"><span class="string">    ds.charset = 'UTF-8';</span></span><br><span class="line"><span class="string">    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);</span></span><br><span class="line"><span class="string">  &#125;)();</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;!--多说js加载结束，一个页面只需要加载一次 --&gt;</span></span><br><span class="line"><span class="string">&lt;% &#125; %&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>下面那段js是多说提供的嵌入代码，<code>&lt;ul&gt;</code>标签有一些参数可以指定评论的具体数量之类的，大致有以下可选参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> //以下参数均为可选</span><br><span class="line">data-num-items=&quot;10&quot;     //显示最新评论的条数，最大支持200条</span><br><span class="line">data-show-avatars=&quot;1&quot;   //是否显示头像，1：显示，0：不显示</span><br><span class="line">data-show-time=&quot;1&quot;      //是否显示时间，1：显示，0：不显示</span><br><span class="line">data-show-title=&quot;0&quot;     //是否显示标题，1：显示，0：不显示</span><br><span class="line">data-show-admin=&quot;1&quot;     //是否显示管理员的评论，1：显示，0：不显示</span><br><span class="line">data-excerpt-length=&quot;70&quot;//最大显示评论汉字数</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置widget"><a href="#配置widget" class="headerlink" title="配置widget"></a>配置widget</h2><ol>
 <li>首先先添加“最新评论”的多语言版本字符串值<br>即用变量comments表示，需要修改的相关文件为themes/pacman/languages/*.yml，看一下文件内容就知道怎么改了</li>
-<li>添加一下相关的css样式<br>这里是以友情链接widget的css作为基准，稍加修改的，在<code>themes/pacman/source/css/_partial/aside.styl</code>文件末尾添加如下内容：<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//comments</span></span><br><span class="line"><span class="class">.commentslist</span></span><br><span class="line">  <span class="attribute">margin-top</span> <span class="number">0.5em</span> </span><br><span class="line">  <span class="at_rule">@media</span> mini</span><br><span class="line">    <span class="attribute">width</span> <span class="number">45%</span> </span><br><span class="line">    <span class="attribute">float</span> <span class="attribute">left</span></span><br><span class="line">    <span class="attribute">margin</span> <span class="number">0</span> <span class="number">5%</span> <span class="number">0</span> <span class="number">0</span> </span><br><span class="line">  <span class="at_rule">@media</span> tablet </span><br><span class="line">    <span class="attribute">width</span> <span class="number">100%</span></span><br><span class="line">    <span class="attribute">float</span> <span class="attribute">none</span></span><br><span class="line">    <span class="attribute">margin</span> <span class="number">1em</span> <span class="number">0</span> <span class="number">0</span> </span><br><span class="line">  <span class="tag">ul</span>  </span><br><span class="line">    <span class="attribute">padding</span> <span class="number">0.5em</span> <span class="number">0</span></span><br><span class="line">    <span class="tag">a</span>   </span><br><span class="line">      <span class="attribute">font-size</span> <span class="number">1em</span> </span><br><span class="line">      <span class="attribute">line-height</span> <span class="attribute">line-height</span></span><br><span class="line">      <span class="attribute">display</span> block</span><br><span class="line">      <span class="attribute">padding</span> <span class="number">0</span></span><br><span class="line">      <span class="pseudo">&amp;:hover</span><br><span class="line"></span>        <span class="attribute">color</span> <span class="attribute">color</span>-theme</span><br><span class="line">        <span class="attribute">transition</span> <span class="attribute">color</span> .<span class="number">25s</span></span><br><span class="line"></span><br><span class="line"><span class="class">.ds-excerpt</span></span><br><span class="line">  <span class="attribute">font-size</span> <span class="number">1.1em</span></span><br><span class="line">  <span class="attribute">color</span> <span class="attribute">color</span>-theme</span><br><span class="line"></span><br><span class="line"><span class="class">.ds-recent-comments</span></span><br><span class="line">  <span class="attribute">margin-top</span> -<span class="number">0.6em</span></span><br><span class="line">  <span class="attribute">margin-left</span> <span class="number">0.3em</span></span><br></pre></td></tr></table></figure>
+<li>添加一下相关的css样式<br>这里是以友情链接widget的css作为基准，稍加修改的，在<code>themes/pacman/source/css/_partial/aside.styl</code>文件末尾添加如下内容：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> //comments</span><br><span class="line">.commentslist</span><br><span class="line">  margin-top 0.5em </span><br><span class="line">  @media mini</span><br><span class="line">    width 45% </span><br><span class="line">    float left</span><br><span class="line">    margin 0 5% 0 0 </span><br><span class="line">  @media tablet </span><br><span class="line">    width 100%</span><br><span class="line">    float none</span><br><span class="line">    margin 1em 0 0 </span><br><span class="line">  ul  </span><br><span class="line">    padding 0.5em 0</span><br><span class="line">    a   </span><br><span class="line">      font-size 1em </span><br><span class="line">      line-height line-height</span><br><span class="line">      display block</span><br><span class="line">      padding 0</span><br><span class="line">      &amp;:hover</span><br><span class="line">        color color-theme</span><br><span class="line">        transition color .25s</span><br><span class="line"></span><br><span class="line">.ds-excerpt</span><br><span class="line">  font-size 1.1em</span><br><span class="line">  color color-theme</span><br><span class="line"></span><br><span class="line">.ds-recent-comments</span><br><span class="line">  margin-top -0.6em</span><br><span class="line">  margin-left 0.3em</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="开启widget">开启widget</h2><p>在<code>themes/jacman/_config.yml</code>的comment处添加配置<code>duoshuo_recent_comment: true</code></p>
-<h1 id="参考">参考</h1><p>[1]： <a href="http://odinliu.com/2014/12/03/%E7%BB%99hexo-pacman%E5%A2%9E%E5%8A%A0%E2%80%9C%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA%E2%80%9D%E7%9A%84widget/" target="_blank" rel="external">给hexo/pacman增加“最新评论”的widget</a></p>
+<h2 id="开启widget"><a href="#开启widget" class="headerlink" title="开启widget"></a>开启widget</h2><p>在<code>themes/jacman/_config.yml</code>的comment处添加配置<code>duoshuo_recent_comment: true</code></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1]： <a href="http://odinliu.com/2014/12/03/%E7%BB%99hexo-pacman%E5%A2%9E%E5%8A%A0%E2%80%9C%E6%9C%80%E6%96%B0%E8%AF%84%E8%AE%BA%E2%80%9D%E7%9A%84widget/" target="_blank" rel="noopener">给hexo/pacman增加“最新评论”的widget</a></p>
 
         
         
@@ -448,20 +530,20 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2015-08-27T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-28</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h1 id="问题">问题</h1><blockquote>
+        <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><blockquote>
 <p>如何运行一个测试用例多次？</p>
 </blockquote>
-<h1 id="解答">解答</h1><ol>
+<h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><ol>
 <li>使用@RunWith(Parameterized.class)，需要多写一些无谓的代码</li>
-<li>使用Rule,自己实现Repeat注解.见<a href="http://www.codeaffine.com/2013/04/10/running-junit-tests-repeatedly-without-loops/">参考４</a></li>
-<li>使用Runner,自己实现Repeat注解.见<a href="http://codehowtos.blogspot.com/2011/04/run-junit-test-repeatedly.html">参考１</a>　这个方法目前实验起来最好。<br>使用：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@RunWith</span>(ExtendedRunner.class)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleTest3</span> </span>&#123;  </span><br><span class="line">     <span class="annotation">@Test</span>  </span><br><span class="line">     <span class="annotation">@Repeat</span>(<span class="number">10</span>)  </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sometimesFail</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">          <span class="keyword">int</span> rand = <span class="keyword">new</span> Random().nextInt(<span class="number">3</span>);  </span><br><span class="line">          <span class="keyword">if</span> (rand % <span class="number">3</span> == <span class="number">0</span>) &#123;  </span><br><span class="line">               fail();  </span><br><span class="line">          &#125;  </span><br><span class="line">     &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>使用Rule,自己实现Repeat注解.见[参考４][4]</li>
+<li>使用Runner,自己实现Repeat注解.见<a href="http://codehowtos.blogspot.com/2011/04/run-junit-test-repeatedly.html" target="_blank" rel="noopener">参考１</a>　这个方法目前实验起来最好。<br>使用：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(ExtendedRunner.class)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleTest3</span> </span>&#123;  </span><br><span class="line">     <span class="meta">@Test</span>  </span><br><span class="line">     <span class="meta">@Repeat</span>(<span class="number">10</span>)  </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sometimesFail</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">          <span class="keyword">int</span> rand = <span class="keyword">new</span> Random().nextInt(<span class="number">3</span>);  </span><br><span class="line">          <span class="keyword">if</span> (rand % <span class="number">3</span> == <span class="number">0</span>) &#123;  </span><br><span class="line">               fail();  </span><br><span class="line">          &#125;  </span><br><span class="line">     &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
         
@@ -520,7 +602,7 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2015-08-26T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-27</time>
     
   </p>
@@ -588,24 +670,24 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2015-08-25T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-26</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h1 id="题目">题目</h1><blockquote>
+        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
 <p>一组整型数中，有一个数字重复3遍，其它数字重复2遍，请找出这个重复3遍的数字。比如：[88, 459, 5262, 88, -17, 677, 88, 677, -17, 459, 5262], 结果为88。要求程序代码中额外申请的空间为O(1)，请给出一个平均时间复杂度不大于O(nlogn)的算法。请首先用文字阐述答题思路，然后用Java程序实现。(阿里　2016)</p>
 </blockquote>
-<h1 id="解答１">解答１</h1><ol>
+<h1 id="解答１"><a href="#解答１" class="headerlink" title="解答１"></a>解答１</h1><ol>
 <li>两个相同的数异或（^）之后的值为０</li>
 <li>将所有的数异或起来就可以消去相同的两个数</li>
 <li>任意数和０异或都得到自身</li>
 </ol>
-<h1 id="代码１">代码１</h1> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">xorArray</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : arr) &#123;</span><br><span class="line">        result ^= i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 测试用例如下：<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testXorArray</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = &#123;<span class="number">88</span>, <span class="number">459</span>, <span class="number">5262</span>, <span class="number">88</span>, -<span class="number">17</span>, <span class="number">677</span>, <span class="number">88</span>, <span class="number">677</span>, -<span class="number">17</span>, <span class="number">459</span>, <span class="number">5262</span>&#125;;</span><br><span class="line">    assertEquals(<span class="number">88</span>, xorArray(arr));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="解答２">解答２</h1><ol>
+<h1 id="代码１"><a href="#代码１" class="headerlink" title="代码１"></a>代码１</h1> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">xorArray</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : arr) &#123;</span><br><span class="line">        result ^= i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 测试用例如下：<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testXorArray</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = &#123;<span class="number">88</span>, <span class="number">459</span>, <span class="number">5262</span>, <span class="number">88</span>, -<span class="number">17</span>, <span class="number">677</span>, <span class="number">88</span>, <span class="number">677</span>, -<span class="number">17</span>, <span class="number">459</span>, <span class="number">5262</span>&#125;;</span><br><span class="line">    assertEquals(<span class="number">88</span>, xorArray(arr));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="解答２"><a href="#解答２" class="headerlink" title="解答２"></a>解答２</h1><ol>
 <li>参考快速排序<code>partition</code>方法，将小于选中的数全部放在左边，大于或等于选中的数则放在右边。其中如果选中的数有多个，则最后一个数也必须是该数</li>
 <li>如果小于当前数的个数是偶数，则待查找的数大于等于选中的数。如果最后一位数不等于选中的数，则表示选中的数只有一个，此时选中的数即为要查找的数；递归查找大于或等于选中的数（去掉两头的数）</li>
 <li>如果小于当前数的个数是偶数，则待查找的数小于选中的数，递归查找所有小于选中的数</li>
@@ -617,7 +699,7 @@
             <a href="/2015/08/26/找出重复3遍的数字/#more">更多</a>
           
        </p>
-    </div>
+    </li></ol></div>
     <footer class="article-footer clearfix">
 <div class="article-catetags">
 
@@ -629,7 +711,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Java/">Java</a><a href="/tags/算法/">算法</a>
+  <span></span> <a href="/tags/算法/">算法</a><a href="/tags/Java/">Java</a>
   </div>
 
 </div>
@@ -666,7 +748,7 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2015-08-24T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-25</time>
     
   </p>
@@ -676,9 +758,9 @@
         <blockquote>
 <p>如何禁止（disable）一个容器的所有行为（包括不响应任何事件）？</p>
 </blockquote>
-<h1 id="分析">分析</h1><ol>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><ol>
 <li><p>一个容器还包括子容器，子容器也是需要禁止的，因此需要使用递归来解决。代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 改变一个容器及其子容器的enbale状态</span><br><span class="line"> * <span class="doctag">@param</span> container</span><br><span class="line"> * <span class="doctag">@param</span> enable　如果为false则Disable  容器</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">enableComponents</span><span class="params">(Container container, <span class="keyword">boolean</span> enable)</span> </span>&#123;</span><br><span class="line">    Component[] components = container.getComponents();</span><br><span class="line">    <span class="keyword">for</span> (Component component : components) &#123;</span><br><span class="line">        component.setEnabled(enable);</span><br><span class="line">        <span class="keyword">if</span> (component <span class="keyword">instanceof</span> Container) &#123;</span><br><span class="line">            enableComponents((Container)component, enable);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 改变一个容器及其子容器的enbale状态</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> container</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> enable　如果为false则Disable  容器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">enableComponents</span><span class="params">(Container container, <span class="keyword">boolean</span> enable)</span> </span>&#123;</span><br><span class="line">    Component[] components = container.getComponents();</span><br><span class="line">    <span class="keyword">for</span> (Component component : components) &#123;</span><br><span class="line">        component.setEnabled(enable);</span><br><span class="line">        <span class="keyword">if</span> (component <span class="keyword">instanceof</span> Container) &#123;</span><br><span class="line">            enableComponents((Container)component, enable);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>disable一个容器并不会临时移除事件</p>
 <p>javadoc中的描述是：</p>
@@ -735,79 +817,9 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/24/如何使JOptionPane.showMessageDialog 显示的信息可复制/" title="如何使JOptionPane.showMessageDialog 显示的信息可复制" itemprop="url">如何使JOptionPane.showMessageDialog 显示的信息可复制</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-23T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-24</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <blockquote>
-<p>如何使JOptionPane.showMessageDialog 显示的信息分行显示且可复制?</p>
-</blockquote>
-<h1 id="分析">分析</h1><ol>
-<li>使用<code>JTextArea</code>，并将其设为不可编辑，使用其克复制功能</li>
-<li>调用<code>setLineWrap</code>和<code>setWrapStyleWord</code>方法使<code>JTextArea</code>按单词计数分行显示</li>
-<li>调用<code>setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER)</code>使得水平滑动按钮消失。</li>
-</ol>
-<h1 id="代码">代码</h1> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/**</span><br><span class="line">     * 显示错误信息提示框，以便提示用户错误信息</span><br><span class="line">     * <span class="doctag">@param</span> errorMsg 错误信息</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showErrorDialog</span><span class="params">(String errorMsg)</span></span>&#123;</span><br><span class="line">         <span class="comment">// create a JTextArea</span></span><br><span class="line">          JTextArea textArea = <span class="keyword">new</span> JTextArea(<span class="number">6</span>, <span class="number">25</span>);</span><br><span class="line">          textArea.setText(errorMsg + ErrorMsg.SEE_ERROR_LOG );</span><br><span class="line">          textArea.setEditable(<span class="keyword">false</span>);</span><br><span class="line">          textArea.setWrapStyleWord(<span class="keyword">true</span>);</span><br><span class="line">          textArea.setLineWrap(<span class="keyword">true</span>);</span><br><span class="line">          textArea.setCaretPosition(<span class="number">0</span>);</span><br><span class="line">           </span><br><span class="line">          <span class="comment">// wrap a scrollpane around it</span></span><br><span class="line">          JScrollPane scrollPane = <span class="keyword">new</span> JScrollPane(textArea);</span><br><span class="line">          scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);</span><br><span class="line"><span class="comment">//      String msg = CommonUtils.divideIntoMultiLines(errorMsg + ErrorMsg.SEE_ERROR_LOG, 20)  ;</span></span><br><span class="line">          JOptionPane.showMessageDialog(<span class="keyword">null</span>,scrollPane ,  <span class="string">"错误信息"</span>, JOptionPane.ERROR_MESSAGE);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Java/">Java</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Java/">Java</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/24/如何使JOptionPane.showMessageDialog 显示的信息可复制/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/24/如何使JOptionPane.showMessageDialog 显示的信息可复制/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
   </nav>
 
 </div>
@@ -851,7 +863,7 @@
 		  
 		
 		  
-			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 		  
 		
 		  
@@ -904,6 +916,14 @@
 			
 		
 			
+				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
 			
 		
@@ -912,23 +932,7 @@
 			
 		
 			
-				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 			
 		
 			
@@ -940,11 +944,19 @@
 			
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
@@ -956,11 +968,11 @@
 			
 		
 			
-				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -1105,7 +1117,7 @@
 </aside>
 </div>
     </div>
-    <footer><div id="footer" >
+    <footer><div id="footer">
 	
 	<div class="line">
 		<span></span>
@@ -1114,11 +1126,11 @@
 	
 	
 	<section class="info">
-		<p> Hello ,I&#39;m Star Qiu in SIAT. <br/>
+		<p> Hello ,I&#39;m Star Qiu in SIAT. <br>
 			This is my blog,believe it or not.</p>
 	</section>
 	 
-	<div class="social-font" class="clearfix">
+	<div class="social-font">
 		
 		<a href="http://weibo.com/1665530845## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
 		
@@ -1226,8 +1238,7 @@ MathJax.Hub.Config({
   tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
 }); 
 </script>
-<script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <!-- Analytics Begin -->
@@ -1246,7 +1257,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

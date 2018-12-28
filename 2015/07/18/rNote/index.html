@@ -1,8 +1,8 @@
 
  <!DOCTYPE HTML>
 <html lang="zh-CN">
-<head>
-  <meta name="baidu-site-verification" content="WxxBxzU1zW" />
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta name="baidu-site-verification" content="WxxBxzU1zW">
   <meta charset="UTF-8">
   
     <title>R笔记 | starqiu&#39;s blog</title>
@@ -13,11 +13,13 @@
 
     
     <meta name="description" content="使用R时遇到的问题及解决方案">
+<meta name="keywords" content="R">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R笔记">
 <meta property="og:url" content="https://github.com/2015/07/18/rNote/index.html">
-<meta property="og:site_name" content="starqiu's blog">
+<meta property="og:site_name" content="starqiu&#39;s blog">
 <meta property="og:description" content="使用R时遇到的问题及解决方案">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2015-07-29T02:42:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="R笔记">
@@ -33,16 +35,16 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
   <body>
     <header>
       
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"/></a>
+				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"></a>
 			</div>
 			
 			<div id="textlogo">
@@ -75,16 +77,16 @@
  					
 						<form class="search" action="http://search.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= 7129304121443985000 ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						<input name="s" type="hidden" value="7129304121443985000"><input type="text" name="q" size="30" placeholder="搜索"><br>
 						</form>
 					
 					</li>
 				</ul>
-			</nav>			
+			</ul></nav>			
 </div>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
@@ -96,7 +98,7 @@
        
 		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
 		
-  <p class="article-time">
+  </p><p class="article-time">
     <time datetime="2015-07-17T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-18</time>
     
   </p>
@@ -130,7 +132,7 @@
 <li><p><strong>在函数内部，范围不同。</strong>‘=’只能在函数内使用，‘&lt;-’在函数外依然能够使用</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">median(x = <span class="number">1</span>:<span class="number">10</span>)</span><br><span class="line">x </span><br><span class="line"><span class="comment">## Error: object 'x' not found</span></span><br></pre></td></tr></table></figure>
 <p>这种情况下，x的作用域在函数内部而不是用户的工作空间</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">median</span>(<span class="tag">x</span> &lt;<span class="tag">-</span> 1<span class="pseudo">:10)</span></span><br><span class="line"><span class="tag">x</span> </span><br><span class="line">## <span class="attr_selector">[1]</span> 1 2 3 4 5 6 7 8 9 10</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">median(x &lt;- 1:10)</span><br><span class="line">x </span><br><span class="line">## [1] 1 2 3 4 5 6 7 8 9 10</span><br></pre></td></tr></table></figure>
 <p>这种情况下，x的作用域在用户的工作空间，x在函数外依然能够使用</p>
 </li>
 <li><strong>‘&lt;-‘ 的运算优先级比‘=’高</strong><br><code>x &lt;- y =5</code>  是错的<br><code>x &lt;- (y=5)</code> 及 <code>x = y &lt;- 5</code> 是对的</li>
@@ -153,7 +155,7 @@
 </li>
 <li><font color="red">R中如何查找函数源码？（寻找.R 文件）</font>
 
-<p>使用搜索引擎搜 site:<a href="https://svn.r-project.org/R/trunk/src" target="_blank" rel="external">https://svn.r-project.org/R/trunk/src</a> <code>functionname</code><br>参考：<a href="http://stackoverflow.com/questions/1439348/how-to-examine-the-code-of-a-function-in-r-thats-object-class-sensitive#answer-1444512" target="_blank" rel="external">http://stackoverflow.com/questions/1439348/how-to-examine-the-code-of-a-function-in-r-thats-object-class-sensitive#answer-1444512</a></p>
+<p>使用搜索引擎搜 site:<a href="https://svn.r-project.org/R/trunk/src" target="_blank" rel="noopener">https://svn.r-project.org/R/trunk/src</a> <code>functionname</code><br>参考：<a href="http://stackoverflow.com/questions/1439348/how-to-examine-the-code-of-a-function-in-r-thats-object-class-sensitive#answer-1444512" target="_blank" rel="noopener">http://stackoverflow.com/questions/1439348/how-to-examine-the-code-of-a-function-in-r-thats-object-class-sensitive#answer-1444512</a></p>
 </li>
 </ol>
   
@@ -191,9 +193,9 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
+ <div class="prev">
  <a href="/2015/07/19/swingNote/" title="Swing 笔记">
-  <strong>上一篇：</strong><br/>
+  <strong>上一篇：</strong><br>
   <span>
   Swing 笔记</span>
 </a>
@@ -201,8 +203,8 @@
 
 
 <div class="next">
-<a href="/2015/07/17/rCluster/"  title="R中的聚类方法">
- <strong>下一篇：</strong><br/> 
+<a href="/2015/07/17/rCluster/" title="R中的聚类方法">
+ <strong>下一篇：</strong><br> 
  <span>R中的聚类方法
 </span>
 </a>
@@ -264,7 +266,7 @@
 		  
 		
 		  
-			<li><a href="/categories/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 		  
 		
 		  
@@ -317,6 +319,14 @@
 			
 		
 			
+				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
 			
 		
@@ -325,23 +335,7 @@
 			
 		
 			
-				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 			
 		
 			
@@ -353,11 +347,19 @@
 			
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
@@ -369,11 +371,11 @@
 			
 		
 			
-				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -518,7 +520,7 @@
 </aside>
 </div>
     </div>
-    <footer><div id="footer" >
+    <footer><div id="footer">
 	
 	<div class="line">
 		<span></span>
@@ -527,11 +529,11 @@
 	
 	
 	<section class="info">
-		<p> Hello ,I&#39;m Star Qiu in SIAT. <br/>
+		<p> Hello ,I&#39;m Star Qiu in SIAT. <br>
 			This is my blog,believe it or not.</p>
 	</section>
 	 
-	<div class="social-font" class="clearfix">
+	<div class="social-font">
 		
 		<a href="http://weibo.com/1665530845## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
 		
@@ -716,8 +718,7 @@ MathJax.Hub.Config({
   tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
 }); 
 </script>
-<script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <!-- Analytics Begin -->
@@ -736,7 +737,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
