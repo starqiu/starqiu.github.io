@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/"/>
-  <updated>2018-12-28T07:02:41.216Z</updated>
+  <updated>2018-12-28T07:26:54.281Z</updated>
   <id>https://github.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://github.com/2018/12/28/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/"/>
     <id>https://github.com/2018/12/28/hexo搭建博客问题汇总/hexo搭建博客问题汇总/</id>
     <published>2018-12-27T16:00:00.000Z</published>
-    <updated>2018-12-28T07:02:41.216Z</updated>
+    <updated>2018-12-28T07:26:54.281Z</updated>
     
-    <content type="html"><![CDATA[<ol><li><font color="red"> YML文件key重复问题</font></li></ol><p>起因：一年前搭建了一个博客，后来要在公司的电脑上写博客，在这个过程中hexo和nodejs都已经升级了，使用最新版的nodejs和hexo重新执行，出错，，错误信息如下：</p><blockquote><p>ERROR Theme config load failed.<br>ERROR Process failed: _config.yml<br>YAMLException: duplicated mapping key at line 63, column -1167:<br>​    author:<br>   ^</p></blockquote><p>之前只关注根目录下的<code>_config.yml</code>, 没有找到重复的author, 后来全局搜索了一下，发现在themes/jacman下也有一个<code>_config.yml</code>, 确保两个文件没有重复的key即可。</p><ol start="2"><li><font color="red">highlight.js：  Cannot set property ‘lastIndex’  of undefined</font></li></ol><p>修改站点配置文件的<code>_config.yml</code>，把 <code>auto_detect</code> 设置为<code>false</code> 即可。</p><ol start="2"><li></li></ol>]]></content>
+    <content type="html"><![CDATA[<ol><li><font color="red"> YML文件key重复问题</font></li></ol><p>起因：一年前搭建了一个博客，后来要在公司的电脑上写博客，在这个过程中hexo和nodejs都已经升级了，使用最新版的nodejs和hexo重新执行，出错，，错误信息如下：</p><blockquote><p>ERROR Theme config load failed.<br>ERROR Process failed: _config.yml<br>YAMLException: duplicated mapping key at line 63, column -1167:<br>​    author:<br>   ^</p></blockquote><p>之前只关注根目录下的<code>_config.yml</code>, 没有找到重复的author, 后来全局搜索了一下，发现在themes/jacman下也有一个<code>_config.yml</code>, 确保两个文件没有重复的key即可。</p><ol start="2"><li><font color="red">highlight.js：  Cannot set property ‘lastIndex’  of undefined</font></li></ol><p>修改站点配置文件的<code>_config.yml</code>，把 <code>auto_detect</code> 设置为<code>false</code> 即可。</p><ol start="2"><li><font color="red">git: https证书认证错误</font></li></ol><p>错误信息如下：</p><blockquote><p> git clone <a href="https://github.com/starqiu/PythonLearn.git">https://github.com/starqiu/PythonLearn.git</a><br>Cloning into ‘PythonLearn’…<br>fatal: unable to access ‘<a href="https://github.com/starqiu/PythonLearn.git/&#39;">https://github.com/starqiu/PythonLearn.git/&#39;</a>: SSL certificate problem: unable to get local issuer certificate</p></blockquote><p>这里其实是电脑没有安装对应的ca证书，所以无法通过https连接到git服务器。</p><p>这里通过设置git的ssl验证跳过了这个错误(win下):</p><p><code>git config --global http.sslVerify false</code></p>]]></content>
     
     <summary type="html">
     
@@ -341,28 +341,6 @@
   </entry>
   
   <entry>
-    <title>给定数组a[N]构造数组b [N]——腾讯笔试</title>
-    <link href="https://github.com/2015/08/04/%E7%BB%99%E5%AE%9A%E6%95%B0%E7%BB%84a%E6%9E%84%E9%80%A0%E6%95%B0%E7%BB%84b/"/>
-    <id>https://github.com/2015/08/04/给定数组a构造数组b/</id>
-    <published>2015-08-03T16:00:00.000Z</published>
-    <updated>2015-08-06T03:25:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>给定一个数组a[N]，我们希望构造数组b [N]，其中b[j]=a[0]*a[1]…a[N-1] / a[j]，在构造过程中，不允许使用除法：要求O（1）空间复杂度和O（n）的时间复杂度；除遍历计数器与a[N] b[N]外，不可使用新的变量（包括栈临时变量、堆空间和全局静态变量等）</p></blockquote><h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><p>不能使用除法，那就不能直接全部做乘法再做除法。<br><code>b[j]=a[0]*a[1]…a[N-1] / a[j]</code>，其实就是a中除去第j个数其他数相乘。<br>既然不能使用除法，就只能将整个式子分成两部分：<code>a[0]*a[1]*...*a[j-1]</code> 和 <code>a[j+1]*a[j+2]*...*a[N-1]</code></p><ol><li><p>首先构造第一部分<br>令b[0] = 1 , <code>b[j] = b[j-1]*a[j-1]</code><br>b[1] = a[0]<br>b[2] = a[0]*a[1]<br>…<br>b[j] = a[0]*a[1]*…*a[j-1]<br>…<br>b[n-1] = a[0]*a[1]*…*a[n-2]</p></li><li><p>然后开始构造第二部分<br>因为初始都是从1开始构造，所以这次我们需要从后往后前构造。<br>令b[0] = 1 , <code>b[j] = b[0]*b[j]</code> ，每次前进重新计算b[0]的值，作为临时变量 : <code>b[0]= b[0]*a[j]</code></p><p>b[n-1] = a[0]*a[1]*…*a[n-2]* 1 , b[0] = a[n-1]<br>b[n-2] = a[0]*a[1]*…*a[n-3]* a[n-1] , b[0] = a[n-1]*a[n-2]<br>b[n-3] = a[0]*a[1]*…*a[n-4]*a[n-2]* a[n-1] , b[0] = a[n-1]*a[n-2]*a[n-3]<br>…<br>b[j] = a[0]*a[1]*…*a[j-1].*a[j+1]* a[j+2]*..*a[n-2]* a[n-1] , b[0] = a[n-1]*a[n-2]*..*a[j]<br>…<br>b[1] = a[0]*a[2]*…*a[n-3]*a[n-2]* a[n-1], b[0] = a[n-1]*a[n-2]*..*a[1]</p><p>此部分，每当计算b[j]时，<code>b[0] = a[n-1]*a[n-2]*...a[j]</code> ,正好是下一次需要计算的右边部分。<br>此时，所有的b[j] 都满足 <code>b[j]=a[0]*a[1]…a[N-1] / a[j]</code></p><a id="more"></a><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] translate(<span class="keyword">int</span> a[])</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> len = a.length;</span><br><span class="line">    <span class="keyword">int</span>[] b = <span class="keyword">new</span> b[len];</span><br><span class="line">    b[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= len-<span class="number">1</span>; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        b[j] = b[j-<span class="number">1</span>]*a[j-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = len-<span class="number">1</span>; j &gt;= <span class="number">1</span>; j--)</span><br><span class="line">    &#123;</span><br><span class="line">        b[j] *= b[<span class="number">0</span>];</span><br><span class="line">        b[<span class="number">0</span>] *= a[j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1]: <a href="http://blog.csdn.net/wumuzi520/article/details/7841280" target="_blank" rel="noopener">给定数组a[N]构造数组b [N]——腾讯笔试</a></p>]]></content>
-    
-    <summary type="html">
-    
-      给定一个数组a[N]，我们希望构造数组b [N]，其中b[j]=a[0]*a[1]…a[N-1] / a[j]，在构造过程中，不允许使用除法：要求O（1）空间复杂度和O（n）的时间复杂度；除遍历计数器与a[N] b[N]外，不可使用新的变量（包括栈临时变量、堆空间和全局静态变量等）
-    
-    </summary>
-    
-      <category term="算法" scheme="https://github.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://github.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
     <title>顺时针操作矩阵</title>
     <link href="https://github.com/2015/08/04/%E9%A1%BA%E6%97%B6%E9%92%88%E6%93%8D%E4%BD%9C%E7%9F%A9%E9%98%B5/"/>
     <id>https://github.com/2015/08/04/顺时针操作矩阵/</id>
@@ -374,6 +352,28 @@
     <summary type="html">
     
       给你一个大于0的整数n，请输出一个n行n列的数据表
+    
+    </summary>
+    
+      <category term="算法" scheme="https://github.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://github.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>给定数组a[N]构造数组b [N]——腾讯笔试</title>
+    <link href="https://github.com/2015/08/04/%E7%BB%99%E5%AE%9A%E6%95%B0%E7%BB%84a%E6%9E%84%E9%80%A0%E6%95%B0%E7%BB%84b/"/>
+    <id>https://github.com/2015/08/04/给定数组a构造数组b/</id>
+    <published>2015-08-03T16:00:00.000Z</published>
+    <updated>2015-08-06T03:25:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>给定一个数组a[N]，我们希望构造数组b [N]，其中b[j]=a[0]*a[1]…a[N-1] / a[j]，在构造过程中，不允许使用除法：要求O（1）空间复杂度和O（n）的时间复杂度；除遍历计数器与a[N] b[N]外，不可使用新的变量（包括栈临时变量、堆空间和全局静态变量等）</p></blockquote><h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><p>不能使用除法，那就不能直接全部做乘法再做除法。<br><code>b[j]=a[0]*a[1]…a[N-1] / a[j]</code>，其实就是a中除去第j个数其他数相乘。<br>既然不能使用除法，就只能将整个式子分成两部分：<code>a[0]*a[1]*...*a[j-1]</code> 和 <code>a[j+1]*a[j+2]*...*a[N-1]</code></p><ol><li><p>首先构造第一部分<br>令b[0] = 1 , <code>b[j] = b[j-1]*a[j-1]</code><br>b[1] = a[0]<br>b[2] = a[0]*a[1]<br>…<br>b[j] = a[0]*a[1]*…*a[j-1]<br>…<br>b[n-1] = a[0]*a[1]*…*a[n-2]</p></li><li><p>然后开始构造第二部分<br>因为初始都是从1开始构造，所以这次我们需要从后往后前构造。<br>令b[0] = 1 , <code>b[j] = b[0]*b[j]</code> ，每次前进重新计算b[0]的值，作为临时变量 : <code>b[0]= b[0]*a[j]</code></p><p>b[n-1] = a[0]*a[1]*…*a[n-2]* 1 , b[0] = a[n-1]<br>b[n-2] = a[0]*a[1]*…*a[n-3]* a[n-1] , b[0] = a[n-1]*a[n-2]<br>b[n-3] = a[0]*a[1]*…*a[n-4]*a[n-2]* a[n-1] , b[0] = a[n-1]*a[n-2]*a[n-3]<br>…<br>b[j] = a[0]*a[1]*…*a[j-1].*a[j+1]* a[j+2]*..*a[n-2]* a[n-1] , b[0] = a[n-1]*a[n-2]*..*a[j]<br>…<br>b[1] = a[0]*a[2]*…*a[n-3]*a[n-2]* a[n-1], b[0] = a[n-1]*a[n-2]*..*a[1]</p><p>此部分，每当计算b[j]时，<code>b[0] = a[n-1]*a[n-2]*...a[j]</code> ,正好是下一次需要计算的右边部分。<br>此时，所有的b[j] 都满足 <code>b[j]=a[0]*a[1]…a[N-1] / a[j]</code></p><a id="more"></a><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] translate(<span class="keyword">int</span> a[])</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> len = a.length;</span><br><span class="line">    <span class="keyword">int</span>[] b = <span class="keyword">new</span> b[len];</span><br><span class="line">    b[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= len-<span class="number">1</span>; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        b[j] = b[j-<span class="number">1</span>]*a[j-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = len-<span class="number">1</span>; j &gt;= <span class="number">1</span>; j--)</span><br><span class="line">    &#123;</span><br><span class="line">        b[j] *= b[<span class="number">0</span>];</span><br><span class="line">        b[<span class="number">0</span>] *= a[j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1]: <a href="http://blog.csdn.net/wumuzi520/article/details/7841280" target="_blank" rel="noopener">给定数组a[N]构造数组b [N]——腾讯笔试</a></p>]]></content>
+    
+    <summary type="html">
+    
+      给定一个数组a[N]，我们希望构造数组b [N]，其中b[j]=a[0]*a[1]…a[N-1] / a[j]，在构造过程中，不允许使用除法：要求O（1）空间复杂度和O（n）的时间复杂度；除遍历计数器与a[N] b[N]外，不可使用新的变量（包括栈临时变量、堆空间和全局静态变量等）
     
     </summary>
     

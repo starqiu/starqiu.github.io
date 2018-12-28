@@ -122,8 +122,17 @@
 </ol>
 <p>修改站点配置文件的<code>_config.yml</code>，把 <code>auto_detect</code> 设置为<code>false</code> 即可。</p>
 <ol start="2">
-<li></li>
+<li><font color="red">git: https证书认证错误</font>
+
+</li>
 </ol>
+<p>错误信息如下：</p>
+<blockquote>
+<p> git clone <a href="https://github.com/starqiu/PythonLearn.git">https://github.com/starqiu/PythonLearn.git</a><br>Cloning into ‘PythonLearn’…<br>fatal: unable to access ‘<a href="https://github.com/starqiu/PythonLearn.git/&#39;">https://github.com/starqiu/PythonLearn.git/&#39;</a>: SSL certificate problem: unable to get local issuer certificate</p>
+</blockquote>
+<p>这里其实是电脑没有安装对应的ca证书，所以无法通过https连接到git服务器。</p>
+<p>这里通过设置git的ssl验证跳过了这个错误(win下):</p>
+<p><code>git config --global http.sslVerify false</code></p>
 
         
         
@@ -908,11 +917,11 @@
 			
 		
 			
-				<li><a href="/tags/Logic/" title="Logic">Logic<sup>3</sup></a></li>
+				<li><a href="/tags/数据挖掘/" title="数据挖掘">数据挖掘<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/数据挖掘/" title="数据挖掘">数据挖掘<sup>3</sup></a></li>
+				<li><a href="/tags/Logic/" title="Logic">Logic<sup>3</sup></a></li>
 			
 		
 			
@@ -924,11 +933,11 @@
 			
 		
 			
-				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
+				<li><a href="/tags/Swing/" title="Swing">Swing<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Swing/" title="Swing">Swing<sup>2</sup></a></li>
+				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
 			
 		
 			
@@ -936,7 +945,23 @@
 			
 		
 			
-				<li><a href="/tags/svn/" title="svn">svn<sup>1</sup></a></li>
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
 			
 		
 			
@@ -948,23 +973,7 @@
 			
 		
 			
-				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+				<li><a href="/tags/svn/" title="svn">svn<sup>1</sup></a></li>
 			
 		
 			
