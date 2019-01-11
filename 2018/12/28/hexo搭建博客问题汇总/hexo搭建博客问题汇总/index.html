@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="starqiu&#39;s blog">
 <meta property="og:description" content="记录搭建博客本身遇到的问题，方便后续快速解决问题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-28T07:49:49.707Z">
+<meta property="og:updated_time" content="2019-01-11T03:44:24.884Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo搭建博客问题汇总">
 <meta name="twitter:description" content="记录搭建博客本身遇到的问题，方便后续快速解决问题">
@@ -140,6 +140,18 @@
 <p>这里其实是电脑没有安装对应的ca证书，所以无法通过https连接到git服务器。</p>
 <p>这里通过设置git的ssl验证跳过了这个错误(win下):</p>
 <p><code>git config --global http.sslVerify false</code></p>
+<ol start="4">
+<li><font color="red">git登录提示用户名密码错误</font>
+
+</li>
+</ol>
+<blockquote>
+<p>On branch master<br>nothing to commit, working tree clean<br>Logon failed, use ctrl+c to cancel basic credential prompt.<br>bash: /dev/tty: No such device or address</p>
+</blockquote>
+<p>首先 <code>bash: /dev/tty: No such device or address</code>问题是因为使用了Cywin或是MinGW等命令行工具导致后面命令行与用户的交互界面显示不出来。（即在命令行输入用户名和密码）。解决方法是使用Windows自带的命令行工具（CMD或是PowerShell），此处我采用的是PowerShell<br>换用PowerShell执行后，弹出的对话框输入正确用户名密码后仍然出错，但会在命令行中提示输入用户名密码，此时仍然出错，但已经提示新的问题了：<code>remote: You must verify your email address</code>,原来是邮件没有校验。登录github后访问<code>https://github.com/settings/emails</code>校验邮箱，问题解决，使用原来的方式提交也没有问题了。</p>
+<blockquote>
+<p>Username for ‘<a href="https://github.com&#39;">https://github.com&#39;</a>: XXX<br>Password for ‘<a href="https://XXX@github.com&#39;">https://XXX@github.com&#39;</a>:<br>remote: You must verify your email address.<br>remote: See <a href="https://github.com/settings/emails">https://github.com/settings/emails</a>.</p>
+</blockquote>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -301,11 +313,11 @@
 			
 		
 			
-				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
+				<li><a href="/tags/Swing/" title="Swing">Swing<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Swing/" title="Swing">Swing<sup>2</sup></a></li>
+				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
 			
 		
 			
@@ -313,7 +325,7 @@
 			
 		
 			
-				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>1</sup></a></li>
 			
 		
 			
@@ -325,11 +337,7 @@
 			
 		
 			
-				<li><a href="/tags/svn/" title="svn">svn<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
 			
 		
 			
@@ -337,11 +345,15 @@
 			
 		
 			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>1</sup></a></li>
+				<li><a href="/tags/svn/" title="svn">svn<sup>1</sup></a></li>
 			
 		
 			
