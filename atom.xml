@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/"/>
-  <updated>2018-12-28T07:26:54.281Z</updated>
+  <updated>2018-12-28T07:49:49.707Z</updated>
   <id>https://github.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://github.com/2018/12/28/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/"/>
     <id>https://github.com/2018/12/28/hexo搭建博客问题汇总/hexo搭建博客问题汇总/</id>
     <published>2018-12-27T16:00:00.000Z</published>
-    <updated>2018-12-28T07:26:54.281Z</updated>
+    <updated>2018-12-28T07:49:49.707Z</updated>
     
-    <content type="html"><![CDATA[<ol><li><font color="red"> YML文件key重复问题</font></li></ol><p>起因：一年前搭建了一个博客，后来要在公司的电脑上写博客，在这个过程中hexo和nodejs都已经升级了，使用最新版的nodejs和hexo重新执行，出错，，错误信息如下：</p><blockquote><p>ERROR Theme config load failed.<br>ERROR Process failed: _config.yml<br>YAMLException: duplicated mapping key at line 63, column -1167:<br>​    author:<br>   ^</p></blockquote><p>之前只关注根目录下的<code>_config.yml</code>, 没有找到重复的author, 后来全局搜索了一下，发现在themes/jacman下也有一个<code>_config.yml</code>, 确保两个文件没有重复的key即可。</p><ol start="2"><li><font color="red">highlight.js：  Cannot set property ‘lastIndex’  of undefined</font></li></ol><p>修改站点配置文件的<code>_config.yml</code>，把 <code>auto_detect</code> 设置为<code>false</code> 即可。</p><ol start="2"><li><font color="red">git: https证书认证错误</font></li></ol><p>错误信息如下：</p><blockquote><p> git clone <a href="https://github.com/starqiu/PythonLearn.git">https://github.com/starqiu/PythonLearn.git</a><br>Cloning into ‘PythonLearn’…<br>fatal: unable to access ‘<a href="https://github.com/starqiu/PythonLearn.git/&#39;">https://github.com/starqiu/PythonLearn.git/&#39;</a>: SSL certificate problem: unable to get local issuer certificate</p></blockquote><p>这里其实是电脑没有安装对应的ca证书，所以无法通过https连接到git服务器。</p><p>这里通过设置git的ssl验证跳过了这个错误(win下):</p><p><code>git config --global http.sslVerify false</code></p>]]></content>
+    <content type="html"><![CDATA[<ol><li><font color="red"> YML文件key重复问题</font></li></ol><p>起因：一年前搭建了一个博客，后来要在公司的电脑上写博客，在这个过程中hexo和nodejs都已经升级了，使用最新版的nodejs和hexo重新执行，出错，，错误信息如下：</p><blockquote><p>ERROR Theme config load failed.<br>ERROR Process failed: _config.yml<br>YAMLException: duplicated mapping key at line 63, column -1167:<br>​    author:<br>   ^</p></blockquote><p>之前只关注根目录下的<code>_config.yml</code>, 没有找到重复的author, 后来全局搜索了一下，发现在themes/jacman下也有一个<code>_config.yml</code>, 确保两个文件没有重复的key即可。</p><ol start="2"><li><font color="red">highlight.js：  Cannot set property ‘lastIndex’  of undefined</font></li></ol><p>修改站点配置文件的<code>_config.yml</code>，把 <code>auto_detect</code> 设置为<code>false</code> 即可。</p><ol start="3"><li><font color="red">git: https证书认证错误</font></li></ol><p>错误信息如下：</p><blockquote><p> git clone <a href="https://github.com/starqiu/PythonLearn.git">https://github.com/starqiu/PythonLearn.git</a><br>Cloning into ‘PythonLearn’…<br>fatal: unable to access ‘<a href="https://github.com/starqiu/PythonLearn.git/&#39;">https://github.com/starqiu/PythonLearn.git/&#39;</a>: SSL certificate problem: unable to get local issuer certificate</p></blockquote><p>这里其实是电脑没有安装对应的ca证书，所以无法通过https连接到git服务器。</p><p>这里通过设置git的ssl验证跳过了这个错误(win下):</p><p><code>git config --global http.sslVerify false</code></p>]]></content>
     
     <summary type="html">
     
