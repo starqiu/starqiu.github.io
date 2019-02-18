@@ -1,0 +1,1095 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta name="baidu-site-verification" content="WxxBxzU1zW">
+  <meta charset="UTF-8">
+  
+    <title>使用SparkSql分析表 | starqiu&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="starqiu">
+    
+
+    
+    <meta name="description" content="使用SparkSql进行表的分析与统计">
+<meta name="keywords" content="大数据,统计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用SparkSql分析表">
+<meta property="og:url" content="https://github.com/2019/02/18/使用SparkSql分析表/使用SparkSql分析表/index.html">
+<meta property="og:site_name" content="starqiu&#39;s blog">
+<meta property="og:description" content="使用SparkSql进行表的分析与统计">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/2019/02/18/使用SparkSql分析表/使用SparkSql分析表/DatabricksUnifiedAnalyticsPlatform.png">
+<meta property="og:updated_time" content="2019-02-18T11:44:15.223Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用SparkSql分析表">
+<meta name="twitter:description" content="使用SparkSql进行表的分析与统计">
+<meta name="twitter:image" content="https://github.com/2019/02/18/使用SparkSql分析表/使用SparkSql分析表/DatabricksUnifiedAnalyticsPlatform.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="starqiu&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="starqiu&#39;s blog" title="starqiu&#39;s blog"></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="starqiu&#39;s blog">starqiu&#39;s blog</a></h1>
+				<h2 class="blog-motto">知行合一</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">全部文章</a></li>
+					
+						<li><a href="/categories/Java">Java</a></li>
+					
+						<li><a href="/categories/Java8">Java8</a></li>
+					
+						<li><a href="/categories/R">R语言</a></li>
+					
+						<li><a href="/categories/数据挖掘">数据挖掘</a></li>
+					
+						<li><a href="/categories/算法">算法</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://search.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value="7129304121443985000"><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</ul></nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/02/18/使用SparkSql分析表/使用SparkSql分析表/" title="使用SparkSql分析表" itemprop="url">使用SparkSql分析表</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  </p><p class="article-time">
+    <time datetime="2019-02-17T16:00:00.000Z" itemprop="datePublished"> 发表于 2019-02-18</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#准备数据"><span class="toc-number">2.</span> <span class="toc-text">准备数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#表的分析与统计"><span class="toc-number">3.</span> <span class="toc-text">表的分析与统计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#表统计"><span class="toc-number">3.1.</span> <span class="toc-text">表统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列统计"><span class="toc-number">3.2.</span> <span class="toc-text">列统计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#附录"><span class="toc-number">5.</span> <span class="toc-text">附录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#鸢尾花数据说明"><span class="toc-number">5.1.</span> <span class="toc-text">鸢尾花数据说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#databricks-Runtime"><span class="toc-number">5.2.</span> <span class="toc-text">databricks Runtime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#databricks-Runtime版本与Spark版本的对应关系"><span class="toc-number">5.3.</span> <span class="toc-text">databricks Runtime版本与Spark版本的对应关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>​    我们的数据挖掘平台对数据统计有比较迫切的需求，而Spark本身对数据统计已经做了一些工作，希望梳理一下Spark已经支持的数据统计功能，后期再进行扩展。</p>
+<h1 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h1><p>在参考文献6中下载鸢尾花数据或是<a href="Iris.csv">从此处下载</a>，一般为iris.csv格式，带title，<strong>需要把title删除</strong>。</p>
+<p>数据格式如下：</p>
+<table>
+<thead>
+<tr>
+<th>SepalLength</th>
+<th>SepalWidth</th>
+<th>PetalLength</th>
+<th>PetalWidth</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5.1</td>
+<td>3.5</td>
+<td>1.4</td>
+<td>0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td>4.9</td>
+<td>3</td>
+<td>1.4</td>
+<td>0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td>4.7</td>
+<td>3.2</td>
+<td>1.3</td>
+<td>0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td>4.6</td>
+<td>3.1</td>
+<td>1.5</td>
+<td>0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3.6</td>
+<td>1.4</td>
+<td>0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td>3.9</td>
+<td>1.7</td>
+<td>0.4</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td>4.6</td>
+<td>3.4</td>
+<td>1.4</td>
+<td>0.3</td>
+<td>Iris-setosa</td>
+</tr>
+</tbody>
+</table>
+<p>数据说明见附录中的<code>鸢尾花数据</code>。</p>
+<p>我们先把数据放到Spark sql数仓中</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> iris ( SepalLength <span class="built_in">FLOAT</span> , SepalWidth <span class="built_in">FLOAT</span> </span><br><span class="line">  , PetalLength <span class="built_in">FLOAT</span> , PetalWidth <span class="built_in">FLOAT</span> </span><br><span class="line">  , Species <span class="built_in">VARCHAR</span>(<span class="number">100</span>) </span><br><span class="line">)</span><br><span class="line"><span class="keyword">ROW</span> <span class="keyword">FORMAT</span> <span class="keyword">DELIMITED</span></span><br><span class="line"><span class="keyword">FIELDS</span> <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">','</span></span><br><span class="line"><span class="keyword">STORED</span> <span class="keyword">AS</span> TEXTFILE</span><br><span class="line">LOCATION <span class="string">'/mnt/disk1/starqiu/iris'</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="表的分析与统计"><a href="#表的分析与统计" class="headerlink" title="表的分析与统计"></a>表的分析与统计</h1><p>Analyze Table语法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ANALYZE</span> <span class="keyword">TABLE</span> [db_name.]table_name <span class="keyword">COMPUTE</span> <span class="keyword">STATISTICS</span> [analyze_option]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Collect statistics about the table that can be used by the query optimizer to find a better plan.</p>
+</blockquote>
+<p>可以看到Spark表的分析可以<strong>为spark sql做查询优化</strong>，以便得到更好的查询性能。Spark Sql默认使用CBO（基于代价的优化），这在多表join查询时尤其有用。</p>
+<p>此处的<code>analyze_option</code>参数主要分为两类，表统计和列统计。</p>
+<h2 id="表统计"><a href="#表统计" class="headerlink" title="表统计"></a>表统计</h2><p>表的基本统计信息一般包括记录总数和所占空间。</p>
+<p>Table statistics用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ANALYZE</span> <span class="keyword">TABLE</span> [db_name.]table_name <span class="keyword">COMPUTE</span> <span class="keyword">STATISTICS</span> [NOSCAN]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Collect only basic statistics for the table (number of rows, size in bytes).</p>
+<p><strong>NOSCAN</strong><br>Collect only statistics that do not require scanning the whole table (that is, size in bytes).</p>
+</blockquote>
+<p>运行命令<code>ANALYZE TABLE iris COMPUTE STATISTICS;</code>可以得到表的记录总数和所占空间大小。如果不想全表扫描，加上<code>NOSCAN</code>关键字，不会全表扫描，但只能得到所占空间大小。</p>
+<p>表统计信息的描述命令语法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DESCRIBE</span> [<span class="keyword">EXTENDED</span>] [db_name.]table_name</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Return the metadata of an existing table (column names, data types, and comments). If the table does not exist, an exception is thrown.</p>
+<p><strong>EXTENDED</strong><br>Display detailed information about the table, including parent database, table type, storage information, and properties.<br>Describe Partition</p>
+</blockquote>
+<p>运行<code>DESCRIBE EXTENDED iris;</code>，结果如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spark-sql&gt;</span> DESCRIBE EXTENDED iris;</span><br><span class="line">SepalLength	float	NULL</span><br><span class="line">SepalWidth	float	NULL</span><br><span class="line">PetalLength	float	NULL</span><br><span class="line">PetalWidth	float	NULL</span><br><span class="line">Species	string	NULL</span><br><span class="line">		</span><br><span class="line"><span class="meta">#</span> Detailed Table Information	CatalogTable(</span><br><span class="line">	Table: `default`.`iris`</span><br><span class="line">	Owner: root</span><br><span class="line">	Created: Sat Feb 16 17:24:32 CST 2019</span><br><span class="line">	Last Access: Thu Jan 01 08:00:00 CST 1970</span><br><span class="line">	Type: EXTERNAL</span><br><span class="line">	Schema: [StructField(SepalLength,FloatType,true), StructField(SepalWidth,FloatType,true), StructField(PetalLength,FloatType,true), StructField(PetalWidth,FloatType,true), StructField(Species,StringType,true)]</span><br><span class="line">	Provider: hive</span><br><span class="line">	Properties: [rawDataSize=-1, numFiles=0, transient_lastDdlTime=1550311815, totalSize=0, COLUMN_STATS_ACCURATE=false, numRows=-1]</span><br><span class="line">	Statistics: sizeInBytes=3808, rowCount=150, isBroadcastable=false</span><br><span class="line">	Storage(Location: hdfs://data126:8020/mnt/disk1/starqiu/iris, InputFormat: org.apache.hadoop.mapred.TextInputFormat, OutputFormat: org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat, Serde: org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe, Properties: [field.delim=,, serialization.format=,])</span><br><span class="line">	Partition Provider: Catalog)	</span><br><span class="line">Time taken: 0.112 seconds, Fetched 7 row(s)</span><br></pre></td></tr></table></figure>
+<p>通过<code>Statistics:</code>可以看到表的记录总数是150条，所占空间3808B，约4KB。</p>
+<h2 id="列统计"><a href="#列统计" class="headerlink" title="列统计"></a>列统计</h2><p>Column statistics用法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ANALYZE</span> <span class="keyword">TABLE</span> [db_name.]table_name <span class="keyword">COMPUTE</span> <span class="keyword">STATISTICS</span> <span class="keyword">FOR</span> <span class="keyword">COLUMNS</span> col1 [, col2, ...]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Collect column statistics for the specified columns in addition to table statistics.</p>
+<p>Tip</p>
+<p>Use this command whenever possible because it collects more statistics so the optimizer can find better plans. Make sure to collect statistics for all columns used by the query.</p>
+</blockquote>
+<p>列统计的描述命令语法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DESCRIBE</span> [<span class="keyword">EXTENDED</span>][db_name.]table_name column_name</span><br><span class="line"></span><br><span class="line"><span class="keyword">New</span> <span class="keyword">in</span> <span class="keyword">version</span> runtime<span class="number">-3.3</span>.</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>EXTENDED<br>Display detailed information about the specified columns, including the column statistics collected by the command ANALYZE TABLE table_name COMPUTE STATISTICS FOR COLUMNS column_name [column_name, …].</p>
+</blockquote>
+<p>需要注意的是这个功能在runtime-3.3版本才有的特性，而runtime-3.3封装的是Spark 2.2，会详见文末附录的<code>databricks Runtime版本与Spark版本的对应关系</code></p>
+<p>运行命令<code>ANALYZE TABLE iris COMPUTE STATISTICS FOR COLUMNS SepalLength, SepalWidth, PetalLength, PetalWidth, Species;</code>计算指定多列的统计信息，</p>
+<p>运行<code>DESCRIBE EXTENDED iris SepalLength;</code>获取指定一列的统计信息，结果如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spark-sql&gt;</span> ANALYZE TABLE iris COMPUTE STATISTICS FOR COLUMNS SepalLength, SepalWidth, PetalLength, PetalWidth, Species;</span><br><span class="line">Time taken: 4.45 seconds</span><br><span class="line"><span class="meta">spark-sql&gt;</span> DESCRIBE EXTENDED iris PetalWidth;</span><br><span class="line">col_name	PetalWidth</span><br><span class="line">data_type	float</span><br><span class="line">comment	NULL</span><br><span class="line">min	0.10000000149011612</span><br><span class="line">max	2.5</span><br><span class="line">num_nulls	0</span><br><span class="line">distinct_count	21</span><br><span class="line">avg_col_len	4</span><br><span class="line">max_col_len	4</span><br><span class="line">histogram	NULL</span><br><span class="line">Time taken: 0.104 seconds, Fetched 10 row(s)</span><br></pre></td></tr></table></figure>
+<p>目前测试Spark2.2.2不支持该语句，但是Spark2.4.0支持。如果不支持，则可以通过访问hive的元数据库也可以得到这些信息，sql语句如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> param_key, param_value </span><br><span class="line"><span class="keyword">from</span> TABLE_PARAMS tp, TBLS t </span><br><span class="line"><span class="keyword">where</span> tp.tbl_id=t.tbl_id <span class="keyword">and</span> tbl_name = <span class="string">'iris'</span> </span><br><span class="line"><span class="keyword">and</span> param_key <span class="keyword">like</span> <span class="string">'spark.sql.stat%'</span>;</span><br></pre></td></tr></table></figure>
+<p>以下是PetalWidth列的统计结果，可以看到包含<strong>不重复的记录数，空值数，最大值、最小值，平均长度以及最大长度</strong></p>
+<table>
+<thead>
+<tr>
+<th>param_key</th>
+<th>param_value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spark.sql.statistics.colStats.PetalWidth.avgLen</td>
+<td>4</td>
+</tr>
+<tr>
+<td>spark.sql.statistics.colStats.PetalWidth.distinctCount</td>
+<td>21</td>
+</tr>
+<tr>
+<td>spark.sql.statistics.colStats.PetalWidth.max</td>
+<td>2.5</td>
+</tr>
+<tr>
+<td>spark.sql.statistics.colStats.PetalWidth.maxLen</td>
+<td>4</td>
+</tr>
+<tr>
+<td>spark.sql.statistics.colStats.PetalWidth.min</td>
+<td>0.10000000149011612</td>
+</tr>
+<tr>
+<td>spark.sql.statistics.colStats.PetalWidth.nullCount</td>
+<td>0</td>
+</tr>
+<tr>
+<td>spark.sql.statistics.colStats.PetalWidth.version</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>​    可以看到这些统计信息不仅对了解数据质量非常有用，对使用Spark sql进行查询也能得到优化，进一步提升速度。后续再写一篇CBO如何利用这些信息进行优化。</p>
+<p>​    目前还不清楚Runtime中的Spark功能和开源版的有无差异，但Spark2.4支持表的分析统计操作，建议平台后续项目升级到Spark2.4 。</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="鸢尾花数据说明"><a href="#鸢尾花数据说明" class="headerlink" title="鸢尾花数据说明"></a>鸢尾花数据说明</h2><p>​    Iris数据集是常用的分类实验数据集，由Fisher, 1936收集整理。Iris也称鸢尾花卉数据集，是一类多重变量分析的数据集。数据集包含150个数据集，分为3类，每类50个数据，每个数据包含4个属性。iris以鸢尾花的特征作为数据来源，常用在分类操作中。该数据集由3种不同类型的鸢尾花的50个样本数据构成。其中的一个种类与另外两个种类是线性可分离的，后两个种类是非线性可分离的。</p>
+<p><strong>四个属性：</strong></p>
+<p>Sepal.Length（花萼长度），单位是cm;</p>
+<p>Sepal.Width（花萼宽度），单位是cm;</p>
+<p>Petal.Length（花瓣长度），单位是cm;</p>
+<p>Petal.Width（花瓣宽度），单位是cm;</p>
+<p><strong>三个种类：</strong></p>
+<p>Iris Setosa（山鸢尾）；</p>
+<p>Iris Versicolour（杂色鸢尾）；</p>
+<p>Iris Virginica（维吉尼亚鸢尾）。</p>
+<h2 id="databricks-Runtime"><a href="#databricks-Runtime" class="headerlink" title="databricks Runtime"></a>databricks Runtime</h2><p><img src="DatabricksUnifiedAnalyticsPlatform.png" alt="DatabricksUnifiedAnalyticsPlatform"></p>
+<p>Runtime是databricks 统一分析平台的一部分，官网描述如下：</p>
+<blockquote>
+<p>Accelerate innovation by unifying data science, engineering and business, with the Databricks Unified Analytics Platform, from the original creators of Apache Spark™.</p>
+</blockquote>
+<p>Runtime的描述如下：</p>
+<blockquote>
+<p>Simplify operations and get up to 50x better performance with cloud-optimized Apache Spark™.</p>
+</blockquote>
+<p>可以看到主要是基于云优化来简化操作并提升50倍以上的性能。</p>
+<h2 id="databricks-Runtime版本与Spark版本的对应关系"><a href="#databricks-Runtime版本与Spark版本的对应关系" class="headerlink" title="databricks Runtime版本与Spark版本的对应关系"></a><a href="https://docs.databricks.com/release-notes/runtime/databricks-runtime-ver.html#id6" target="_blank" rel="noopener">databricks Runtime版本与Spark版本的对应关系</a></h2><p><strong>Current Releases</strong></p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Spark Version</th>
+<th>Release Date</th>
+<th>Deprecation Announcement</th>
+<th>Deprecation Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5.2</td>
+<td>Spark 2.4</td>
+<td>Jan 24, 2019</td>
+<td>May 27, 2019</td>
+<td>Sep 30, 2019</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td>Spark 2.4</td>
+<td>Dec 18, 2018</td>
+<td>Apr 18, 2019</td>
+<td>Aug 19, 2019</td>
+</tr>
+<tr>
+<td>5.0</td>
+<td>Spark 2.4</td>
+<td>Nov 08, 2018</td>
+<td>Mar 08, 2019</td>
+<td>Jul 08, 2019</td>
+</tr>
+<tr>
+<td>4.3</td>
+<td>Spark 2.3</td>
+<td>Aug 10, 2018</td>
+<td>Dec 09, 2018</td>
+<td>Apr 09, 2019</td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Spark 2.3</td>
+<td>Jul 09, 2018</td>
+<td>Nov 05, 2018</td>
+<td>Mar 05, 2019</td>
+</tr>
+<tr>
+<td>3.5-LTS</td>
+<td>Spark 2.2</td>
+<td>Dec 21, 2017</td>
+<td>Jan 02, 2019</td>
+<td>Jan 02, 2020</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Marked for Deprecation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Spark Version</th>
+<th>Release Date</th>
+<th>Deprecation Announcement</th>
+<th>Deprecation Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.3</td>
+<td>Spark 2.3</td>
+<td>Aug 10, 2018</td>
+<td>Dec 09, 2018</td>
+<td>Apr 09, 2019</td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Spark 2.3</td>
+<td>Jul 09, 2018</td>
+<td>Nov 05, 2018</td>
+<td>Mar 05, 2019</td>
+</tr>
+<tr>
+<td>3.5-LTS</td>
+<td>Spark 2.2</td>
+<td>Dec 21, 2017</td>
+<td>Jan 02, 2019</td>
+<td>Jan 02, 2020</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Deprecated Releases</strong></p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Spark Version</th>
+<th>Release Date</th>
+<th>Deprecation Announcement</th>
+<th>Deprecation Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.1</td>
+<td>Spark 2.3</td>
+<td>May 17, 2018</td>
+<td>Sep 17, 2018</td>
+<td>Jan 17, 2019</td>
+</tr>
+<tr>
+<td>4.0</td>
+<td>Spark 2.3</td>
+<td>Mar 01, 2018</td>
+<td>Jul 01, 2018</td>
+<td>Nov 01, 2018</td>
+</tr>
+<tr>
+<td>3.4</td>
+<td>Spark 2.2</td>
+<td>Nov 20, 2017</td>
+<td>Mar 31, 2018</td>
+<td>Jul 30, 2018</td>
+</tr>
+<tr>
+<td>3.3</td>
+<td>Spark 2.2</td>
+<td>Oct 04, 2017</td>
+<td>Mar 31, 2018</td>
+<td>Jul 30, 2018</td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Spark 2.2</td>
+<td>Sep 05, 2017</td>
+<td>Jan 30, 2018</td>
+<td>Apr 30, 2018</td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>Spark 2.2</td>
+<td>Aug 04, 2017</td>
+<td>–</td>
+<td>Oct 30, 2017</td>
+</tr>
+<tr>
+<td>3.0</td>
+<td>Spark 2.2</td>
+<td>Jul 11, 2017</td>
+<td>–</td>
+<td>Sep 05, 2017</td>
+</tr>
+<tr>
+<td>Spark 2.1 (Auto Updating)</td>
+<td>Spark 2.1</td>
+<td>Dec 22, 2016</td>
+<td>Mar 31, 2018</td>
+<td>Jul 30, 2018</td>
+</tr>
+<tr>
+<td>Spark 2.1.1-db6</td>
+<td>Spark 2.1</td>
+<td>Aug 03, 2017</td>
+<td>Mar 31, 2018</td>
+<td>Jul 30, 2018</td>
+</tr>
+<tr>
+<td>Spark 2.1.1-db5</td>
+<td>Spark 2.1</td>
+<td>May 31, 2017</td>
+<td>–</td>
+<td>Aug 03, 2017</td>
+</tr>
+<tr>
+<td>Spark 2.1.1-db4</td>
+<td>Spark 2.1</td>
+<td>Apr 25, 2017</td>
+<td>Mar 31, 2018</td>
+<td>Jul 30, 2018</td>
+</tr>
+<tr>
+<td>Spark 2.0 (Auto Updating)</td>
+<td>Spark 2.0</td>
+<td>Jul 26, 2016</td>
+<td>Jan 30, 2018</td>
+<td>Apr 30, 2018</td>
+</tr>
+<tr>
+<td>Spark 2.0.2-db4</td>
+<td>Spark 2.0</td>
+<td>Mar 24, 2017</td>
+<td>Jan 30, 2018</td>
+<td>Apr 30, 2018</td>
+</tr>
+<tr>
+<td>Spark 1.6.3-db2</td>
+<td>Spark 1.6</td>
+<td>Mar 24, 2017</td>
+<td>Jan 30, 2018</td>
+<td>Jun 30, 2018</td>
+</tr>
+</tbody>
+</table>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a href="https://docs.databricks.com/spark/latest/spark-sql/language-manual/analyze-table.html" target="_blank" rel="noopener">https://docs.databricks.com/spark/latest/spark-sql/language-manual/analyze-table.html</a></li>
+<li><a href="https://docs.databricks.com/spark/latest/spark-sql/language-manual/describe-table.html" target="_blank" rel="noopener">https://docs.databricks.com/spark/latest/spark-sql/language-manual/describe-table.html</a></li>
+<li><a href="https://docs.databricks.com/spark/latest/spark-sql/cbo.html" target="_blank" rel="noopener">https://docs.databricks.com/spark/latest/spark-sql/cbo.html</a></li>
+<li><a href="https://docs.databricks.com/release-notes/runtime/databricks-runtime-ver.html#versioning" target="_blank" rel="noopener">https://docs.databricks.com/release-notes/runtime/databricks-runtime-ver.html#versioning</a></li>
+<li><a href="https://blog.csdn.net/Albert201605/article/details/82313139" target="_blank" rel="noopener">https://blog.csdn.net/Albert201605/article/details/82313139</a></li>
+<li><a href="https://archive.ics.uci.edu/ml/datasets/Iris" target="_blank" rel="noopener">https://archive.ics.uci.edu/ml/datasets/Iris</a></li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/大数据/">大数据</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/大数据/">大数据</a><a href="/tags/统计/">统计</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://github.com/2019/02/18/使用SparkSql分析表/使用SparkSql分析表/" data-title="使用SparkSql分析表 | starqiu&#39;s blog" data-tsina="1665530845" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2018/12/28/hexo搭建博客问题汇总/hexo搭建博客问题汇总/" title="hexo搭建博客问题汇总">
+ <strong>下一篇：</strong><br> 
+ <span>hexo搭建博客问题汇总
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2019/02/18/使用SparkSql分析表/使用SparkSql分析表/" data-title="使用SparkSql分析表" data-url="https://github.com/2019/02/18/使用SparkSql分析表/使用SparkSql分析表/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#准备数据"><span class="toc-number">2.</span> <span class="toc-text">准备数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#表的分析与统计"><span class="toc-number">3.</span> <span class="toc-text">表的分析与统计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#表统计"><span class="toc-number">3.1.</span> <span class="toc-text">表统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列统计"><span class="toc-number">3.2.</span> <span class="toc-text">列统计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#附录"><span class="toc-number">5.</span> <span class="toc-text">附录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#鸢尾花数据说明"><span class="toc-number">5.1.</span> <span class="toc-text">鸢尾花数据说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#databricks-Runtime"><span class="toc-number">5.2.</span> <span class="toc-text">databricks Runtime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#databricks-Runtime版本与Spark版本的对应关系"><span class="toc-number">5.3.</span> <span class="toc-text">databricks Runtime版本与Spark版本的对应关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文献"><span class="toc-number">6.</span> <span class="toc-text">参考文献</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Books/" title="Books">Books<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/GC/" title="GC">GC<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Logic/" title="Logic">Logic<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/R/" title="R">R<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/hexo/" title="hexo">hexo<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/test/" title="test">test<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据挖掘/" title="数据挖掘">数据挖掘<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/测试/" title="测试">测试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/运维/" title="运维">运维<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Java/" title="Java">Java<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据挖掘/" title="数据挖掘">数据挖掘<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Logic/" title="Logic">Logic<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本管理/" title="版本管理">版本管理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Swing/" title="Swing">Swing<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/测试/" title="测试">测试<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/统计/" title="统计">统计<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/svn/" title="svn">svn<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://toutiao.io/" target="_blank" title="开发者头条">开发者头条</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.jobbole.com/" target="_blank" title="伯乐在线">伯乐在线</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://www.coursera.org/" target="_blank" title="Coursera">Coursera</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.yinwang.org/" target="_blank" title="王垠的博客">王垠的博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://coolshell.cn/" target="_blank" title="CoolShell">CoolShell</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://stackoverflow.com/" target="_blank" title="stackoverflow">stackoverflow</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/jackfrued" target="_blank" title="骆昊的技术专栏">骆昊的技术专栏</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.iteye.com/blogs/tag/Java" target="_blank" title="iteye">iteye</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://droidyue.com/" target="_blank" title="技术小黑屋">技术小黑屋</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="ifeve.com" target="_blank" title="并发编程网">并发编程网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.importnew.com/" target="_blank" title="importnew">importnew</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blogwall.us/" target="_blank" title="程序员博客墙">程序员博客墙</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.caimi.la/category/Java/" target="_blank" title="采蜜博客">采蜜博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.raychase.net/category/java" target="_blank" title="四火的唠叨">四火的唠叨</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://it.deepinmind.com/" target="_blank" title="deepinmind">deepinmind</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+<div class="commentslist">
+  <p class="asidetitle">最新评论</p>
+  <ul class="ds-recent-comments" data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-admin="1" data-excerpt-length="32" data-show-title="1"></ul>
+</div>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starqiugithubio"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer">
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Star Qiu in SIAT. <br>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font">
+		
+		<a href="http://weibo.com/1665530845## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/starqiu" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:674867812@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2019 
+		
+		<a href="/about" target="_blank" title="starqiu">starqiu</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"starqiugithubio"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Feb3894e29cbb8bc3a4d89d220c4d46ed' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

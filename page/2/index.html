@@ -92,6 +92,87 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/25/如何禁止一个容器的所有行为/" title="如何禁止一个容器的所有行为" itemprop="url">如何禁止一个容器的所有行为</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  </p><p class="article-time">
+    <time datetime="2015-08-24T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-25</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <blockquote>
+<p>如何禁止（disable）一个容器的所有行为（包括不响应任何事件）？</p>
+</blockquote>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><ol>
+<li><p>一个容器还包括子容器，子容器也是需要禁止的，因此需要使用递归来解决。代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 改变一个容器及其子容器的enbale状态</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> container</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> enable　如果为false则Disable  容器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">enableComponents</span><span class="params">(Container container, <span class="keyword">boolean</span> enable)</span> </span>&#123;</span><br><span class="line">    Component[] components = container.getComponents();</span><br><span class="line">    <span class="keyword">for</span> (Component component : components) &#123;</span><br><span class="line">        component.setEnabled(enable);</span><br><span class="line">        <span class="keyword">if</span> (component <span class="keyword">instanceof</span> Container) &#123;</span><br><span class="line">            enableComponents((Container)component, enable);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>disable一个容器并不会临时移除事件</p>
+<p>javadoc中的描述是：</p>
+<blockquote>
+<p>Enables or disables this component, depending on the value of the parameter b. An enabled component can respond<br>to user input and generate events. Components are enabled initially by default.<br><strong>Note: Disabling a lightweight component does not prevent it from receiving MouseEvents. </strong><br><strong>Note: Disabling a heavyweight container prevents all components in this container from receiving any input events. </strong></p>
+</blockquote>
+<p>可以看到，disable一个容器并不会临时移除事件。此时有两种解决方案：</p>
+</li>
+</ol>
+<ul>
+<li>移除所有事件。但如果以后还需要添加这些事件的话，需要保存这些事件，操作起来比较麻烦。</li>
+<li>在所有事件的处理方法开始时，添加判断<code>isEnabled</code>代码，如果为<code>false</code>则直接返回。代码如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!container.isEnabled()) &#123;<span class="comment">//确保panel被禁止时不处理事件。</span></span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Java/">Java</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Java/">Java</a><a href="/tags/Swing/">Swing</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/25/如何禁止一个容器的所有行为/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/25/如何禁止一个容器的所有行为/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/24/如何使JOptionPane.showMessageDialog 显示的信息可复制/" title="如何使JOptionPane.showMessageDialog 显示的信息可复制" itemprop="url">如何使JOptionPane.showMessageDialog 显示的信息可复制</a>
   </h1>
   <p class="article-author">By
@@ -743,76 +824,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/27/useStacksImplementsQueue/" title="用两个栈实现队列" itemprop="url">用两个栈实现队列</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
-		
-  </p><p class="article-time">
-    <time datetime="2015-07-26T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-27</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
-<p>用两个栈实现队列</p>
-</blockquote>
-<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><ol>
-<li>stack1 为进栈，添加数据都push到本栈</li>
-<li>stack2 为出栈，删除数据都从本栈pop。<br>如果删除时 stack2 为空而 stack1 不为空，则先将stack1中的数据全部 pop 出来依次 push 到 stack2 中，然后再从 stack2 pop。</li>
-</ol>
-<h1 id="举一反三"><a href="#举一反三" class="headerlink" title="举一反三"></a>举一反三</h1><p>也可使用两个队列实现栈，方法类似。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/算法/">算法</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/算法/">算法</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/07/27/useStacksImplementsQueue/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/27/useStacksImplementsQueue/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
@@ -864,6 +875,10 @@
 		
 		  
 			<li><a href="/categories/test/" title="test">test<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
 		  
 		
 		  
@@ -932,11 +947,11 @@
 			
 		
 			
-				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>1</sup></a></li>
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>1</sup></a></li>
 			
 		
 			
@@ -960,7 +975,7 @@
 			
 		
 			
-				<li><a href="/tags/svn/" title="svn">svn<sup>1</sup></a></li>
+				<li><a href="/tags/统计/" title="统计">统计<sup>1</sup></a></li>
 			
 		
 			
@@ -968,7 +983,11 @@
 			
 		
 			
-				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+				<li><a href="/tags/svn/" title="svn">svn<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
 			
 		
 		</ul>

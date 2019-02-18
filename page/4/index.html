@@ -92,6 +92,78 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/07/17/rCluster/" title="R中的聚类方法" itemprop="url">R中的聚类方法</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  </p><p class="article-time">
+    <time datetime="2015-07-16T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-17</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="Hierarchical-Clustering"><a href="#Hierarchical-Clustering" class="headerlink" title="Hierarchical Clustering"></a>Hierarchical Clustering</h1><h2 id="hclust"><a href="#hclust" class="headerlink" title="hclust"></a>hclust</h2><ul>
+<li>hclust</li>
+<li><p>cutree<br>函数原型：cutree(tree, k = NULL, h = NULL)<br>其中k是聚类个数，h是数值类型。h是生成的树的高度的一个cut点。h和k的对应关系如下：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k &lt;- nrow(tree$merge) + <span class="number">2L</span> - apply(outer(c(tree$height, <span class="literal">Inf</span>), h, <span class="string">"&gt;"</span>),<span class="number">2</span>, which.max)</span><br></pre></td></tr></table></figure>
+<p>等价于：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k &lt;- nrow(treec$merge) + <span class="number">2L</span> - which.max(c(tree$height, <span class="literal">Inf</span>)&gt;hy)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="Partitioning-Clustering"><a href="#Partitioning-Clustering" class="headerlink" title="Partitioning Clustering"></a>Partitioning Clustering</h1>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/07/17/rCluster/#more">更多</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/数据挖掘/">数据挖掘</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/数据挖掘/">数据挖掘</a><a href="/tags/R/">R</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/07/17/rCluster/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/17/rCluster/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/01/22/test/" title="test" itemprop="url">test</a>
   </h1>
   <p class="article-author">By
@@ -205,6 +277,10 @@
 		  
 		
 		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/数据挖掘/" title="数据挖掘">数据挖掘<sup>3</sup></a></li>
 		  
 		
@@ -270,11 +346,11 @@
 			
 		
 			
-				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>1</sup></a></li>
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>1</sup></a></li>
 			
 		
 			
@@ -298,7 +374,7 @@
 			
 		
 			
-				<li><a href="/tags/svn/" title="svn">svn<sup>1</sup></a></li>
+				<li><a href="/tags/统计/" title="统计">统计<sup>1</sup></a></li>
 			
 		
 			
@@ -306,7 +382,11 @@
 			
 		
 			
-				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+				<li><a href="/tags/svn/" title="svn">svn<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
 			
 		
 		</ul>
