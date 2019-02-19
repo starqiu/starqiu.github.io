@@ -170,327 +170,12 @@
 </tr>
 </tbody>
 </table>
-<p>数据说明见附录中的<code>鸢尾花数据</code>。</p>
-<p>我们先把数据放到Spark sql数仓中</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> iris ( SepalLength <span class="built_in">FLOAT</span> , SepalWidth <span class="built_in">FLOAT</span> </span><br><span class="line">  , PetalLength <span class="built_in">FLOAT</span> , PetalWidth <span class="built_in">FLOAT</span> </span><br><span class="line">  , Species <span class="built_in">VARCHAR</span>(<span class="number">100</span>) </span><br><span class="line">)</span><br><span class="line"><span class="keyword">ROW</span> <span class="keyword">FORMAT</span> <span class="keyword">DELIMITED</span></span><br><span class="line"><span class="keyword">FIELDS</span> <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">','</span></span><br><span class="line"><span class="keyword">STORED</span> <span class="keyword">AS</span> TEXTFILE</span><br><span class="line">LOCATION <span class="string">'/mnt/disk1/starqiu/iris'</span>;</span><br></pre></td></tr></table></figure>
-<h1 id="表的分析与统计"><a href="#表的分析与统计" class="headerlink" title="表的分析与统计"></a>表的分析与统计</h1><p>Analyze Table语法如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ANALYZE</span> <span class="keyword">TABLE</span> [db_name.]table_name <span class="keyword">COMPUTE</span> <span class="keyword">STATISTICS</span> [analyze_option]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Collect statistics about the table that can be used by the query optimizer to find a better plan.</p>
-</blockquote>
-<p>可以看到Spark表的分析可以<strong>为spark sql做查询优化</strong>，以便得到更好的查询性能。Spark Sql默认使用CBO（基于代价的优化），这在多表join查询时尤其有用。</p>
-<p>此处的<code>analyze_option</code>参数主要分为两类，表统计和列统计。</p>
-<h2 id="表统计"><a href="#表统计" class="headerlink" title="表统计"></a>表统计</h2><p>表的基本统计信息一般包括记录总数和所占空间。</p>
-<p>Table statistics用法如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ANALYZE</span> <span class="keyword">TABLE</span> [db_name.]table_name <span class="keyword">COMPUTE</span> <span class="keyword">STATISTICS</span> [NOSCAN]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Collect only basic statistics for the table (number of rows, size in bytes).</p>
-<p><strong>NOSCAN</strong><br>Collect only statistics that do not require scanning the whole table (that is, size in bytes).</p>
-</blockquote>
-<p>运行命令<code>ANALYZE TABLE iris COMPUTE STATISTICS;</code>可以得到表的记录总数和所占空间大小。如果不想全表扫描，加上<code>NOSCAN</code>关键字，不会全表扫描，但只能得到所占空间大小。</p>
-<p>表统计信息的描述命令语法如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DESCRIBE</span> [<span class="keyword">EXTENDED</span>] [db_name.]table_name</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Return the metadata of an existing table (column names, data types, and comments). If the table does not exist, an exception is thrown.</p>
-<p><strong>EXTENDED</strong><br>Display detailed information about the table, including parent database, table type, storage information, and properties.<br>Describe Partition</p>
-</blockquote>
-<p>运行<code>DESCRIBE EXTENDED iris;</code>，结果如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spark-sql&gt;</span> DESCRIBE EXTENDED iris;</span><br><span class="line">SepalLength	float	NULL</span><br><span class="line">SepalWidth	float	NULL</span><br><span class="line">PetalLength	float	NULL</span><br><span class="line">PetalWidth	float	NULL</span><br><span class="line">Species	string	NULL</span><br><span class="line">		</span><br><span class="line"><span class="meta">#</span> Detailed Table Information	CatalogTable(</span><br><span class="line">	Table: `default`.`iris`</span><br><span class="line">	Owner: root</span><br><span class="line">	Created: Sat Feb 16 17:24:32 CST 2019</span><br><span class="line">	Last Access: Thu Jan 01 08:00:00 CST 1970</span><br><span class="line">	Type: EXTERNAL</span><br><span class="line">	Schema: [StructField(SepalLength,FloatType,true), StructField(SepalWidth,FloatType,true), StructField(PetalLength,FloatType,true), StructField(PetalWidth,FloatType,true), StructField(Species,StringType,true)]</span><br><span class="line">	Provider: hive</span><br><span class="line">	Properties: [rawDataSize=-1, numFiles=0, transient_lastDdlTime=1550311815, totalSize=0, COLUMN_STATS_ACCURATE=false, numRows=-1]</span><br><span class="line">	Statistics: sizeInBytes=3808, rowCount=150, isBroadcastable=false</span><br><span class="line">	Storage(Location: hdfs://data126:8020/mnt/disk1/starqiu/iris, InputFormat: org.apache.hadoop.mapred.TextInputFormat, OutputFormat: org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat, Serde: org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe, Properties: [field.delim=,, serialization.format=,])</span><br><span class="line">	Partition Provider: Catalog)	</span><br><span class="line">Time taken: 0.112 seconds, Fetched 7 row(s)</span><br></pre></td></tr></table></figure>
-<p>通过<code>Statistics:</code>可以看到表的记录总数是150条，所占空间3808B，约4KB。</p>
-<h2 id="列统计"><a href="#列统计" class="headerlink" title="列统计"></a>列统计</h2><p>Column statistics用法如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ANALYZE</span> <span class="keyword">TABLE</span> [db_name.]table_name <span class="keyword">COMPUTE</span> <span class="keyword">STATISTICS</span> <span class="keyword">FOR</span> <span class="keyword">COLUMNS</span> col1 [, col2, ...]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Collect column statistics for the specified columns in addition to table statistics.</p>
-<p>Tip</p>
-<p>Use this command whenever possible because it collects more statistics so the optimizer can find better plans. Make sure to collect statistics for all columns used by the query.</p>
-</blockquote>
-<p>列统计的描述命令语法如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DESCRIBE</span> [<span class="keyword">EXTENDED</span>][db_name.]table_name column_name</span><br><span class="line"></span><br><span class="line"><span class="keyword">New</span> <span class="keyword">in</span> <span class="keyword">version</span> runtime<span class="number">-3.3</span>.</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>EXTENDED<br>Display detailed information about the specified columns, including the column statistics collected by the command ANALYZE TABLE table_name COMPUTE STATISTICS FOR COLUMNS column_name [column_name, …].</p>
-</blockquote>
-<p>需要注意的是这个功能在runtime-3.3版本才有的特性，而runtime-3.3封装的是Spark 2.2，会详见文末附录的<code>databricks Runtime版本与Spark版本的对应关系</code></p>
-<p>运行命令<code>ANALYZE TABLE iris COMPUTE STATISTICS FOR COLUMNS SepalLength, SepalWidth, PetalLength, PetalWidth, Species;</code>计算指定多列的统计信息，</p>
-<p>运行<code>DESCRIBE EXTENDED iris SepalLength;</code>获取指定一列的统计信息，结果如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spark-sql&gt;</span> ANALYZE TABLE iris COMPUTE STATISTICS FOR COLUMNS SepalLength, SepalWidth, PetalLength, PetalWidth, Species;</span><br><span class="line">Time taken: 4.45 seconds</span><br><span class="line"><span class="meta">spark-sql&gt;</span> DESCRIBE EXTENDED iris PetalWidth;</span><br><span class="line">col_name	PetalWidth</span><br><span class="line">data_type	float</span><br><span class="line">comment	NULL</span><br><span class="line">min	0.10000000149011612</span><br><span class="line">max	2.5</span><br><span class="line">num_nulls	0</span><br><span class="line">distinct_count	21</span><br><span class="line">avg_col_len	4</span><br><span class="line">max_col_len	4</span><br><span class="line">histogram	NULL</span><br><span class="line">Time taken: 0.104 seconds, Fetched 10 row(s)</span><br></pre></td></tr></table></figure>
-<p>目前测试Spark2.2.2不支持该语句，但是Spark2.4.0支持。如果不支持，则可以通过访问hive的元数据库也可以得到这些信息，sql语句如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> param_key, param_value </span><br><span class="line"><span class="keyword">from</span> TABLE_PARAMS tp, TBLS t </span><br><span class="line"><span class="keyword">where</span> tp.tbl_id=t.tbl_id <span class="keyword">and</span> tbl_name = <span class="string">'iris'</span> </span><br><span class="line"><span class="keyword">and</span> param_key <span class="keyword">like</span> <span class="string">'spark.sql.stat%'</span>;</span><br></pre></td></tr></table></figure>
-<p>以下是PetalWidth列的统计结果，可以看到包含<strong>不重复的记录数，空值数，最大值、最小值，平均长度以及最大长度</strong></p>
-<table>
-<thead>
-<tr>
-<th>param_key</th>
-<th>param_value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>spark.sql.statistics.colStats.PetalWidth.avgLen</td>
-<td>4</td>
-</tr>
-<tr>
-<td>spark.sql.statistics.colStats.PetalWidth.distinctCount</td>
-<td>21</td>
-</tr>
-<tr>
-<td>spark.sql.statistics.colStats.PetalWidth.max</td>
-<td>2.5</td>
-</tr>
-<tr>
-<td>spark.sql.statistics.colStats.PetalWidth.maxLen</td>
-<td>4</td>
-</tr>
-<tr>
-<td>spark.sql.statistics.colStats.PetalWidth.min</td>
-<td>0.10000000149011612</td>
-</tr>
-<tr>
-<td>spark.sql.statistics.colStats.PetalWidth.nullCount</td>
-<td>0</td>
-</tr>
-<tr>
-<td>spark.sql.statistics.colStats.PetalWidth.version</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>​    可以看到这些统计信息不仅对了解数据质量非常有用，对使用Spark sql进行查询也能得到优化，进一步提升速度。后续再写一篇CBO如何利用这些信息进行优化。</p>
-<p>​    目前还不清楚Runtime中的Spark功能和开源版的有无差异，但Spark2.4支持表的分析统计操作，建议平台后续项目升级到Spark2.4 。</p>
-<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="鸢尾花数据说明"><a href="#鸢尾花数据说明" class="headerlink" title="鸢尾花数据说明"></a>鸢尾花数据说明</h2><p>​    Iris数据集是常用的分类实验数据集，由Fisher, 1936收集整理。Iris也称鸢尾花卉数据集，是一类多重变量分析的数据集。数据集包含150个数据集，分为3类，每类50个数据，每个数据包含4个属性。iris以鸢尾花的特征作为数据来源，常用在分类操作中。该数据集由3种不同类型的鸢尾花的50个样本数据构成。其中的一个种类与另外两个种类是线性可分离的，后两个种类是非线性可分离的。</p>
-<p><strong>四个属性：</strong></p>
-<p>Sepal.Length（花萼长度），单位是cm;</p>
-<p>Sepal.Width（花萼宽度），单位是cm;</p>
-<p>Petal.Length（花瓣长度），单位是cm;</p>
-<p>Petal.Width（花瓣宽度），单位是cm;</p>
-<p><strong>三个种类：</strong></p>
-<p>Iris Setosa（山鸢尾）；</p>
-<p>Iris Versicolour（杂色鸢尾）；</p>
-<p>Iris Virginica（维吉尼亚鸢尾）。</p>
-<h2 id="databricks-Runtime"><a href="#databricks-Runtime" class="headerlink" title="databricks Runtime"></a>databricks Runtime</h2><p><img src="DatabricksUnifiedAnalyticsPlatform.png" alt="DatabricksUnifiedAnalyticsPlatform"></p>
-<p>Runtime是databricks 统一分析平台的一部分，官网描述如下：</p>
-<blockquote>
-<p>Accelerate innovation by unifying data science, engineering and business, with the Databricks Unified Analytics Platform, from the original creators of Apache Spark™.</p>
-</blockquote>
-<p>Runtime的描述如下：</p>
-<blockquote>
-<p>Simplify operations and get up to 50x better performance with cloud-optimized Apache Spark™.</p>
-</blockquote>
-<p>可以看到主要是基于云优化来简化操作并提升50倍以上的性能。</p>
-<h2 id="databricks-Runtime版本与Spark版本的对应关系"><a href="#databricks-Runtime版本与Spark版本的对应关系" class="headerlink" title="databricks Runtime版本与Spark版本的对应关系"></a><a href="https://docs.databricks.com/release-notes/runtime/databricks-runtime-ver.html#id6" target="_blank" rel="noopener">databricks Runtime版本与Spark版本的对应关系</a></h2><p><strong>Current Releases</strong></p>
-<table>
-<thead>
-<tr>
-<th>Version</th>
-<th>Spark Version</th>
-<th>Release Date</th>
-<th>Deprecation Announcement</th>
-<th>Deprecation Date</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>5.2</td>
-<td>Spark 2.4</td>
-<td>Jan 24, 2019</td>
-<td>May 27, 2019</td>
-<td>Sep 30, 2019</td>
-</tr>
-<tr>
-<td>5.1</td>
-<td>Spark 2.4</td>
-<td>Dec 18, 2018</td>
-<td>Apr 18, 2019</td>
-<td>Aug 19, 2019</td>
-</tr>
-<tr>
-<td>5.0</td>
-<td>Spark 2.4</td>
-<td>Nov 08, 2018</td>
-<td>Mar 08, 2019</td>
-<td>Jul 08, 2019</td>
-</tr>
-<tr>
-<td>4.3</td>
-<td>Spark 2.3</td>
-<td>Aug 10, 2018</td>
-<td>Dec 09, 2018</td>
-<td>Apr 09, 2019</td>
-</tr>
-<tr>
-<td>4.2</td>
-<td>Spark 2.3</td>
-<td>Jul 09, 2018</td>
-<td>Nov 05, 2018</td>
-<td>Mar 05, 2019</td>
-</tr>
-<tr>
-<td>3.5-LTS</td>
-<td>Spark 2.2</td>
-<td>Dec 21, 2017</td>
-<td>Jan 02, 2019</td>
-<td>Jan 02, 2020</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Marked for Deprecation</strong></p>
-<table>
-<thead>
-<tr>
-<th>Version</th>
-<th>Spark Version</th>
-<th>Release Date</th>
-<th>Deprecation Announcement</th>
-<th>Deprecation Date</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>4.3</td>
-<td>Spark 2.3</td>
-<td>Aug 10, 2018</td>
-<td>Dec 09, 2018</td>
-<td>Apr 09, 2019</td>
-</tr>
-<tr>
-<td>4.2</td>
-<td>Spark 2.3</td>
-<td>Jul 09, 2018</td>
-<td>Nov 05, 2018</td>
-<td>Mar 05, 2019</td>
-</tr>
-<tr>
-<td>3.5-LTS</td>
-<td>Spark 2.2</td>
-<td>Dec 21, 2017</td>
-<td>Jan 02, 2019</td>
-<td>Jan 02, 2020</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Deprecated Releases</strong></p>
-<table>
-<thead>
-<tr>
-<th>Version</th>
-<th>Spark Version</th>
-<th>Release Date</th>
-<th>Deprecation Announcement</th>
-<th>Deprecation Date</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>4.1</td>
-<td>Spark 2.3</td>
-<td>May 17, 2018</td>
-<td>Sep 17, 2018</td>
-<td>Jan 17, 2019</td>
-</tr>
-<tr>
-<td>4.0</td>
-<td>Spark 2.3</td>
-<td>Mar 01, 2018</td>
-<td>Jul 01, 2018</td>
-<td>Nov 01, 2018</td>
-</tr>
-<tr>
-<td>3.4</td>
-<td>Spark 2.2</td>
-<td>Nov 20, 2017</td>
-<td>Mar 31, 2018</td>
-<td>Jul 30, 2018</td>
-</tr>
-<tr>
-<td>3.3</td>
-<td>Spark 2.2</td>
-<td>Oct 04, 2017</td>
-<td>Mar 31, 2018</td>
-<td>Jul 30, 2018</td>
-</tr>
-<tr>
-<td>3.2</td>
-<td>Spark 2.2</td>
-<td>Sep 05, 2017</td>
-<td>Jan 30, 2018</td>
-<td>Apr 30, 2018</td>
-</tr>
-<tr>
-<td>3.1</td>
-<td>Spark 2.2</td>
-<td>Aug 04, 2017</td>
-<td>–</td>
-<td>Oct 30, 2017</td>
-</tr>
-<tr>
-<td>3.0</td>
-<td>Spark 2.2</td>
-<td>Jul 11, 2017</td>
-<td>–</td>
-<td>Sep 05, 2017</td>
-</tr>
-<tr>
-<td>Spark 2.1 (Auto Updating)</td>
-<td>Spark 2.1</td>
-<td>Dec 22, 2016</td>
-<td>Mar 31, 2018</td>
-<td>Jul 30, 2018</td>
-</tr>
-<tr>
-<td>Spark 2.1.1-db6</td>
-<td>Spark 2.1</td>
-<td>Aug 03, 2017</td>
-<td>Mar 31, 2018</td>
-<td>Jul 30, 2018</td>
-</tr>
-<tr>
-<td>Spark 2.1.1-db5</td>
-<td>Spark 2.1</td>
-<td>May 31, 2017</td>
-<td>–</td>
-<td>Aug 03, 2017</td>
-</tr>
-<tr>
-<td>Spark 2.1.1-db4</td>
-<td>Spark 2.1</td>
-<td>Apr 25, 2017</td>
-<td>Mar 31, 2018</td>
-<td>Jul 30, 2018</td>
-</tr>
-<tr>
-<td>Spark 2.0 (Auto Updating)</td>
-<td>Spark 2.0</td>
-<td>Jul 26, 2016</td>
-<td>Jan 30, 2018</td>
-<td>Apr 30, 2018</td>
-</tr>
-<tr>
-<td>Spark 2.0.2-db4</td>
-<td>Spark 2.0</td>
-<td>Mar 24, 2017</td>
-<td>Jan 30, 2018</td>
-<td>Apr 30, 2018</td>
-</tr>
-<tr>
-<td>Spark 1.6.3-db2</td>
-<td>Spark 1.6</td>
-<td>Mar 24, 2017</td>
-<td>Jan 30, 2018</td>
-<td>Jun 30, 2018</td>
-</tr>
-</tbody>
-</table>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
-<li><a href="https://docs.databricks.com/spark/latest/spark-sql/language-manual/analyze-table.html" target="_blank" rel="noopener">https://docs.databricks.com/spark/latest/spark-sql/language-manual/analyze-table.html</a></li>
-<li><a href="https://docs.databricks.com/spark/latest/spark-sql/language-manual/describe-table.html" target="_blank" rel="noopener">https://docs.databricks.com/spark/latest/spark-sql/language-manual/describe-table.html</a></li>
-<li><a href="https://docs.databricks.com/spark/latest/spark-sql/cbo.html" target="_blank" rel="noopener">https://docs.databricks.com/spark/latest/spark-sql/cbo.html</a></li>
-<li><a href="https://docs.databricks.com/release-notes/runtime/databricks-runtime-ver.html#versioning" target="_blank" rel="noopener">https://docs.databricks.com/release-notes/runtime/databricks-runtime-ver.html#versioning</a></li>
-<li><a href="https://blog.csdn.net/Albert201605/article/details/82313139" target="_blank" rel="noopener">https://blog.csdn.net/Albert201605/article/details/82313139</a></li>
-<li><a href="https://archive.ics.uci.edu/ml/datasets/Iris" target="_blank" rel="noopener">https://archive.ics.uci.edu/ml/datasets/Iris</a></li>
-</ol>
-
+<p>数据说明见附录中的<code>鸢尾花数据</code>。<br>
         
         
-        <p class="article-more-link">
+        </p><p class="article-more-link">
+          
+            <a href="/2019/02/18/使用SparkSql分析表/使用SparkSql分析表/#more">更多</a>
           
        </p>
     </div>
@@ -1324,27 +1009,7 @@
 			
 		
 			
-				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
 			
 		
 			
@@ -1353,6 +1018,26 @@
 		
 			
 				<li><a href="/tags/统计/" title="统计">统计<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS/" title="CentOS">CentOS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Docker/" title="Docker">Docker<sup>1</sup></a></li>
 			
 		
 			
