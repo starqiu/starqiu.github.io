@@ -106,7 +106,7 @@
     <div class="article-content">
         
         <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>​    我们的数据挖掘平台对数据统计有比较迫切的需求，而Spark本身对数据统计已经做了一些工作，希望梳理一下Spark已经支持的数据统计功能，后期再进行扩展。</p>
-<h1 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h1><p>在参考文献6中下载鸢尾花数据或是<a href="images/使用SparkSql分析表/Iris.csv">从此处下载</a>，一般为iris.csv格式，带title，<strong>需要把title删除</strong>。</p>
+<h1 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h1><p>在参考文献6中下载<a href="https://archive.ics.uci.edu/ml/machine-learning-databases/iris/" target="_blank" rel="noopener">鸢尾花数据</a>，此处格式为iris.data格式，<strong>先将data后缀改为csv后缀（不影响使用，只是为了保证后续操作不需要修改）</strong>。</p>
 <p>数据格式如下：</p>
 <table>
 <thead>
@@ -202,6 +202,135 @@
 	
 	  	<span></span>
 		<a href="/2019/02/18/使用SparkSql分析表/使用SparkSql分析表/#comments" class="ds-thread-count comments-count-link" data-thread-key="2019/02/18/使用SparkSql分析表/使用SparkSql分析表/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/02/18/使用SparkSql分析表/" title="使用SparkSql分析表" itemprop="url">使用SparkSql分析表</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  </p><p class="article-time">
+    <time datetime="2019-02-17T16:00:00.000Z" itemprop="datePublished"> 发表于 2019-02-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>​    我们的数据挖掘平台对数据统计有比较迫切的需求，而Spark本身对数据统计已经做了一些工作，希望梳理一下Spark已经支持的数据统计功能，后期再进行扩展。</p>
+<h1 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h1><p>在参考文献6中下载鸢尾花数据或是<a href="images/使用SparkSql分析表/Iris.csv">从此处下载</a>，一般为iris.csv格式，带title，<strong>需要把title删除</strong>。</p>
+<p>数据格式如下：</p>
+<table>
+<thead>
+<tr>
+<th>SepalLength</th>
+<th>SepalWidth</th>
+<th>PetalLength</th>
+<th>PetalWidth</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5.1</td>
+<td>3.5</td>
+<td>1.4</td>
+<td>0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td>4.9</td>
+<td>3</td>
+<td>1.4</td>
+<td>0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td>4.7</td>
+<td>3.2</td>
+<td>1.3</td>
+<td>0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td>4.6</td>
+<td>3.1</td>
+<td>1.5</td>
+<td>0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3.6</td>
+<td>1.4</td>
+<td>0.2</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td>3.9</td>
+<td>1.7</td>
+<td>0.4</td>
+<td>Iris-setosa</td>
+</tr>
+<tr>
+<td>4.6</td>
+<td>3.4</td>
+<td>1.4</td>
+<td>0.3</td>
+<td>Iris-setosa</td>
+</tr>
+</tbody>
+</table>
+<p>数据说明见附录中的<code>鸢尾花数据</code>。<br>
+        
+        
+        </p><p class="article-more-link">
+          
+            <a href="/2019/02/18/使用SparkSql分析表/#more">更多</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/大数据/">大数据</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/大数据/">大数据</a><a href="/tags/统计/">统计</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2019/02/18/使用SparkSql分析表/#comments" class="ds-thread-count comments-count-link" data-thread-key="2019/02/18/使用SparkSql分析表/" data-count-type="comments">&nbsp;</a>
 	
 </div>
 
@@ -808,84 +937,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/26/找出重复3遍的数字/" title="找出重复3遍的数字" itemprop="url">找出重复3遍的数字</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
-		
-  </p><p class="article-time">
-    <time datetime="2015-08-25T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-26</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
-<p>一组整型数中，有一个数字重复3遍，其它数字重复2遍，请找出这个重复3遍的数字。比如：[88, 459, 5262, 88, -17, 677, 88, 677, -17, 459, 5262], 结果为88。要求程序代码中额外申请的空间为O(1)，请给出一个平均时间复杂度不大于O(nlogn)的算法。请首先用文字阐述答题思路，然后用Java程序实现。(阿里　2016)</p>
-</blockquote>
-<h1 id="解答１"><a href="#解答１" class="headerlink" title="解答１"></a>解答１</h1><ol>
-<li>两个相同的数异或（^）之后的值为０</li>
-<li>将所有的数异或起来就可以消去相同的两个数</li>
-<li>任意数和０异或都得到自身</li>
-</ol>
-<h1 id="代码１"><a href="#代码１" class="headerlink" title="代码１"></a>代码１</h1> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">xorArray</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : arr) &#123;</span><br><span class="line">        result ^= i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 测试用例如下：<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testXorArray</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = &#123;<span class="number">88</span>, <span class="number">459</span>, <span class="number">5262</span>, <span class="number">88</span>, -<span class="number">17</span>, <span class="number">677</span>, <span class="number">88</span>, <span class="number">677</span>, -<span class="number">17</span>, <span class="number">459</span>, <span class="number">5262</span>&#125;;</span><br><span class="line">    assertEquals(<span class="number">88</span>, xorArray(arr));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="解答２"><a href="#解答２" class="headerlink" title="解答２"></a>解答２</h1><ol>
-<li>参考快速排序<code>partition</code>方法，将小于选中的数全部放在左边，大于或等于选中的数则放在右边。其中如果选中的数有多个，则最后一个数也必须是该数</li>
-<li>如果小于当前数的个数是偶数，则待查找的数大于等于选中的数。如果最后一位数不等于选中的数，则表示选中的数只有一个，此时选中的数即为要查找的数；递归查找大于或等于选中的数（去掉两头的数）</li>
-<li>如果小于当前数的个数是偶数，则待查找的数小于选中的数，递归查找所有小于选中的数</li>
-<li><p>如果右边没有数字，即所有的数都小于选中的数，则该数即为要查找的数</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/08/26/找出重复3遍的数字/#more">更多</a>
-          
-       </p>
-    </li></ol></div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/算法/">算法</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/算法/">算法</a><a href="/tags/Java/">Java</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/26/找出重复3遍的数字/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/26/找出重复3遍的数字/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -940,7 +991,7 @@
 		  
 		
 		  
-			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>2</sup></a></li>
 		  
 		
 		  
@@ -993,7 +1044,7 @@
 			
 		
 			
-				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+				<li><a href="/tags/统计/" title="统计">统计<sup>2</sup></a></li>
 			
 		
 			
@@ -1009,27 +1060,15 @@
 			
 		
 			
-				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/统计/" title="统计">统计<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
 			
 		
 			
@@ -1041,7 +1080,11 @@
 			
 		
 			
-				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
@@ -1049,7 +1092,15 @@
 			
 		
 			
-				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
 			
 		
 		</ul>

@@ -92,6 +92,84 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/26/找出重复3遍的数字/" title="找出重复3遍的数字" itemprop="url">找出重复3遍的数字</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  </p><p class="article-time">
+    <time datetime="2015-08-25T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-26</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
+<p>一组整型数中，有一个数字重复3遍，其它数字重复2遍，请找出这个重复3遍的数字。比如：[88, 459, 5262, 88, -17, 677, 88, 677, -17, 459, 5262], 结果为88。要求程序代码中额外申请的空间为O(1)，请给出一个平均时间复杂度不大于O(nlogn)的算法。请首先用文字阐述答题思路，然后用Java程序实现。(阿里　2016)</p>
+</blockquote>
+<h1 id="解答１"><a href="#解答１" class="headerlink" title="解答１"></a>解答１</h1><ol>
+<li>两个相同的数异或（^）之后的值为０</li>
+<li>将所有的数异或起来就可以消去相同的两个数</li>
+<li>任意数和０异或都得到自身</li>
+</ol>
+<h1 id="代码１"><a href="#代码１" class="headerlink" title="代码１"></a>代码１</h1> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">xorArray</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : arr) &#123;</span><br><span class="line">        result ^= i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 测试用例如下：<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testXorArray</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = &#123;<span class="number">88</span>, <span class="number">459</span>, <span class="number">5262</span>, <span class="number">88</span>, -<span class="number">17</span>, <span class="number">677</span>, <span class="number">88</span>, <span class="number">677</span>, -<span class="number">17</span>, <span class="number">459</span>, <span class="number">5262</span>&#125;;</span><br><span class="line">    assertEquals(<span class="number">88</span>, xorArray(arr));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="解答２"><a href="#解答２" class="headerlink" title="解答２"></a>解答２</h1><ol>
+<li>参考快速排序<code>partition</code>方法，将小于选中的数全部放在左边，大于或等于选中的数则放在右边。其中如果选中的数有多个，则最后一个数也必须是该数</li>
+<li>如果小于当前数的个数是偶数，则待查找的数大于等于选中的数。如果最后一位数不等于选中的数，则表示选中的数只有一个，此时选中的数即为要查找的数；递归查找大于或等于选中的数（去掉两头的数）</li>
+<li>如果小于当前数的个数是偶数，则待查找的数小于选中的数，递归查找所有小于选中的数</li>
+<li><p>如果右边没有数字，即所有的数都小于选中的数，则该数即为要查找的数</p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/08/26/找出重复3遍的数字/#more">更多</a>
+          
+       </p>
+    </li></ol></div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/算法/">算法</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/算法/">算法</a><a href="/tags/Java/">Java</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/26/找出重复3遍的数字/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/26/找出重复3遍的数字/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/25/如何禁止一个容器的所有行为/" title="如何禁止一个容器的所有行为" itemprop="url">如何禁止一个容器的所有行为</a>
   </h1>
   <p class="article-author">By
@@ -460,6 +538,79 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/04/给定数组a构造数组b/" title="给定数组a[N]构造数组b [N]——腾讯笔试" itemprop="url">给定数组a[N]构造数组b [N]——腾讯笔试</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  </p><p class="article-time">
+    <time datetime="2015-08-03T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-04</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
+<p>给定一个数组a[N]，我们希望构造数组b [N]，其中b[j]=a[0]*a[1]…a[N-1] / a[j]，在构造过程中，不允许使用除法：要求O（1）空间复杂度和O（n）的时间复杂度；除遍历计数器与a[N] b[N]外，不可使用新的变量（包括栈临时变量、堆空间和全局静态变量等）</p>
+</blockquote>
+<h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><p>不能使用除法，那就不能直接全部做乘法再做除法。<br><code>b[j]=a[0]*a[1]…a[N-1] / a[j]</code>，其实就是a中除去第j个数其他数相乘。<br>既然不能使用除法，就只能将整个式子分成两部分：<code>a[0]*a[1]*...*a[j-1]</code> 和 <code>a[j+1]*a[j+2]*...*a[N-1]</code></p>
+<ol>
+<li><p>首先构造第一部分<br>令b[0] = 1 , <code>b[j] = b[j-1]*a[j-1]</code><br>b[1] = a[0]<br>b[2] = a[0]*a[1]<br>…<br>b[j] = a[0]*a[1]*…*a[j-1]<br>…<br>b[n-1] = a[0]*a[1]*…*a[n-2]</p>
+</li>
+<li><p>然后开始构造第二部分<br>因为初始都是从1开始构造，所以这次我们需要从后往后前构造。<br>令b[0] = 1 , <code>b[j] = b[0]*b[j]</code> ，每次前进重新计算b[0]的值，作为临时变量 : <code>b[0]= b[0]*a[j]</code></p>
+<p>b[n-1] = a[0]*a[1]*…*a[n-2]* 1 , b[0] = a[n-1]<br>b[n-2] = a[0]*a[1]*…*a[n-3]* a[n-1] , b[0] = a[n-1]*a[n-2]<br>b[n-3] = a[0]*a[1]*…*a[n-4]*a[n-2]* a[n-1] , b[0] = a[n-1]*a[n-2]*a[n-3]<br>…<br>b[j] = a[0]*a[1]*…*a[j-1].*a[j+1]* a[j+2]*..*a[n-2]* a[n-1] , b[0] = a[n-1]*a[n-2]*..*a[j]<br>…<br>b[1] = a[0]*a[2]*…*a[n-3]*a[n-2]* a[n-1], b[0] = a[n-1]*a[n-2]*..*a[1]</p>
+<p>此部分，每当计算b[j]时，<code>b[0] = a[n-1]*a[n-2]*...a[j]</code> ,正好是下一次需要计算的右边部分。<br>此时，所有的b[j] 都满足 <code>b[j]=a[0]*a[1]…a[N-1] / a[j]</code></p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/08/04/给定数组a构造数组b/#more">更多</a>
+          
+       </p>
+    </li></ol></div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/算法/">算法</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/算法/">算法</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/04/给定数组a构造数组b/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/04/给定数组a构造数组b/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/04/顺时针操作矩阵/" title="顺时针操作矩阵" itemprop="url">顺时针操作矩阵</a>
   </h1>
   <p class="article-author">By
@@ -519,79 +670,6 @@
 	
 	  	<span></span>
 		<a href="/2015/08/04/顺时针操作矩阵/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/04/顺时针操作矩阵/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/04/给定数组a构造数组b/" title="给定数组a[N]构造数组b [N]——腾讯笔试" itemprop="url">给定数组a[N]构造数组b [N]——腾讯笔试</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
-		
-  </p><p class="article-time">
-    <time datetime="2015-08-03T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-08-04</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
-<p>给定一个数组a[N]，我们希望构造数组b [N]，其中b[j]=a[0]*a[1]…a[N-1] / a[j]，在构造过程中，不允许使用除法：要求O（1）空间复杂度和O（n）的时间复杂度；除遍历计数器与a[N] b[N]外，不可使用新的变量（包括栈临时变量、堆空间和全局静态变量等）</p>
-</blockquote>
-<h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><p>不能使用除法，那就不能直接全部做乘法再做除法。<br><code>b[j]=a[0]*a[1]…a[N-1] / a[j]</code>，其实就是a中除去第j个数其他数相乘。<br>既然不能使用除法，就只能将整个式子分成两部分：<code>a[0]*a[1]*...*a[j-1]</code> 和 <code>a[j+1]*a[j+2]*...*a[N-1]</code></p>
-<ol>
-<li><p>首先构造第一部分<br>令b[0] = 1 , <code>b[j] = b[j-1]*a[j-1]</code><br>b[1] = a[0]<br>b[2] = a[0]*a[1]<br>…<br>b[j] = a[0]*a[1]*…*a[j-1]<br>…<br>b[n-1] = a[0]*a[1]*…*a[n-2]</p>
-</li>
-<li><p>然后开始构造第二部分<br>因为初始都是从1开始构造，所以这次我们需要从后往后前构造。<br>令b[0] = 1 , <code>b[j] = b[0]*b[j]</code> ，每次前进重新计算b[0]的值，作为临时变量 : <code>b[0]= b[0]*a[j]</code></p>
-<p>b[n-1] = a[0]*a[1]*…*a[n-2]* 1 , b[0] = a[n-1]<br>b[n-2] = a[0]*a[1]*…*a[n-3]* a[n-1] , b[0] = a[n-1]*a[n-2]<br>b[n-3] = a[0]*a[1]*…*a[n-4]*a[n-2]* a[n-1] , b[0] = a[n-1]*a[n-2]*a[n-3]<br>…<br>b[j] = a[0]*a[1]*…*a[j-1].*a[j+1]* a[j+2]*..*a[n-2]* a[n-1] , b[0] = a[n-1]*a[n-2]*..*a[j]<br>…<br>b[1] = a[0]*a[2]*…*a[n-3]*a[n-2]* a[n-1], b[0] = a[n-1]*a[n-2]*..*a[1]</p>
-<p>此部分，每当计算b[j]时，<code>b[0] = a[n-1]*a[n-2]*...a[j]</code> ,正好是下一次需要计算的右边部分。<br>此时，所有的b[j] 都满足 <code>b[j]=a[0]*a[1]…a[N-1] / a[j]</code></p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/08/04/给定数组a构造数组b/#more">更多</a>
-          
-       </p>
-    </li></ol></div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/算法/">算法</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/算法/">算法</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/04/给定数组a构造数组b/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/04/给定数组a构造数组b/" data-count-type="comments">&nbsp;</a>
 	
 </div>
 
@@ -745,85 +823,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/07/28/topNPro/" title="Top N 问题" itemprop="url">Top N 问题</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
-		
-  </p><p class="article-time">
-    <time datetime="2015-07-27T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-28</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>转载自 <a href="http://www.cnblogs.com/zhjp11/archive/2010/02/26/1674227.html" target="_blank" rel="noopener">http://www.cnblogs.com/zhjp11/archive/2010/02/26/1674227.html</a><br>原文格式不太好，调整下格式</p>
-<p>今天看算法分析是，看到一个这样的问题，就是在一堆数据中查找到第k个大的值。</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><pre><code>设计一组N个数，确定其中第k个最大值
-</code></pre><p>这是一个选择问题，当然，解决这个问题的方法很多，本人在网上搜索了一番，查找到以下的方式，决定很好，推荐给大家。<br>所谓“第（前）k大数问题”指的是在长度为n(n&gt;=k)的乱序数组中S找出从大到小顺序的第（前）k个数的问题。</p>
-<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><ul>
-<li><strong>解法1</strong>： 我们可以对这个乱序数组按照从大到小先行排序，然后取出前k大，总的时间复杂度为O(n*logn + k)。</li>
-<li><strong>解法2</strong>： 利用选择排序或交互排序，K次选择后即可得到第k大的数。总的时间复杂度为O(n*k)</li>
-<li><strong>解法3</strong>： 利用快速排序的思想，从数组S中随机找出一个元素X，把数组分为两部分Sa和Sb。Sa中的元素大于等于X，Sb中元素小于X。这时有两种情况：<ul>
-<li>Sa中元素的个数小于k，则Sb中的第k-|Sa|个元素即为第k大数；</li>
-<li>Sa中元素的个数大于等于k，则返回Sa中的第k大数。<strong>时间复杂度近似为O(n)</strong></li>
-</ul>
-</li>
-<li><strong>解法4</strong>： 二分[Smin,Smax]查找结果X，统计X在数组中出现，且整个数组中比X大的数目为k-1的数即为第k大数。时间复杂度平均情况为O(n*logn)</li>
-<li><strong>解法5</strong>：用O(4*n)的方法对原数组建最大堆，然后pop出k次即可。时间复杂度为O(4*n + k*logn)</li>
-<li><strong>解法6</strong>：维护一个k大小的最小堆，对于数组中的每一个元素判断与堆顶的大小，若堆顶较大，则不管，否则，弹出堆顶，将当前值插入到堆中。时间复杂度O(n * logk)</li>
-<li><strong>解法7</strong>：利用hash保存数组中元素Si出现的次数，利用计数排序的思想，线性从大到小扫描过程中，前面有k-1个数则为第k大数，<strong>平均情况下时间复杂度O(n)</strong>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/07/28/topNPro/#more">更多</a>
-          
-       </p>
-    </li></ul></div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/算法/">算法</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/算法/">算法</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/07/28/topNPro/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/28/topNPro/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
@@ -878,7 +877,7 @@
 		  
 		
 		  
-			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>2</sup></a></li>
 		  
 		
 		  
@@ -931,7 +930,7 @@
 			
 		
 			
-				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+				<li><a href="/tags/统计/" title="统计">统计<sup>2</sup></a></li>
 			
 		
 			
@@ -947,27 +946,15 @@
 			
 		
 			
-				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/统计/" title="统计">统计<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
 			
 		
 			
@@ -979,7 +966,11 @@
 			
 		
 			
-				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
@@ -987,7 +978,15 @@
 			
 		
 			
-				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
 			
 		
 		</ul>

@@ -92,6 +92,83 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/07/18/rNote/" title="R笔记" itemprop="url">R笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="starqiu" target="_blank" itemprop="author">starqiu</a>
+		
+  </p><p class="article-time">
+    <time datetime="2015-07-17T16:00:00.000Z" itemprop="datePublished"> 发表于 2015-07-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ol>
+<li><p><font color="red">如何对数组去重？</font><br>使用 <code>duplicated</code> 函数是一个可以用来解决向量或者数据框重复值的函数，它会返回一个TRUE和FALSE的向量，以标注该索引所对应的值是否是前面数据所重复的值。<br>需要注意的是不重复对应返回的值是FALSE，所以在后面我们用!来取反以得到不重复的值。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr &lt;- c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">5</span>)</span><br><span class="line">arr[!duplicated(arr)]</span><br></pre></td></tr></table></figure>
+<p>输出为：<br>[1] 1 2 3 5 4</p>
+</li>
+<li><p><font color="red">如何取得数组的极大值（或极小值）</font><br>使用 <code>diff</code> 和 <code>sign</code> 两个函数。其中<code>diff</code> 得到相邻数的差， <code>sign</code> 则取符号位（-1,0,1），因每次 <code>diff</code> 返回的数组比原数组的长度小于1，我们主动在首位添加1，表示最小值，即不论原来首位是什么数，都比新添加的数大，在尾部添加-1表示最大值。<br>所谓极大值，即该值比相邻两边的值都大 ，第一次<code>diff</code>要比左边的值大，比右边的值小，所以<code>diff</code>后的值应该是1，-1（没有考虑相等的情况）；那第二次<code>diff</code>的值应该是<code>-1-1=-2</code>.<br>代码如下：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> findMaxima &lt;- <span class="keyword">function</span>(array)&#123;</span><br><span class="line">  which(diff(c(<span class="number">1</span>,sign(diff(array)),-<span class="number">1</span>)) == -<span class="number">2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回的是index</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr &lt;- c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">5</span>)</span><br><span class="line">findMaxima(arr)</span><br></pre></td></tr></table></figure>
+<p>运行结果为：<br>[1] 4 7 9</p>
+</li>
+<li><p><font color="red">如何获得当前文件所在的目录</font></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curFileDir &lt;- dirname(sys.frame(<span class="number">1</span>)$ofile)</span><br></pre></td></tr></table></figure>
+<p>需要注意的是这行代码在命令行运行会出错，只能在文件里面执行。
+        
+        
+        </p><p class="article-more-link">
+          
+            <a href="/2015/07/18/rNote/#more">更多</a>
+          
+       </p>
+    </li></ol></div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/R/">R</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/R/">R</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/07/18/rNote/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/07/18/rNote/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/07/17/rCluster/" title="R中的聚类方法" itemprop="url">R中的聚类方法</a>
   </h1>
   <p class="article-author">By
@@ -277,7 +354,7 @@
 		  
 		
 		  
-			<li><a href="/categories/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>2</sup></a></li>
 		  
 		
 		  
@@ -330,7 +407,7 @@
 			
 		
 			
-				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
+				<li><a href="/tags/统计/" title="统计">统计<sup>2</sup></a></li>
 			
 		
 			
@@ -346,27 +423,15 @@
 			
 		
 			
-				<li><a href="/tags/GC/" title="GC">GC<sup>1</sup></a></li>
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/统计/" title="统计">统计<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+				<li><a href="/tags/R/" title="R">R<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
 			
 		
 			
@@ -378,7 +443,11 @@
 			
 		
 			
-				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
@@ -386,7 +455,15 @@
 			
 		
 			
-				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+				<li><a href="/tags/theme/" title="theme">theme<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java8/" title="Java8">Java8<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Books/" title="Books">Books<sup>1</sup></a></li>
 			
 		
 		</ul>
